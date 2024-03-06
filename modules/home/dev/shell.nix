@@ -1,8 +1,12 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  ...
+}: {
   home.packages = with pkgs; [
     fd
     file
     ripgrep
+    sops
   ];
 
   programs = {
