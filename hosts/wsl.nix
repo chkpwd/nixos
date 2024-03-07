@@ -62,6 +62,7 @@
               echo "data:
                 accessToken: $(cat ${config.sops.secrets.chezmoi_token.path})" > "$HOME/.config/chezmoi/chezmoi.yml"
           '';
+          # post-chezmoi = lib.hm.dag.entryAfter ["writeBoundary"] ''
           post-chezmoi = ''
             $DRY_RUN_CMD ${pkgs.chezmoi}/bin/chezmoi init --apply ${username}
           '';
