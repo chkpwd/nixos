@@ -73,7 +73,6 @@
     '';
     serviceConfig = {
       User = username;
-      WorkingDirectory = "/home/${username}";
       Type = "oneshot";
     };
   };
