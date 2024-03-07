@@ -36,7 +36,7 @@
 
   sops = {
     defaultSopsFile = ../secrets/default.yml;
-    age.keyFile = "$HOME/.config/sops/age/keys.txt";
+    age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
     secrets.chezmoi_token.owner = username;
   };
 
