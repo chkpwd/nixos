@@ -56,11 +56,11 @@
 
         home.activation = {
           pre-chezmoi = ''
-              # Create Chezmoi configuration file with access token
-              $DRY_RUN_CMD mkdir -p $HOME/.config/chezmoi
-              $DRY_RUN_CMD \
-              echo "data:
-                accessToken: $(cat ${config.sops.secrets.chezmoi_token.path})" > "$HOME/.config/chezmoi/chezmoi.yml"
+            # Create Chezmoi configuration file with access token
+            $DRY_RUN_CMD mkdir -p $HOME/.config/chezmoi
+            $DRY_RUN_CMD \
+            echo "data:
+              accessToken: $(cat ${config.sops.secrets.chezmoi_token.path})" > "$HOME/.config/chezmoi/chezmoi.yml"
           '';
           # post-chezmoi = lib.hm.dag.entryAfter ["writeBoundary"] ''
           post-chezmoi = ''
