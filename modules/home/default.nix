@@ -7,7 +7,6 @@
 }: {
   imports = [
     inputs.home-manager.nixosModules.default
-    # inputs.sops-nix.homeManagerModules.sops
   ];
 
   home-manager = {
@@ -34,11 +33,6 @@
 
         programs.home-manager.enable = true;
         services.ssh-agent.enable = true;
-
-        # sops = {
-        #   defaultSopsFile = ../../secrets/default.yml;
-        #   age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
-        # };
       }
     ];
   };
