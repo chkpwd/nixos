@@ -3,29 +3,30 @@
   ...
 }: {
   home.packages = with pkgs; [
-  # Development Tools
+  # Parser
     yq
     jq
     jqp
+  # Service
     istioctl
     fluxcd
     hugo
     etcd
+    terraform
     packer
     govc
-    #kairos
-    yt-dlp
-    #korb
-    atuin
     bws
     bitwarden-cli
+    yt-dlp
+  # Shell
+    atuin
     pet
     teller
     chezmoi
+  # Kubernetes
     stern
     viddy
     k9s
-    terraform
     vcluster
     nova
     pluto
@@ -33,6 +34,7 @@
     krew
     kubectx
     kubernetes-helm
+  # System
     unzip
     pwgen
     git
@@ -41,7 +43,6 @@
     pkg-config
     go
     upx
-    #alien
   # Network Tools
     sshpass
     nmap
@@ -49,7 +50,6 @@
     traceroute
     dnsutils
     ipcalc
-    #genisoimage
     tree
     age
     hugo
