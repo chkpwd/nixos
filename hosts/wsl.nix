@@ -8,7 +8,7 @@
   imports = [
     inputs.vscode-server.nixosModules.default
     inputs.nixos-wsl.nixosModules.wsl
-    inputs.sops-nix.nixosModules.sops
+    ../modules/nixos/sops.nix
   ];
 
   services.vscode-server.enable = true;
@@ -35,12 +35,6 @@
       enabled = true;
       appendWindowsPath = true;
     };
-  };
-
-  sops = {
-    defaultSopsFile = ../secrets/default.yml;
-    age.keyFile = "/etc/sops/age/nix.txt";
-    secrets.chezmoi_token.owner = username;
   };
 
   home-manager = {
