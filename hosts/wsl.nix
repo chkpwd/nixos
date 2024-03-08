@@ -11,16 +11,11 @@
     inputs.sops-nix.nixosModules.sops
   ];
 
-  system.stateVersion = "23.11";
   services.vscode-server.enable = true;
   environment = {
     systemPackages = with pkgs; [
-      vim
       htop
-      wget
     ];
-    pathsToLink = ["/share/zsh"];
-    shells = [pkgs.zsh];
   };
 
   wsl = {
@@ -28,32 +23,34 @@
     defaultUser = username;
     startMenuLaunchers = true;
     nativeSystemd = true;
-    interop.register = true;
+    interop = {
+      register = true;
+      includePath = true;
+    };
+    wslConf.interop = {
+      enabled = true;
+      appendWindowsPath = true;
+    };
   };
-
-  # Allow Proprietary software
-  nixpkgs.config.allowUnfree = true;
 
   sops = {
     defaultSopsFile = ../secrets/default.yml;
-    age.keyFile = "/home/${username}/.config/sops/age/nix.txt";
+    age.keyFile = "/etc/sops/age/nix.txt";
     secrets.chezmoi_token.owner = username;
   };
 
   home-manager = {
     users.${username}.imports = [
       ../modules/home/dev
-      ({ config, lib, ...}: {
+      ({ lib, ...}: {
         home.file = {
-          ".vscode-server/.env" = {
-          text = ''
-            # Add system pkgs
-            PATH=$PATH:/run/current-system/sw/bin/
-          '';
+          ".vscode-server/server-env-setup" = {
+            text = ''
+              # Add default system pkgs
+              PATH=$PATH:/run/current-system/sw/bin/
+            '';
           };
         };
-
-        programs.zsh.enable = true;
         programs.git.enable = true;
       })
     ];
@@ -69,7 +66,6 @@
       data:
         accessToken: $(cat ${config.sops.secrets.chezmoi_token.path})
       " > $HOME/.config/chezmoi/chezmoi.yml
-      #${pkgs.chezmoi}/bin/chezmoi init --apply ${username}
     '';
     serviceConfig = {
       User = username;
