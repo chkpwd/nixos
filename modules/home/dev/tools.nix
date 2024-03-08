@@ -35,30 +35,25 @@
     kubectx
     kubernetes-helm
   # System
-    unzip
+    age
     pwgen
     git
     rsync
     rclone
-    pkg-config
     go
     upx
-  # Network Tools
+  # Network
     sshpass
     nmap
-    drill
-    traceroute
-    dnsutils
     ipcalc
     tree
-    age
-    hugo
-    ffmpeg
-  # Ansible
+  # Python
     (python311.withPackages (ps: [
       ps.ansible-core
       ps.molecule
     ]))
     ansible-lint
+  # Misc
+    ffmpeg
   ];
 }
