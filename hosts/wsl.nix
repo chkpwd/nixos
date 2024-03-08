@@ -15,6 +15,10 @@
   environment = {
     systemPackages = with pkgs; [
       htop
+      unzip
+      drill
+      traceroute
+      dnsutils
     ];
   };
 
