@@ -25,7 +25,6 @@
           homeDirectory = "/home/${username}";
           stateVersion = "23.11";
           packages = with pkgs; [
-            vim
             wget
             curl
           ];
