@@ -9,7 +9,7 @@
 with lib; {
   imports = [inputs.home-manager.nixosModules.default];
 
-  system.stateVersion = mkDefault "23.11"; # TODO: Look into lib.mkDefault lib.mkOverride lib.mkForce
+  system.stateVersion = mkDefault "23.11";
   users = {
     mutableUsers = false;
     users.${username} = {
@@ -23,10 +23,27 @@ with lib; {
     systemPackages = with pkgs; [
       nil
       alejandra
+      vim
     ];
-    pathsToLink = ["/share/zsh"];
-    shells = [pkgs.zsh];
+    variables.EDITOR = mkDefault "nano";
   };
+
+  networking.hostName = mkDefault "nixos";
+  time.timeZone = mkDefault "America/New_York";
+  i18n.defaultLocale = mkDefault "en_US.UTF-8";
+
+  services = {
+    openssh = mkDefault {
+      enable = true;
+      settings = {
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+      };
+    };
+  };
+
+  # Allow Proprietary software
+  nixpkgs.config.allowUnfree = true;
 
   nix = {
     gc = {
@@ -48,7 +65,4 @@ with lib; {
       ];
     };
   };
-
-  # Allow Proprietary software
-  nixpkgs.config.allowUnfree = true;
 }
