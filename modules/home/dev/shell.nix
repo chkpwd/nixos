@@ -3,10 +3,10 @@
   ...
 }: {
   home.packages = with pkgs; [
+    zsh
     fd
     file
     ripgrep
-    sops
   ];
 
   programs = {
