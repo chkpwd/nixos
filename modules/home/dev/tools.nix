@@ -36,6 +36,7 @@
     kubernetes-helm
   # System
     age
+    sops
     pwgen
     git
     rsync
