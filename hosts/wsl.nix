@@ -11,6 +11,17 @@
     ../modules/nixos/sops.nix
   ];
 
+  custom.sops = {
+    enable = true;
+    file = {
+      source = "/home/chkpwd/code/nixos/secrets/default.yml";
+    };
+    age = {
+      source = "/mnt/c/users/chkpwd/nix-agekey.txt";
+      destination = "/etc/sops/age/nix.txt";
+    };
+  };
+
   services.vscode-server.enable = true;
   environment = {
     systemPackages = with pkgs; [
