@@ -13,7 +13,7 @@ in {
 
     file = {
       source = lib.mkOption {
-        type = lib.types.str;
+        type = lib.types.path;
         default = false;
         description = "Source of age key file";
       };
