@@ -14,7 +14,7 @@
   custom.sops = {
     enable = true;
     file = {
-      source = ../secrets/default.yml;
+      source = "${outPath}/secrets/default.yml";
     };
     age = {
       source = "/mnt/c/users/chkpwd/nix-agekey.txt";
