@@ -17,8 +17,6 @@
     govc
     bws
     bitwarden-cli
-  # misc
-    yt-dlp
   # Shell
     atuin
     pet
@@ -57,5 +55,6 @@
     ansible-lint
   # Misc
     ffmpeg
+    yt-dlp
   ];
 }
