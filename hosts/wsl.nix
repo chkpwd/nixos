@@ -9,6 +9,7 @@
     inputs.vscode-server.nixosModules.default
     inputs.nixos-wsl.nixosModules.wsl
     ../modules/nixos/sops.nix
+    ../modules/nixos/docker.nix
   ];
 
   custom.sops = {
