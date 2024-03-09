@@ -17,6 +17,7 @@
     govc
     bws
     bitwarden-cli
+  # misc
     yt-dlp
   # Shell
     atuin
