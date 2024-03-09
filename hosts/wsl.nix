@@ -1,4 +1,5 @@
 {
+  self,
   pkgs,
   inputs,
   config,
@@ -14,7 +15,7 @@
   custom.sops = {
     enable = true;
     file = {
-      source = "/home/chkpwd/code/nixos/secrets/default.yml";
+      source = "${self}/nixos/secrets/default.yml";
     };
     age = {
       source = "/mnt/c/users/chkpwd/nix-agekey.txt";
