@@ -27,6 +27,7 @@
   in {
     nixosConfigurations = {
       wsl = systemConfig "x86_64-linux" [./hosts/wsl.nix];
+      test = systemConfig "x86_64-linux" [./hosts/test.nix];
     };
   };
 }
