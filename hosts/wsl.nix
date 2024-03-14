@@ -34,6 +34,12 @@
     ];
   };
 
+  networking = {
+    domain = "local.chkpwd.com";
+    nameservers = ["172.16.16.1"];
+    hostName = "dev-nixos";
+  };
+
   wsl = {
     enable = true;
     defaultUser = username;
@@ -43,16 +49,21 @@
       register = true;
       includePath = true;
     };
-    wslConf.interop = {
-      enabled = true;
-      appendWindowsPath = true;
+    wslConf = {
+      network = {
+        generateResolvConf = false;
+      };
+      interop = {
+        enabled = true;
+        appendWindowsPath = true;
+      };
     };
   };
 
   home-manager = {
     users.${username}.imports = [
       ../modules/home/dev
-      ({ lib, ...}: {
+      ({lib, ...}: {
         home.file = {
           ".vscode-server/server-env-setup" = {
             text = ''
