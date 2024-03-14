@@ -1,8 +1,5 @@
 {
-  pkgs,
-  config,
   username,
-  inputs,
   ...
 }: {
   virtualisation = {
