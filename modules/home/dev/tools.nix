@@ -35,6 +35,8 @@
     kubectx
     kubernetes-helm
   # System
+    htop
+    unzip
     age
     sops
     pwgen
@@ -48,6 +50,9 @@
     nmap
     ipcalc
     tree
+    drill
+    traceroute
+    dnsutils
   # Python
     (python311.withPackages (ps: [
       ps.ansible-core

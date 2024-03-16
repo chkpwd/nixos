@@ -40,7 +40,6 @@
 
   home-manager = {
     users.${username}.imports = [
-      ../modules/home/dev
       {
         programs.git.enable = true;
       }
