@@ -11,7 +11,8 @@
     vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
-  outputs = {self, ...} @ inputs: let
+  outputs = {self, ...}@inputs:
+  let
     username = "chkpwd";
     sshPubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBK2VnKgOX7i1ISETheqjAO3/xo6D9n7QbWyfDAPsXwa";
     systemConfig = system: modules:
@@ -19,12 +20,14 @@
         specialArgs = {inherit inputs username sshPubKey;};
         inherit system;
         modules =
-          [ ./deploy.nix ./modules/nixos/system.nix ./modules/home ]
+          [./modules/nixos/system.nix ./modules/home]
           ++ modules;
       };
-  in {
+  in
+  {
+    deploy = import ./deploy.nix { inherit self inputs username; };
     nixosConfigurations = {
-      nix-ws-01 = systemConfig "x86_64-linux" [./hosts/nix-ws-01.nix];
+      nix-vm-01 = systemConfig "x86_64-linux" [./hosts/nix-vm-01.nix];
       nix-wsl-01 = systemConfig "x86_64-linux" [./hosts/nix-wsl-01.nix];
     };
   };
