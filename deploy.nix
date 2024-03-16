@@ -7,7 +7,7 @@
     hostname = host;
     profiles.system = {
       user = "chkpwd";
-      sshUser = "chkpwd";
+      sshUser = self.username;
       path = inputs.deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.${name};
       magicRollback = cfg.magicRollback or true;
       sshOpts = cfg.sshOpts or [];
