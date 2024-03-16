@@ -8,7 +8,7 @@
     profiles.system = {
       user = "chkpwd";
       sshUser = "chkpwd";
-      #path = inputs.deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.${name};
+      path = inputs.deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.${name};
       magicRollback = cfg.magicRollback or true;
       sshOpts = cfg.sshOpts or [];
     };
