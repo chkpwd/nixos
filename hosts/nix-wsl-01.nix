@@ -31,6 +31,7 @@
       drill
       traceroute
       dnsutils
+      deploy-rs
     ];
   };
 

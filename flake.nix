@@ -7,6 +7,7 @@
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    deploy-rs.url = "github:serokell/deploy-rs";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
@@ -18,16 +19,13 @@
         specialArgs = {inherit inputs username sshPubKey;};
         inherit system;
         modules =
-          [
-            ./modules/nixos/system.nix
-            ./modules/home
-          ]
+          [ ./deploy.nix ./modules/nixos/system.nix ./modules/home ]
           ++ modules;
       };
   in {
     nixosConfigurations = {
-      wsl = systemConfig "x86_64-linux" [./hosts/wsl.nix];
-      test = systemConfig "x86_64-linux" [./hosts/test.nix];
+      nix-ws-01 = systemConfig "x86_64-linux" [./hosts/nix-ws-01.nix];
+      nix-wsl-01 = systemConfig "x86_64-linux" [./hosts/nix-wsl-01.nix];
     };
   };
 }

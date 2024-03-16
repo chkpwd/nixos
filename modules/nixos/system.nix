@@ -25,7 +25,7 @@ with lib; {
       alejandra
       vim
     ];
-    variables.EDITOR = mkDefault "nano";
+    variables.EDITOR = mkDefault "nano"; #TODO: change to vim
   };
 
   networking.hostName = mkDefault "nixos";
