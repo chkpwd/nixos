@@ -8,9 +8,15 @@
   imports = [
     inputs.vscode-server.nixosModules.default
     inputs.nixos-wsl.nixosModules.wsl
-    ../modules/nixos/sops.nix
-    ../modules/nixos/docker.nix
+    ../modules/nixos/secrets/sops.nix
+    ../modules/nixos/virtualization/docker.nix
   ];
+
+  networking = {
+    domain = "local.chkpwd.com";
+    nameservers = ["172.16.16.1"];
+    hostName = "nix-wsl-01";
+  };
 
   custom.sops = {
     enable = true;
@@ -25,14 +31,7 @@
 
   services.vscode-server.enable = true;
   environment = {
-    systemPackages = with pkgs; [
-      htop
-      unzip
-      drill
-      traceroute
-      dnsutils
-      deploy-rs
-    ];
+    systemPackages = with pkgs; [deploy-rs];
   };
 
   wsl = {

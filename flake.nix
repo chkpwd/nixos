@@ -20,15 +20,14 @@
         specialArgs = {inherit inputs username sshPubKey;};
         inherit system;
         modules =
-          [./modules/nixos/system.nix ./modules/home]
+          [./modules/nixos ./modules/home]
           ++ modules;
       };
   in
   {
-    deploy = import ./deploy.nix { inherit self inputs username; };
     nixosConfigurations = {
       nix-vm-01 = systemConfig "x86_64-linux" [./hosts/nix-vm-01.nix];
       nix-wsl-01 = systemConfig "x86_64-linux" [./hosts/nix-wsl-01.nix];
     };
-  };
+  } // import ./deploy.nix { inherit self inputs username; };
 }
