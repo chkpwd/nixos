@@ -18,12 +18,18 @@
 
   boot.loader.grub = {
     enable = true;
-    version = 2;
     device = "/dev/sda";
   };
 
-  filesystems = {
-    "/".device = "/dev/sda1";
+  fileSystems = {
+    "/" = {
+      device = "/dev/sda";
+      fsType = "ext4";
+    };
+    "/boot" = {
+      device = "/dev/sda";
+      fsType = "vfat";
+    };
   };
 
   networking = {
@@ -37,7 +43,7 @@
       ../modules/home/dev
       {
         programs.git.enable = true;
-      };
+      }
     ];
   };
 }
