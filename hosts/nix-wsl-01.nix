@@ -6,6 +6,15 @@
   ...
 }: {
   imports = [inputs.vscode-server.nixosModules.default];
+  services.vscode-server.enable = true;
+
+  networking = {
+    hostName = "nix-wsl-01";
+  };
+
+  environment = {
+    systemPackages = with pkgs; [deploy-rs];
+  };
 
   modules = {
     wsl.enable = true;
@@ -20,15 +29,6 @@
         destination = "/etc/sops/age/nix.txt";
       };
     };
-  };
-
-  networking = {
-    hostName = "nix-wsl-01";
-  };
-
-  services.vscode-server.enable = true;
-  environment = {
-    systemPackages = with pkgs; [deploy-rs];
   };
 
   home-manager = {

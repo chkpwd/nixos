@@ -1,7 +1,3 @@
 {
-  imports = [
-    ./secrets
-    ./system
-    ./virtualization
-  ];
+  imports = [./system];
 }
