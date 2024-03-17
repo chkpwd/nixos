@@ -27,3 +27,6 @@ deploy .#<name-of-host>
 ```console
 sudo nixos-rebuild switch --flake github:chkpwd/nixos/<branch>#<name-of-host>
 ```
+### Next steps
+- [ ] MacOS Setup
+- [ ] Setup Overlays
