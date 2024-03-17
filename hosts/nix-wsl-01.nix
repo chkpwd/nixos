@@ -5,28 +5,25 @@
   username,
   ...
 }: {
-  imports = [
-    inputs.vscode-server.nixosModules.default
-    inputs.nixos-wsl.nixosModules.wsl
-    ../modules/nixos/secrets/sops.nix
-    ../modules/nixos/virtualization/docker.nix
-  ];
+  imports = [inputs.vscode-server.nixosModules.default];
 
-  networking = {
-    domain = "local.chkpwd.com";
-    nameservers = ["172.16.16.1"];
-    hostName = "nix-wsl-01";
+  modules = {
+    wsl.enable = true;
+    docker.enable = true;
+    sops = {
+      enable = true;
+      file = {
+        source = ../secrets/default.yml;
+      };
+      age = {
+        source = "/mnt/c/users/chkpwd/nix-agekey.txt";
+        destination = "/etc/sops/age/nix.txt";
+      };
+    };
   };
 
-  custom.sops = {
-    enable = true;
-    file = {
-      source = ../secrets/default.yml;
-    };
-    age = {
-      source = "/mnt/c/users/chkpwd/nix-agekey.txt";
-      destination = "/etc/sops/age/nix.txt";
-    };
+  networking = {
+    hostName = "nix-wsl-01";
   };
 
   services.vscode-server.enable = true;
@@ -34,24 +31,9 @@
     systemPackages = with pkgs; [deploy-rs];
   };
 
-  wsl = {
-    enable = true;
-    defaultUser = username;
-    startMenuLaunchers = true;
-    nativeSystemd = true;
-    interop = {
-      register = true;
-      includePath = true;
-    };
-    wslConf.interop = {
-      enabled = true;
-      appendWindowsPath = true;
-    };
-  };
-
   home-manager = {
     users.${username}.imports = [
-      ../modules/home/dev
+      ../modules/common/home-manager/development
       ({ lib, ...}: {
         home.file = {
           ".vscode-server/server-env-setup" = {
