@@ -6,9 +6,9 @@
   lib,
   ...
 }: let
-  cfg = config.custom.sops;
+  cfg = config.modules.sops;
 in {
-  options.custom.sops = {
+  options.modules.sops = {
     enable = lib.mkEnableOption "Enable SOPS on the host";
 
     file = {

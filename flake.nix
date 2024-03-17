@@ -19,9 +19,7 @@
       inputs.nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs username sshPubKey;};
         inherit system;
-        modules =
-          [./modules/nixos ./modules/home]
-          ++ modules;
+        modules = [./modules] ++ modules;
       };
   in
   {

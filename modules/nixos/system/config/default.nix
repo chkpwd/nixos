@@ -1,3 +1,3 @@
 {
-  imports = [./users ./locale ./misc];
+  imports = [./users ./locale ./misc ./wsl];
 }

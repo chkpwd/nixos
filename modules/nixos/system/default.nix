@@ -1,3 +1,3 @@
 {
-  imports = [./config ./packages ./services];
+  imports = [./config ./networking ./packages ./services];
 }
