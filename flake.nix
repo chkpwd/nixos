@@ -1,11 +1,12 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
-    nixos-wsl.url = "github:nix-community/NixOS-WSL";
+    nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-23.05-darwin";
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-wsl.url = "github:nix-community/NixOS-WSL";
     sops-nix.url = "github:Mic92/sops-nix";
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
@@ -24,12 +25,20 @@
         inherit system;
         modules = [./modules] ++ modules;
       };
+    darwinConfig = system: modules:
+      inputs.nix-darwin.lib.darwinSystem {
+        specialArgs = {inherit inputs username sshPubKey;};
+        inherit system;
+        modules = [./modules] ++ modules;
+      };
   in
     {
+      darwinConfigurations = {
+        nix-mb-01 = darwinConfig "x86_64-darwin" [./hosts/nix-mb-01.nix];
+      };
       nixosConfigurations = {
         nix-vm-01 = systemConfig "x86_64-linux" [./hosts/nix-vm-01.nix];
         nix-wsl-01 = systemConfig "x86_64-linux" [./hosts/nix-wsl-01.nix];
-        nix-mb-01 = systemConfig "aarch64-linux" [./hosts/nix-mb-01.nix];
       };
     }
     // import ./deploy.nix {inherit self inputs username;};
