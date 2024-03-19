@@ -1,4 +1,5 @@
-{ lib, ...}: with lib; {
+{lib, ...}:
+with lib; {
   system.stateVersion = mkDefault "23.11";
 
   # Allow Proprietary software

@@ -1,13 +1,10 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
-  # Parser
+    # Parser
     yq
     jq
     jqp
-  # Service
+    # Service
     istioctl
     fluxcd
     hugo
@@ -18,12 +15,12 @@
     bws
     bitwarden-cli
     flyctl
-  # Shell
+    # Shell
     atuin
     pet
     teller
     chezmoi
-  # Kubernetes
+    # Kubernetes
     stern
     viddy
     k9s
@@ -34,7 +31,7 @@
     krew
     kubectx
     kubernetes-helm
-  # System
+    # System
     htop
     unzip
     age
@@ -45,7 +42,7 @@
     rclone
     go
     upx
-  # Network
+    # Network
     sshpass
     nmap
     ipcalc
@@ -53,13 +50,13 @@
     drill
     traceroute
     dnsutils
-  # Python
+    # Python
     (python311.withPackages (ps: [
       ps.ansible-core
       ps.molecule
     ]))
     ansible-lint
-  # Misc
+    # Misc
     ffmpeg
     yt-dlp
   ];

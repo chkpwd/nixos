@@ -3,8 +3,7 @@
   inputs,
   username,
   ...
-}:
-let
+}: let
   deployConfig = name: system: cfg: {
     hostname = name;
     profiles.system = {
@@ -15,8 +14,7 @@ let
       sshOpts = cfg.sshOpts or [];
     };
   };
-in
-{
+in {
   deploy.nodes = {
     nix-vm-01 = deployConfig "nix-vm-01" "x86_64-linux" {};
     nix-wsl-01 = deployConfig "nix-wsl-01" "x86_64-linux" {};

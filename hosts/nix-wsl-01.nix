@@ -34,7 +34,7 @@
   home-manager = {
     users.${username}.imports = [
       ../modules/common/home-manager/development
-      ({ lib, ...}: {
+      ({lib, ...}: {
         home.file = {
           ".vscode-server/server-env-setup" = {
             text = ''

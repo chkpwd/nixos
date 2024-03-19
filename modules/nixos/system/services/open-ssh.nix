@@ -1,4 +1,5 @@
-{ lib, ...}: with lib; {
+{lib, ...}:
+with lib; {
   services = {
     openssh = mkDefault {
       enable = true;
