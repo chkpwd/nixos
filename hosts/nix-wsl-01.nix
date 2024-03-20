@@ -1,21 +1,20 @@
 {
   pkgs,
-  inputs,
   config,
   username,
   ...
 }: {
-  imports = [inputs.vscode-server.nixosModules.default];
-  services.vscode-server.enable = true;
+  modules.vscode-server.enable = true;
 
   networking = {
     hostName = "nix-wsl-01";
   };
 
   environment = {
-    systemPackages = with pkgs; [deploy-rs git];
+    systemPackages = with pkgs; [deploy-rs];
   };
 
+  # Configure user
   modules.users.${username} = {
     enable = true;
     enableDevTools = true;

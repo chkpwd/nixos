@@ -4,5 +4,6 @@
     ./users
     ./secret-manager
     ./virtualization
+    ./vscode-server
   ];
 }
