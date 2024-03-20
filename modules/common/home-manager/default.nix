@@ -1,38 +1,44 @@
 {
-  pkgs,
+  lib,
+  config,
   inputs,
   username,
   sshPubKey,
   ...
-}: {
-  imports = [
-    inputs.home-manager.nixosModules.default
-  ];
+}:
+with lib; let
+  cfg = config.modules.users.${username}.home-manager;
+in {
+  imports = [inputs.home-manager.nixosModules.default];
 
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    extraSpecialArgs = {
-      inherit inputs;
-      inherit username;
-      inherit sshPubKey;
-    };
+  options.modules.users.${username}.home-manager = {
+    enable = mkEnableOption "Enable Home Manager";
+    # enableDevTools = mkEnableOption "Enable Dev Tools";
+    # enableDevShell = mkEnableOption "Enable Dev Shell";
+  };
 
-    sharedModules = [
-      {
-        home = {
+  config = mkMerge [
+    {
+      home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        extraSpecialArgs = {
+          inherit inputs;
           inherit username;
-          homeDirectory = "/home/${username}";
+          inherit sshPubKey;
+        };
+      };
+    }
+    (mkIf (cfg.enable) {
+      home-manager.users.${username} = {
+        home = {
           stateVersion = "23.11";
-          packages = with pkgs; [
-            wget
-            curl
-          ];
         };
 
-        programs.home-manager.enable = true;
-        services.ssh-agent.enable = true;
-      }
-    ];
-  };
+        programs = {
+          home-manager.enable = true;
+        };
+      };
+    })
+  ];
 }

@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [
+  home-manager.users."chkpwd".home.packages = with pkgs; [
     # Parser
     yq
     jq

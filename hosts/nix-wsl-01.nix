@@ -17,6 +17,9 @@
   };
 
   modules = {
+    home-manager = {
+      enable = true;
+    };
     wsl.enable = true;
     docker.enable = true;
     sops = {
@@ -31,22 +34,21 @@
     };
   };
 
-  home-manager = {
-    users.${username}.imports = [
-      ../modules/common/home-manager/development
-      ({lib, ...}: {
-        home.file = {
-          ".vscode-server/server-env-setup" = {
-            text = ''
-              # Add default system pkgs
-              PATH=$PATH:/run/current-system/sw/bin/
-            '';
-          };
-        };
-        programs.git.enable = true;
-      })
-    ];
-  };
+  # home-manager = {
+  #   users.${username}.imports = [
+  #     ({lib, ...}: {
+  #       home.file = {
+  #         ".vscode-server/server-env-setup" = {
+  #           text = ''
+  #             # Add default system pkgs
+  #             PATH=$PATH:/run/current-system/sw/bin/
+  #           '';
+  #         };
+  #       };
+  #       programs.git.enable = true;
+  #     })
+  #   ];
+  # };
 
   systemd.services."chezmoi-init" = {
     description = "Initialize Chezmoi";

@@ -1,0 +1,3 @@
+{
+  imports = [./dev-shell.nix];
+}
