@@ -12,7 +12,7 @@ in {
   imports = [inputs.home-manager.nixosModules.default];
 
   options.modules.users.${username}.home-manager = {
-    enable = mkEnableOption "Enable Home Manager"; # Only one MkEnableOption
+    enable = mkEnableOption "Enable Home Manager";
   };
 
   config = mkIf cfg.enable {

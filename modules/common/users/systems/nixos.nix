@@ -6,10 +6,9 @@
   users.users.${username} = {
     isNormalUser = true;
     uid = 1000;
-    extraGroups =
-      [
-        "wheel"
-      ];
+    extraGroups = [
+      "wheel"
+    ];
 
     openssh.authorizedKeys.keys = [
       sshPubKey

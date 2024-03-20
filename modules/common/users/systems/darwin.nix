@@ -1,4 +1,3 @@
-{username}:
-{
-  users.users.chkpwd.home = "/Users/chkpwd";
+{username}: {
+  users.users.${username}.home = "/Users/chkpwd";
 }
