@@ -1,4 +1,4 @@
 {username}:
 {
-  users.users.bjw-s.home = "/Users/bjw-s";
+  users.users.chkpwd.home = "/Users/chkpwd";
 }

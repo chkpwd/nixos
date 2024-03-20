@@ -16,9 +16,12 @@
     systemPackages = with pkgs; [deploy-rs git];
   };
 
-
-  modules.users.${username}.home-manager = {
+  modules.users.${username} = {
     enable = true;
+    enableDevTools = true;
+    home-manager = {
+      enable = true;
+    };
   };
 
   modules = {

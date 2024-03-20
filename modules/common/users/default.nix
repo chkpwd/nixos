@@ -33,13 +33,13 @@ in {
         shell = pkgs.zsh;
       };
 
-      modules.users.chkpwd.home-manager.enable = true;
+      # modules.users.chkpwd.home-manager.enable = true;
 
-      modules.users.chkpwd.shell.git = {
-        enable = true;
-        username = "Bryan Jones";
-        email = "me@chkpwd.com";
-      };
+      # modules.users.chkpwd.shell.git = {
+      #   enable = true;
+      #   username = "Bryan Jones";
+      #   email = "me@chkpwd.com";
+      # };
     }
 
     mkIf cfg.enableDevTools (import ./packages/dev-tools.nix {

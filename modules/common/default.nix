@@ -1,7 +1,7 @@
 {
   imports = [
     ./home-manager
-    # ./users
+    ./users
     ./secret-manager
     ./virtualization
   ];
