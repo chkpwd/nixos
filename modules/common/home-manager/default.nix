@@ -3,6 +3,7 @@
   config,
   inputs,
   username,
+  sshPubKey,
   ...
 }:
 with lib; let
@@ -15,45 +16,39 @@ in {
     isWSL = mkEnableOption "Enable WSL specific settings";
   };
 
-  config = mkMerge [
-    {
-      home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-        extraSpecialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit sshPubKey;
-        };
+  config = mkIf cfg.enable {
+    home-manager = {
+      useGlobalPkgs = true;
+      useUserPackages = true;
+      extraSpecialArgs = {
+        inherit inputs;
+        inherit username;
+        inherit sshPubKey;
       };
-    }
-
-    mkIf cfg.enable {
-      home-manager.users.${username} = {
+      users.${username} = {
         home = {
           stateVersion = "23.11";
         };
 
         programs = {
           home-manager.enable = true;
-          git.enable = true;
         };
       };
-    }
+    };
 
-    mkIf cfg.isWSL {
-      home-manager.users.${username}.imports = [
-        ({lib, ...}: {
-          home.file = {
-            ".vscode-server/server-env-setup" = {
-              text = ''
-                # Add default system pkgs
-                PATH=$PATH:/run/current-system/sw/bin/
-              '';
-            };
-          };
-        })
-      ];
-    }
-  ];
+    # mkIf cfg.isWSL {
+    #   home-manager.users.${username}.imports = [
+    #     ({lib, ...}: {
+    #       home.file = {
+    #         ".vscode-server/server-env-setup" = {
+    #           text = ''
+    #             # Add default system pkgs
+    #             PATH=$PATH:/run/current-system/sw/bin/
+    #           '';
+    #         };
+    #       };
+    #     })
+    #   ];
+    # }
+  };
 }

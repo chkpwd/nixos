@@ -1,6 +1,6 @@
 {
   imports = [
-    # ./home-manager
+    ./home-manager
     # ./users
     ./secret-manager
     ./virtualization

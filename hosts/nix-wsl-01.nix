@@ -17,9 +17,9 @@
   };
 
 
-  # modules.users.${username}.home-manager = {
-  #   enable = true;
-  # };
+  modules.users.${username}.home-manager = {
+    enable = true;
+  };
 
   modules = {
     wsl.enable = true;
