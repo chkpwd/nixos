@@ -5,5 +5,6 @@
     ./secret-manager
     ./virtualization
     ./vscode-server
+    ./chezmoi
   ];
 }

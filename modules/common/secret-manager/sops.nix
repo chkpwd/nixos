@@ -26,6 +26,7 @@ in {
         default = false;
         description = "Source of age key file";
       };
+
       destination = mkOption {
         type = types.path;
         default = false;
