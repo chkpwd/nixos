@@ -6,7 +6,7 @@
   ...
 }:
 with lib; let
-  cfg = config.modules.${username}.home-manager;
+  cfg = config.modules.users.${username}.home-manager;
 in {
   imports = [inputs.home-manager.nixosModules.default];
 
@@ -20,10 +20,15 @@ in {
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
+        extraSpecialArgs = {
+          inherit inputs;
+          inherit username;
+          inherit sshPubKey;
+        };
       };
     }
 
-    (mkIf (cfg.enable) {
+    mkIf cfg.enable {
       home-manager.users.${username} = {
         home = {
           stateVersion = "23.11";
@@ -34,9 +39,9 @@ in {
           git.enable = true;
         };
       };
-    })
+    }
 
-    (mkIf (cfg.isWSL) {
+    mkIf cfg.isWSL {
       home-manager.users.${username}.imports = [
         ({lib, ...}: {
           home.file = {
@@ -49,6 +54,6 @@ in {
           };
         })
       ];
-    })
+    }
   ];
 }

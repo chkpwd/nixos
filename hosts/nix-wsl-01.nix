@@ -13,14 +13,15 @@
   };
 
   environment = {
-    systemPackages = with pkgs; [deploy-rs];
+    systemPackages = with pkgs; [deploy-rs git];
   };
 
+
+  # modules.users.${username}.home-manager = {
+  #   enable = true;
+  # };
+
   modules = {
-    users.chkpwd = {
-      enable = true;
-    };
-    isWSL = true;
     wsl.enable = true;
     docker.enable = true;
     sops = {
