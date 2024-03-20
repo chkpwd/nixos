@@ -3,18 +3,16 @@
   config,
   inputs,
   username,
-  sshPubKey,
   ...
 }:
 with lib; let
-  cfg = config.modules.users.${username}.home-manager;
+  cfg = config.modules.${username}.home-manager;
 in {
   imports = [inputs.home-manager.nixosModules.default];
 
   options.modules.users.${username}.home-manager = {
     enable = mkEnableOption "Enable Home Manager";
-    # enableDevTools = mkEnableOption "Enable Dev Tools";
-    # enableDevShell = mkEnableOption "Enable Dev Shell";
+    isWSL = mkEnableOption "Enable WSL specific settings";
   };
 
   config = mkMerge [
@@ -22,13 +20,9 @@ in {
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
-        extraSpecialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit sshPubKey;
-        };
       };
     }
+
     (mkIf (cfg.enable) {
       home-manager.users.${username} = {
         home = {
@@ -37,8 +31,24 @@ in {
 
         programs = {
           home-manager.enable = true;
+          git.enable = true;
         };
       };
+    })
+
+    (mkIf (cfg.isWSL) {
+      home-manager.users.${username}.imports = [
+        ({lib, ...}: {
+          home.file = {
+            ".vscode-server/server-env-setup" = {
+              text = ''
+                # Add default system pkgs
+                PATH=$PATH:/run/current-system/sw/bin/
+              '';
+            };
+          };
+        })
+      ];
     })
   ];
 }

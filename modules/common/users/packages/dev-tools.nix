@@ -1,5 +1,10 @@
 {pkgs, ...}: {
-  home-manager.users."chkpwd".home.packages = with pkgs; [
+  packages = with pkgs; [
+    # Shell
+    zsh
+    fd
+    file
+    ripgrep
     # Parser
     yq
     jq
@@ -60,4 +65,20 @@
     ffmpeg
     yt-dlp
   ];
+
+  programs = {
+    bat.enable = true;
+    lsd.enable = true;
+    lsd.enableAliases = true;
+
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+
+    fzf = {
+      enable = true;
+      fileWidgetOptions = ["--preview 'bat --color=always {}'"];
+    };
+  };
 }

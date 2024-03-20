@@ -13,7 +13,7 @@ in {
   config = mkIf cfg.enable {
     virtualisation = {
       docker = {
-        enable = mkDefault true;
+        enable = mkDefault false;
       };
     };
     users.users.${username}.extraGroups = ["docker"];

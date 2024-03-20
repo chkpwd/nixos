@@ -1,3 +1,0 @@
-{
-  imports = [./dev-shell.nix];
-}
