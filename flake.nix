@@ -25,17 +25,17 @@
         inherit system;
         modules = [./modules] ++ modules;
       };
-    # darwinConfig = system: modules:
-    #   inputs.nix-darwin.lib.darwinSystem {
-    #     specialArgs = {inherit inputs username sshPubKey;};
-    #     inherit system;
-    #     modules = [./modules] ++ modules;
-    #   };
+    darwinConfig = system: modules:
+      inputs.nix-darwin.lib.darwinSystem {
+        specialArgs = {inherit inputs username sshPubKey;};
+        inherit system;
+        modules = [./modules] ++ modules;
+      };
   in
     {
-      # darwinConfigurations = {
-      #   nix-mb-01 = darwinConfig "x86_64-darwin" [./hosts/nix-mb-01.nix];
-      # };
+      darwinConfigurations = {
+        nix-mb-01 = darwinConfig "x86_64-darwin" [./hosts/nix-mb-01.nix];
+      };
       nixosConfigurations = {
         nix-vm-01 = systemConfig "x86_64-linux" [./hosts/nix-vm-01.nix];
         nix-wsl-01 = systemConfig "x86_64-linux" [./hosts/nix-wsl-01.nix];
