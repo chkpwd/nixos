@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.modules.chezmoi;
+  cfg = config.local.chezmoi;
 in {
-  options.modules.chezmoi = {
+  options.local.chezmoi = {
     enable = mkEnableOption "Enable chezmoi";
   };
 

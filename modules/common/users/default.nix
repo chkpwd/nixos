@@ -6,10 +6,10 @@
   ...
 }:
 with lib; let
-  cfg = config.modules.users.${username};
+  cfg = config.local.users.${username};
 in {
   imports = [./packages];
-  options.modules.users.${username} = {
+  options.local.users.${username} = {
     enable = mkEnableOption "Enable user ${username} configuration";
   };
 

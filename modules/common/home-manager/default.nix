@@ -7,11 +7,11 @@
   ...
 }:
 with lib; let
-  cfg = config.modules.users.${username}.home-manager;
+  cfg = config.local.users.${username}.home-manager;
 in {
   imports = [inputs.home-manager.nixosModules.default];
 
-  options.modules.users.${username}.home-manager = {
+  options.local.users.${username}.home-manager = {
     enable = mkEnableOption "Enable Home Manager";
   };
 
@@ -28,7 +28,7 @@ in {
       users.${username} = {
         home = {
           stateVersion = "23.11";
-          file = mkIf (config.modules.wsl.enable == true)  {
+          file = mkIf (config.local.wsl.enable == true)  {
             ".vscode-server/server-env-setup" = {
               text = ''
                 # Add default system pkgs

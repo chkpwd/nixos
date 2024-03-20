@@ -6,10 +6,10 @@
   ...
 }:
 with lib; let
-  cfg = config.modules.users.${username};
+  cfg = config.local.users.${username};
 in {
 
-  options.modules.users.${username} = {
+  options.local.users.${username} = {
     enableDevTools =
       mkEnableOption "Enable dev tools";
   };

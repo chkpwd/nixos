@@ -6,9 +6,9 @@
   ...
 }:
 with lib; let
-  cfg = config.modules.wsl;
+  cfg = config.local.wsl;
 in {
-  options.modules.wsl = {
+  options.local.wsl = {
     enable = mkEnableOption "Enable WSL on the host";
   };
 

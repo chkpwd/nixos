@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.modules.vscode-server;
+  cfg = config.local.vscode-server;
 in {
-  options.modules.vscode-server = {
+  options.local.vscode-server = {
     enable = mkEnableOption "Enable VSCode Server";
   };
 

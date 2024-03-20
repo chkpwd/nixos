@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.modules.docker;
+  cfg = config.local.docker;
 in {
-  options.modules.docker = {
+  options.local.docker = {
     enable = mkEnableOption "Enable Docker on the host";
   };
   config = mkIf cfg.enable {

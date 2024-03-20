@@ -3,7 +3,7 @@
   username,
   ...
 }: {
-  modules.vscode-server.enable = true;
+  local.vscode-server.enable = true;
 
   networking = {
     hostName = "nix-wsl-01";
@@ -14,7 +14,7 @@
   };
 
   # Configure user
-  modules.users.${username} = {
+  local.users.${username} = {
     enable = true;
     enableDevTools = true;
     home-manager = {
@@ -22,11 +22,11 @@
     };
   };
 
-  modules.wsl.enable = true;
+  local.wsl.enable = true;
 
-  modules.docker.enable = true;
+  local.docker.enable = true;
 
-  modules.sops = {
+  local.sops = {
     enable = true;
     file = {
       source = ../secrets/default.yml;
@@ -37,5 +37,5 @@
     };
   };
 
-  modules.chezmoi.enable = true;
+  local.chezmoi.enable = true;
 }
