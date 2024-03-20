@@ -28,7 +28,7 @@ in {
       users.${username} = {
         home = {
           stateVersion = "23.11";
-          file = mkIf (config.local.wsl.enable == true)  {
+          file = mkIf (config.local.wsl.enable == true) {
             ".vscode-server/server-env-setup" = {
               text = ''
                 # Add default system pkgs

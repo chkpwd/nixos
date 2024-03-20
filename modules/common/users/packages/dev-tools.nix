@@ -8,7 +8,6 @@
 with lib; let
   cfg = config.local.users.${username};
 in {
-
   options.local.users.${username} = {
     enableDevTools =
       mkEnableOption "Enable dev tools";
