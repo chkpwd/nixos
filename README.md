@@ -27,3 +27,7 @@ deploy .#<name-of-host>
 ```console
 sudo nixos-rebuild switch --flake github:chkpwd/nixos/<branch>#<name-of-host>
 ```
+
+### TODO
+- [ ] write a module for common variables - system configurations imports = [ ... ];
+- [ ] leverage (hostPlatforms)[https://search.nixos.org/options?channel=unstable&show=nixpkgs.hostPlatform] in systemConfig
