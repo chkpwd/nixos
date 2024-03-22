@@ -82,6 +82,7 @@ in {
         ps.ansible-core
         ps.molecule
       ]))
+      poetry
       ansible-lint
       # Misc
       ffmpeg
