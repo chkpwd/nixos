@@ -79,6 +79,7 @@ in {
       kubernetes-helm
       # Python
       (python311.withPackages (ps: [
+        ps.pip
         ps.ansible-core
         ps.molecule
       ]))
