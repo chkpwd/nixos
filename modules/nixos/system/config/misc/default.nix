@@ -1,4 +1,4 @@
-{lib, ...}:
+{lib, pkgs, ...}:
 with lib; {
   system.stateVersion = mkDefault "23.11";
 
@@ -24,5 +24,13 @@ with lib; {
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
     };
+  };
+
+  system = {
+    # Diff system configuration
+    activationScripts.report-changes = ''
+      PATH=$PATH:${lib.makeBinPath [ pkgs.nvd pkgs.nix ]}
+      nvd diff $(ls -dv /nix/var/nix/profiles/system-*-link | tail -2)
+    '';
   };
 }
