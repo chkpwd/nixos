@@ -30,6 +30,8 @@ in {
       pet
       chezmoi
       # System
+      wget
+      curl
       htop
       unzip
       age
