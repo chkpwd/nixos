@@ -5,13 +5,10 @@
   username,
   ...
 }:
-with lib;
-
-let
-  cfg = config.modules.wsl;
-in
-{
-  options.modules.wsl = {
+with lib; let
+  cfg = config.local.wsl;
+in {
+  options.local.wsl = {
     enable = mkEnableOption "Enable WSL on the host";
   };
 

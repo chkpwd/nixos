@@ -1,4 +1,8 @@
-{ username, sshPubKey, ... }: {
+{
+  username,
+  sshPubKey,
+  ...
+}: {
   users = {
     mutableUsers = false;
     users.${username} = {

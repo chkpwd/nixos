@@ -5,40 +5,42 @@
   inputs,
   lib,
   ...
-}: let
-  cfg = config.modules.sops;
+}:
+with lib; let
+  cfg = config.local.sops;
 in {
-  options.modules.sops = {
-    enable = lib.mkEnableOption "Enable SOPS on the host";
+  options.local.sops = {
+    enable = mkEnableOption "Enable SOPS on the host";
 
     file = {
-      source = lib.mkOption {
-        type = lib.types.path;
+      source = mkOption {
+        type = types.path;
         default = false;
         description = "Source of age key file";
       };
     };
 
     age = {
-      source = lib.mkOption {
-        type = lib.types.path;
+      source = mkOption {
+        type = types.path;
         default = false;
         description = "Source of age key file";
       };
-      destination = lib.mkOption {
-        type = lib.types.path;
+
+      destination = mkOption {
+        type = types.path;
         default = false;
         description = "Destination of age key file";
       };
 
-      user = lib.mkOption {
-        type = lib.types.str;
+      user = mkOption {
+        type = types.str;
         default = config.users.users.${username}.name;
         description = "User for age key file";
       };
 
-      group = lib.mkOption {
-        type = lib.types.str;
+      group = mkOption {
+        type = types.str;
         default = config.users.users.${username}.group;
         description = "Group for age key file";
       };
@@ -47,14 +49,14 @@ in {
 
   imports = [inputs.sops-nix.nixosModules.sops];
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     environment = {
       systemPackages = with pkgs; [
         age
         sops
       ];
       etc = {
-        "${(lib.strings.removePrefix "/etc/" cfg.age.destination)}" = {
+        "${(strings.removePrefix "/etc/" cfg.age.destination)}" = {
           source = cfg.age.source;
           user = cfg.age.user;
           group = cfg.age.group;
