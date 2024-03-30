@@ -79,6 +79,7 @@ in {
       krew
       kubectx
       kubernetes-helm
+      kustomize
       # Python
       (python311.withPackages (ps: [
         ps.pip
