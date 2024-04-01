@@ -22,8 +22,6 @@
     };
   };
 
-  local.wsl.enable = true;
-
   local.docker.enable = true;
 
   local.sops = {
@@ -32,7 +30,7 @@
       source = ../secrets/default.yml;
     };
     age = {
-      source = "/mnt/c/users/chkpwd/nix-agekey.txt";
+      source = "/home/${username}/.config/sops/age/keys.txt";
       destination = "/etc/sops/age/nix.txt";
     };
   };
