@@ -9,7 +9,7 @@
     extraGroups = [
       "wheel"
     ];
-
+    security.sudo.wheelNeedsPassword = false;
     openssh.authorizedKeys.keys = [
       sshPubKey
     ];
