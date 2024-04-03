@@ -20,6 +20,7 @@ in {
         nix-direnv.enable = true;
       };
     };
+
     environment.systemPackages = with pkgs; [
       # Shell
       zsh
@@ -51,6 +52,7 @@ in {
       traceroute
       dnsutils
     ];
+
     users.users.chkpwd.packages = with pkgs; [
       # Parser
       yq
