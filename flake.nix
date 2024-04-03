@@ -21,28 +21,32 @@
   let
     username = "chkpwd";
     sshPubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBK2VnKgOX7i1ISETheqjAO3/xo6D9n7QbWyfDAPsXwa";
-    # overlays = import ./overlays {inherit inputs;};
-    systemConfig = system: modules:
+    overlays = import ./overlays {inherit inputs;};
+    systemConfig = system: modules: overlays:
       inputs.nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs username sshPubKey;};
         inherit system;
+        overlays = builtins.attrValues overlays;
         modules = [./modules] ++ modules;
       };
-    darwinConfig = system: modules:
+    darwinConfig = system: modules: overlays:
       inputs.nix-darwin.lib.darwinSystem {
         specialArgs = {inherit inputs username sshPubKey;};
         inherit system;
+        overlays = builtins.attrValues overlays;
         modules = [./modules] ++ modules;
       };
   in
     {
+      inherit overlays;
+
       darwinConfigurations = {
-        nix-mb-01 = darwinConfig "x86_64-darwin" [./hosts/nix-mb-01.nix];
+        nix-mb-01 = darwinConfig "x86_64-darwin" [./hosts/nix-mb-01.nix] overlays;
       };
 
       nixosConfigurations = {
-        nix-vm-01 = systemConfig "x86_64-linux" [./hosts/nix-vm-01.nix];
-        nix-wsl-01 = systemConfig "x86_64-linux" [./hosts/nix-wsl-01.nix];
+        nix-vm-01 = systemConfig "x86_64-linux" [./hosts/nix-vm-01.nix] overlays;
+        nix-wsl-01 = systemConfig "x86_64-linux" [./hosts/nix-wsl-01.nix] overlays;
       };
     }
     // import ./deploy.nix {inherit self inputs username;};
