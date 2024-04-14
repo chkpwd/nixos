@@ -7,8 +7,13 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-inspect.url = "github:bluskript/nix-inspect";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
-    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,17 +22,23 @@
     vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
-  outputs = {self, ...}@inputs:
-  let
+  outputs = {self, ...} @ inputs: let
     username = "chkpwd";
     sshPubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBK2VnKgOX7i1ISETheqjAO3/xo6D9n7QbWyfDAPsXwa";
     overlays = import ./overlays {inherit inputs;};
+
     systemConfig = system: modules:
       inputs.nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs username sshPubKey;};
         inherit system;
-        modules = [./modules] ++ modules;
+        modules =
+          [
+            ./modules
+            {nixpkgs.overlays = builtins.attrValues overlays;}
+          ]
+          ++ modules;
       };
+
     darwinConfig = system: modules:
       inputs.nix-darwin.lib.darwinSystem {
         specialArgs = {inherit inputs username sshPubKey;};
@@ -36,8 +47,6 @@
       };
   in
     {
-      inherit overlays;
-
       darwinConfigurations = {
         nix-mb-01 = darwinConfig "x86_64-darwin" [./hosts/nix-mb-01.nix];
       };
