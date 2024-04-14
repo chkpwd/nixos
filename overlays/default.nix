@@ -1,19 +1,8 @@
 # This file defines overlays
 {inputs, ...}: {
-  additions = final: prev: {
-    # flake = import ../pkgs {
-    #   pkgs = prev;
-    #   inherit inputs;
-    # };
-  };
+  additions = final: prev: {};
 
-  modifications = final: prev: {
-    # kubecm = prev.kubecm.overrideAttrs (_: prev: {
-    #   meta = prev.meta // {
-    #     mainProgram = "kubecm";
-    #   };
-    # });
-  };
+  modifications = final: prev: {};
 
   # The unstable nixpkgs set (declared in the flake inputs) will
   # be accessible through 'pkgs.unstable'
