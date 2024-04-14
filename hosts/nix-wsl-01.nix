@@ -1,5 +1,4 @@
 {
-  pkgs,
   username,
   ...
 }: {
@@ -7,10 +6,6 @@
 
   networking = {
     hostName = "nix-wsl-01";
-  };
-
-  environment = {
-    systemPackages = with pkgs; [deploy-rs];
   };
 
   # Configure user
