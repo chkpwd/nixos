@@ -3,10 +3,13 @@
   config,
   username,
   pkgs,
+  inputs,
   ...
 }:
 with lib; let
   cfg = config.local.users.${username};
+  nix-inspect = inputs.nix-inspect.packages.${pkgs.system}.default;
+
 in {
   options.local.users.${username} = {
     enableDevTools =
@@ -30,6 +33,7 @@ in {
       atuin
       pet
       chezmoi
+      tmux
       # System
       wget
       curl
@@ -51,6 +55,9 @@ in {
       drill
       traceroute
       dnsutils
+      # NixOS
+      nix-inspect
+      deploy-rs
     ];
 
     users.users.chkpwd.packages = with pkgs; [
@@ -58,6 +65,7 @@ in {
       yq
       jq
       jqp
+      # unstable-packages.jnv
       # Service
       istioctl
       fluxcd
@@ -71,6 +79,7 @@ in {
       flyctl
       teller
       # Kubernetes
+      minikube
       stern
       viddy
       k9s
@@ -93,6 +102,7 @@ in {
       # Misc
       ffmpeg
       yt-dlp
+      mkdocs
     ];
   };
 }
