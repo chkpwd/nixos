@@ -30,7 +30,7 @@ in {
       fd
       file
       ripgrep
-      atuin
+      unstable.atuin
       pet
       chezmoi
       tmux
@@ -60,12 +60,12 @@ in {
       deploy-rs
     ];
 
-    users.users.chkpwd.packages = with pkgs; [
+    users.users.${username}.packages = with pkgs; [
       # Parser
       yq
       jq
       jqp
-      # unstable-packages.jnv
+      unstable.jnv
       # Service
       istioctl
       fluxcd
