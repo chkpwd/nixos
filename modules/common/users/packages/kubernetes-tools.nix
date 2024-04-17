@@ -15,6 +15,7 @@ in {
 
   config = mkIf cfg.enableKubernetesTools {
     users.users.${username}.packages = with pkgs; [
+      hubble
       kubecm
       kubecolor
       minikube
