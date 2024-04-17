@@ -9,7 +9,6 @@
 with lib; let
   cfg = config.local.users.${username};
   nix-inspect = inputs.nix-inspect.packages.${pkgs.system}.default;
-
 in {
   options.local.users.${username} = {
     enableDevTools =
@@ -36,14 +35,9 @@ in {
       chezmoi
       tmux
       # System
-      wget
-      curl
-      htop
-      unzip
       age
       sops
       pwgen
-      git
       rsync
       rclone
       go
@@ -52,10 +46,7 @@ in {
       sshpass
       nmap
       ipcalc
-      tree
-      drill
       traceroute
-      dnsutils
       # NixOS
       nix-inspect
       deploy-rs

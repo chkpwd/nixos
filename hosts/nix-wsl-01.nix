@@ -11,6 +11,7 @@
   # Configure user
   local.users.${username} = {
     enable = true;
+    enableCommonTools = true;
     enableDevTools = true;
     home-manager = {
       enable = true;

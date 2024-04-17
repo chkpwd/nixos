@@ -1,3 +1,3 @@
 {
-  imports = [./dev-tools.nix];
+  imports = [./common-tools.nix ./dev-tools.nix];
 }
