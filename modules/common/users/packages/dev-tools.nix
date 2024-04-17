@@ -70,20 +70,6 @@ in {
       bitwarden-cli
       flyctl
       teller
-      # Kubernetes
-      kubecolor
-      minikube
-      stern
-      viddy
-      k9s
-      vcluster
-      nova
-      pluto
-      kubectl
-      krew
-      kubectx
-      kubernetes-helm
-      kustomize
       # Python
       (python311.withPackages (ps: [
         ps.pip

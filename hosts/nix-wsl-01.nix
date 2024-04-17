@@ -13,6 +13,7 @@
     enable = true;
     enableCommonTools = true;
     enableDevTools = true;
+    enableKubernetesTools = true;
     home-manager = {
       enable = true;
     };

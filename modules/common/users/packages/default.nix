@@ -1,3 +1,7 @@
 {
-  imports = [./common-tools.nix ./dev-tools.nix];
+  imports = [
+    ./common-tools.nix
+    ./kubernetes-tools.nix
+    ./dev-tools.nix
+  ];
 }
