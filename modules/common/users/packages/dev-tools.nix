@@ -30,6 +30,7 @@ in {
       fd
       file
       ripgrep
+      fzf
       unstable.atuin
       pet
       chezmoi
@@ -79,6 +80,7 @@ in {
       flyctl
       teller
       # Kubernetes
+      kubecolor
       minikube
       stern
       viddy
