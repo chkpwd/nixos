@@ -56,7 +56,7 @@ in {
 
     users.users.${username}.packages = with pkgs; [
       # Parser
-      yq
+      yq-go
       jq
       jqp
       unstable.jnv
