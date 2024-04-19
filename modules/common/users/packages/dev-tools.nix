@@ -50,6 +50,8 @@ in {
       # NixOS
       nix-inspect
       deploy-rs
+      unstable.nh
+      nix-output-monitor
     ];
 
     users.users.${username}.packages = with pkgs; [

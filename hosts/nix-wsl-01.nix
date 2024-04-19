@@ -8,6 +8,10 @@
     hostName = "nix-wsl-01";
   };
 
+  environment.sessionVariables = {
+    FLAKE = "/home/${username}/code/nixos";
+  };
+
   # Configure user
   local.users.${username} = {
     enable = true;
