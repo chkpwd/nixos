@@ -72,6 +72,7 @@ in {
       bitwarden-cli
       flyctl
       teller
+      act
       # Python
       (python311.withPackages (ps: [
         ps.pip
