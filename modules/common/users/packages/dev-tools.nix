@@ -35,6 +35,7 @@ in {
       chezmoi
       tmux
       # System
+      gnumake
       age
       sops
       pwgen
@@ -42,6 +43,7 @@ in {
       rclone
       go
       upx
+      neovim
       # Network
       sshpass
       nmap
