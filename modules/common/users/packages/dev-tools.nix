@@ -35,6 +35,8 @@ in {
       chezmoi
       tmux
       # System
+      nodejs_20
+      clang
       gnumake
       age
       sops
@@ -75,6 +77,7 @@ in {
       flyctl
       teller
       act
+      lazygit
       # Python
       (python311.withPackages (ps: [
         ps.pip
