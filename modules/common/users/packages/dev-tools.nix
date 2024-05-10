@@ -36,6 +36,7 @@ in {
       tmux
       # System
       nodejs_20
+      cargo
       clang
       gnumake
       age
