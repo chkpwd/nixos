@@ -35,6 +35,7 @@ in {
       chezmoi
       tmux
       # System
+      ruff
       nodejs_20
       cargo
       clang
