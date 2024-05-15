@@ -42,11 +42,7 @@ in {
       gnumake
       age
       sops
-      pwgen
-      rsync
-      rclone
       go
-      upx
       neovim
       # Network
       sshpass
@@ -65,19 +61,13 @@ in {
       yq-go
       jq
       jqp
-      unstable.jnv
       # Service
-      istioctl
-      fluxcd
+      unstable.fluxcd
       hugo
       etcd
       terraform
       packer
-      govc
       bws
-      bitwarden-cli
-      flyctl
-      teller
       act
       lazygit
       # Python
@@ -89,6 +79,7 @@ in {
       poetry
       ansible-lint
       # Misc
+      tokei
       ffmpeg
       yt-dlp
       mkdocs
