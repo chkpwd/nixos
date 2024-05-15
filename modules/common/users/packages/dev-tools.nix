@@ -70,6 +70,7 @@ in {
       bws
       act
       lazygit
+      just
       # Python
       (python311.withPackages (ps: [
         ps.pip
