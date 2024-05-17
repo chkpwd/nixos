@@ -29,7 +29,7 @@ in {
       fd
       file
       ripgrep
-      fzf
+      unstable.fzf
       unstable.atuin
       pet
       chezmoi
