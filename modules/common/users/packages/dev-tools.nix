@@ -34,6 +34,7 @@ in {
       pet
       chezmoi
       tmux
+      complete-alias
       # System
       ruff
       nodejs_20
