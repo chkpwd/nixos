@@ -71,6 +71,7 @@ in {
       act
       lazygit
       just
+      navi
       # Python
       (python311.withPackages (ps: [
         ps.pip
@@ -84,6 +85,7 @@ in {
       ffmpeg
       yt-dlp
       mkdocs
+      android-tools
     ];
   };
 }
