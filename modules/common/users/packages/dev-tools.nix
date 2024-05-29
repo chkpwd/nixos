@@ -25,12 +25,12 @@ in {
 
     environment.systemPackages = with pkgs; [
       # Shell
+      readline
       zsh
       fd
       file
       ripgrep
       unstable.fzf
-      unstable.atuin
       pet
       chezmoi
       tmux
@@ -73,6 +73,8 @@ in {
       lazygit
       just
       navi
+      crane
+      gh
       # Python
       (python311.withPackages (ps: [
         ps.pip
