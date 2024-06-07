@@ -25,12 +25,11 @@ in {
 
     environment.systemPackages = with pkgs; [
       # Shell
-      readline
       zsh
       fd
       file
       ripgrep
-      unstable.fzf
+      fzf
       pet
       chezmoi
       tmux
@@ -53,7 +52,7 @@ in {
       # NixOS
       nix-inspect
       deploy-rs
-      unstable.nh
+      nh
       nix-output-monitor
     ];
 
@@ -63,7 +62,7 @@ in {
       jq
       jqp
       # Service
-      unstable.fluxcd
+      fluxcd
       hugo
       etcd
       terraform
