@@ -25,6 +25,7 @@ in {
 
     environment.systemPackages = with pkgs; [
       # Shell
+      bat
       zsh
       fd
       file
