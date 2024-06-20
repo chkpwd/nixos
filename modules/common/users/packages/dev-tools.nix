@@ -81,6 +81,7 @@ in {
         ps.ansible-core
         ps.molecule
       ]))
+      pre-commit
       poetry
       ansible-lint
       # Misc
