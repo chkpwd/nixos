@@ -48,7 +48,7 @@
   in
     {
       darwinConfigurations = {
-        nix-mb-01 = darwinConfig "x86_64-darwin" [./hosts/nix-mb-01.nix];
+        nix-mb-01 = darwinConfig "aarch64-darwin" [./hosts/nix-mb-01.nix];
       };
 
       nixosConfigurations = {
