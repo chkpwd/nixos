@@ -1,6 +1,10 @@
-{lib, pkgs, ...}:
+{
+  lib,
+  pkgs,
+  ...
+}:
 with lib; {
-  system.stateVersion = mkDefault "23.11";
+  system.stateVersion = mkDefault "24.05";
 
   # Allow Proprietary software
   nixpkgs.config.allowUnfree = true;
@@ -29,7 +33,7 @@ with lib; {
   system = {
     # Diff system configuration
     activationScripts.report-changes = ''
-      PATH=$PATH:${lib.makeBinPath [ pkgs.nvd pkgs.nix ]}
+      PATH=$PATH:${lib.makeBinPath [pkgs.nvd pkgs.nix]}
       nvd diff $(ls -dv /nix/var/nix/profiles/system-*-link | tail -2)
     '';
   };

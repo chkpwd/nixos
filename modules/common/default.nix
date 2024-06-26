@@ -1,10 +1,11 @@
 {
   imports = [
-    ./home-manager
-    ./users
-    ./secret-manager
-    ./virtualization
-    ./vscode-server
-    ./chezmoi
+    ./packages
+    ./locale.nix
+    ./misc.nix
+    ./networking.nix
+    ./open-ssh.nix
+    ./system-pkgs.nix
+    ./user-configuration.nix
   ];
 }

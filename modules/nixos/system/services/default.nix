@@ -1,3 +1,0 @@
-{
-  imports = [./open-ssh.nix];
-}
