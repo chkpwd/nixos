@@ -9,5 +9,11 @@
     services.nix-daemon.enable = true;
 
     security.pam.enableSudoTouchIdAuth = true;
+
+    nix = {
+      extraOptions = ''
+        experimental-features = nix-command flakes
+      '';
+    };
   };
 }

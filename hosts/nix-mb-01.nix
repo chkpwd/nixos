@@ -1,11 +1,30 @@
-{ pkgs, ... }:
 {
- config = {
-   services.nix-daemon.enable = true;
-   nix = {
-     extraOptions = ''
-       experimental-features = nix-command flakes
-     '';
-   };
- };
+  inputs,
+  pkgs,
+  username,
+  ...
+}: {
+  config = {
+    networking = {
+      hostName = "nix-mb-01";
+    };
+
+    environment.sessionVariables = {
+      FLAKE = "/home/${username}/code/nixos";
+    };
+
+    # Enable Dynamic Linker
+    programs.nix-ld.enable = true;
+
+    # Configure user
+    local.users.${username} = {
+      enable = true;
+      enableCommonTools = true;
+      enableDevTools = true;
+      enableKubernetesTools = true;
+      #home-manager = {
+      #  enable = true;
+      #};
+    };
+  };
 }

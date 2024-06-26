@@ -10,7 +10,7 @@ with lib; let
 in {
   options.local.users.${username} = {
     enableKubernetesTools =
-      mkEnableOption "Enable dev tools";
+      mkEnableOption "Enable Kubernetes tools";
   };
 
   config = mkIf cfg.enableKubernetesTools {
