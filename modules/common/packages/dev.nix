@@ -53,11 +53,7 @@ in {
       # NixOS
       nix-inspect
       deploy-rs
-<<<<<<< HEAD:modules/common/packages/dev.nix
-      #nh
-=======
       nh
->>>>>>> main:modules/common/users/packages/dev-tools.nix
       nix-output-monitor
     ];
 
