@@ -1,4 +1,6 @@
 {pkgs, ...}: {
+  imports = [./macos-defaults.nix];
+
   config = {
     nix.gc.interval = {
       Hour = 12;
