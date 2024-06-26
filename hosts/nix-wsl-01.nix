@@ -1,6 +1,6 @@
 {
-  pkgs,
   username,
+  pkgs,
   ...
 }: {
   local.vscode-server.enable = true;
@@ -9,14 +9,19 @@
     hostName = "nix-wsl-01";
   };
 
-  environment = {
-    systemPackages = with pkgs; [deploy-rs];
+  environment.sessionVariables = {
+    FLAKE = "/home/${username}/code/nixos";
   };
+
+  # Enable Dynamic Linker
+  programs.nix-ld.enable = true;
 
   # Configure user
   local.users.${username} = {
     enable = true;
+    enableCommonTools = true;
     enableDevTools = true;
+    enableKubernetesTools = true;
     home-manager = {
       enable = true;
     };

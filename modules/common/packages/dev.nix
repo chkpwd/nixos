@@ -3,10 +3,12 @@
   config,
   username,
   pkgs,
+  inputs,
   ...
 }:
 with lib; let
   cfg = config.local.users.${username};
+  nix-inspect = inputs.nix-inspect.packages.${pkgs.system}.default;
 in {
   options.local.users.${username} = {
     enableDevTools =
@@ -20,76 +22,74 @@ in {
         nix-direnv.enable = true;
       };
     };
+
     environment.systemPackages = with pkgs; [
       # Shell
+      bat
       zsh
       fd
       file
       ripgrep
-      atuin
+      fzf
       pet
       chezmoi
+      tmux
+      complete-alias
       # System
-      wget
-      curl
-      htop
-      unzip
+      ruff
+      nodejs_20
+      cargo
+      clang
+      gnumake
       age
       sops
-      pwgen
-      git
-      rsync
-      rclone
       go
-      upx
+      neovim
       # Network
       sshpass
       nmap
       ipcalc
-      tree
-      drill
       traceroute
-      dnsutils
+      # NixOS
+      nix-inspect
+      deploy-rs
+      #nh
+      nix-output-monitor
     ];
-    users.users.chkpwd.packages = with pkgs; [
+
+    users.users.${username}.packages = with pkgs; [
       # Parser
-      yq
+      yq-go
       jq
       jqp
       # Service
-      istioctl
       fluxcd
       hugo
       etcd
       terraform
       packer
-      govc
       bws
-      bitwarden-cli
-      flyctl
-      teller
-      # Kubernetes
-      stern
-      viddy
-      k9s
-      vcluster
-      nova
-      pluto
-      kubectl
-      krew
-      kubectx
-      kubernetes-helm
+      act
+      lazygit
+      just
+      navi
+      crane
+      gh
       # Python
       (python311.withPackages (ps: [
         ps.pip
         ps.ansible-core
         ps.molecule
       ]))
+      pre-commit
       poetry
       ansible-lint
       # Misc
+      tokei
       ffmpeg
       yt-dlp
+      mkdocs
+      android-tools
     ];
   };
 }
