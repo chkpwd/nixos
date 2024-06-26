@@ -1,5 +1,8 @@
 {pkgs, ...}: {
-  imports = [./macos-defaults.nix];
+  imports = [
+    ./macos-defaults.nix
+    ./networking.nix
+  ];
 
   config = {
     nix.gc.interval = {
@@ -17,7 +20,7 @@
         experimental-features = nix-command flakes
       '';
     };
- 
+
     system.stateVersion = 4;
   };
 }
