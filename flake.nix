@@ -33,7 +33,8 @@
         inherit system;
         modules =
           [
-            ./modules
+            ./modules/common/
+            ./modules/nixos/
             {nixpkgs.overlays = builtins.attrValues overlays;}
           ]
           ++ modules;
@@ -43,7 +44,13 @@
       inputs.nix-darwin.lib.darwinSystem {
         specialArgs = {inherit inputs username sshPubKey;};
         inherit system;
-        modules = [];
+        modules =
+          [
+            ./modules/common/
+            ./modules/darwin/
+            #{nixpkgs.overlays = builtins.attrValues overlays;}
+          ]
+          ++ modules;
       };
   in
     {
