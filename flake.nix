@@ -33,8 +33,8 @@
         inherit system;
         modules =
           [
-            ./modules/common/
-            ./modules/nixos/
+            ./modules/common
+            ./modules/nixos
             {nixpkgs.overlays = builtins.attrValues overlays;}
           ]
           ++ modules;
@@ -46,9 +46,9 @@
         inherit system;
         modules =
           [
-            ./modules/common/
-            ./modules/darwin/
-            #{nixpkgs.overlays = builtins.attrValues overlays;}
+            #./modules/common
+            ./modules/darwin
+            {nixpkgs.overlays = builtins.attrValues overlays;}
           ]
           ++ modules;
       };
