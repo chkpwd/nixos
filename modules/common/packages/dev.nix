@@ -49,7 +49,7 @@ in {
       sshpass
       nmap
       ipcalc
-      traceroute
+      #traceroute
       # NixOS
       nix-inspect
       deploy-rs

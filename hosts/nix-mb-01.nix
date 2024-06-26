@@ -10,10 +10,6 @@
       hostName = "nix-mb-01";
     };
 
-    environment.sessionVariables = {
-      FLAKE = "/home/${username}/code/nixos";
-    };
-
     homebrew = {
       enable = true;
       onActivation = {
@@ -26,9 +22,6 @@
         lockfiles = false; # Don't save lockfile (since running from anywhere)
       };
     };
-
-    # Enable Dynamic Linker
-    programs.nix-ld.enable = true;
 
     # Configure user
     local.users.${username} = {
