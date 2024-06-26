@@ -16,21 +16,30 @@
     vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
-  outputs = {self, ...}@inputs:
-  let
+  outputs = {self, ...} @ inputs: let
     username = "chkpwd";
     sshPubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBK2VnKgOX7i1ISETheqjAO3/xo6D9n7QbWyfDAPsXwa";
     systemConfig = system: modules:
       inputs.nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs username sshPubKey;};
         inherit system;
-        modules = [./modules] ++ modules;
+        modules =
+          [
+            ./modules/nixos
+            ./modules/common
+          ]
+          ++ modules;
       };
     darwinConfig = system: modules:
       inputs.nix-darwin.lib.darwinSystem {
         specialArgs = {inherit inputs username sshPubKey;};
         inherit system;
-        modules = [./modules] ++ modules;
+        modules =
+          [
+            ./modules/darwin
+            ./modules/common
+          ]
+          ++ modules;
       };
   in
     {

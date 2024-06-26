@@ -1,12 +1,5 @@
-<<<<<<< Updated upstream
-{inputs, ...}: {
-  # Enable Nix Daemon
-  nix.useDaemon = true;
-
-  # Sudo Touch ID authentication
-  security.pam.enableSudoTouchIdAuth = true;
-=======
 {
+  inputs,
   pkgs,
   username,
   ...
@@ -29,10 +22,9 @@
       enableCommonTools = true;
       enableDevTools = true;
       enableKubernetesTools = true;
-      home-manager = {
-        enable = true;
-      };
+      #home-manager = {
+      #  enable = true;
+      #};
     };
   };
->>>>>>> Stashed changes
 }
