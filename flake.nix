@@ -43,7 +43,7 @@
       inputs.nix-darwin.lib.darwinSystem {
         specialArgs = {inherit inputs username sshPubKey;};
         inherit system;
-        modules = [./modules] ++ modules;
+        modules = [];
       };
   in
     {
