@@ -1,20 +1,41 @@
 {
   pkgs,
-  inputs,
   username,
   ...
 }: {
-  imports = [
-    inputs.vscode-server.nixosModules.default
-    ../modules/nixos/docker.nix
-  ];
+  local.vscode-server.enable = true;
 
-  services.vscode-server.enable = true;
-  environment = {
-    systemPackages = with pkgs; [
-      htop
-    ];
+  networking = {
+    hostName = "nix-vm-01";
   };
+
+  environment = {
+    systemPackages = with pkgs; [deploy-rs];
+  };
+
+  # Configure user
+  local.users.${username} = {
+    enable = true;
+    enableDevTools = true;
+    home-manager = {
+      enable = true;
+    };
+  };
+
+  local.docker.enable = true;
+
+  local.sops = {
+    enable = true;
+    file = {
+      source = ../secrets/default.yml;
+    };
+    age = {
+      source = "/home/${username}/.config/sops/age/keys.txt";
+      destination = "/etc/sops/age/nix.txt";
+    };
+  };
+
+  local.chezmoi.enable = true;
 
   boot.loader.grub = {
     enable = true;
@@ -30,19 +51,5 @@
       device = "/dev/sda";
       fsType = "vfat";
     };
-  };
-
-  networking = {
-    domain = "local.chkpwd.com";
-    nameservers = ["172.16.16.1"];
-    hostName = "test-nixos";
-  };
-
-  home-manager = {
-    users.${username}.imports = [
-      {
-        programs.git.enable = true;
-      }
-    ];
   };
 }

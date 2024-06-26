@@ -25,6 +25,8 @@
   outputs = {self, ...} @ inputs: let
     username = "chkpwd";
     sshPubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBK2VnKgOX7i1ISETheqjAO3/xo6D9n7QbWyfDAPsXwa";
+    overlays = import ./overlays {inherit inputs;};
+
     systemConfig = system: modules:
       inputs.nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs username sshPubKey;};
@@ -33,9 +35,11 @@
           [
             ./modules/nixos
             ./modules/common
+            {nixpkgs.overlays = builtins.attrValues overlays;}
           ]
           ++ modules;
       };
+
     darwinConfig = system: modules:
       inputs.nix-darwin.lib.darwinSystem {
         specialArgs = {inherit inputs username sshPubKey;};
@@ -44,14 +48,16 @@
           [
             ./modules/darwin
             ./modules/common
+            {nixpkgs.overlays = builtins.attrValues overlays;}
           ]
           ++ modules;
       };
   in
     {
       darwinConfigurations = {
-        nix-mb-01 = darwinConfig "x86_64-darwin" [./hosts/nix-mb-01.nix];
+        nix-mb-01 = darwinConfig "aarch64-darwin" [./hosts/nix-mb-01.nix];
       };
+
       nixosConfigurations = {
         nix-vm-01 = systemConfig "x86_64-linux" [./hosts/nix-vm-01.nix];
         nix-wsl-01 = systemConfig "x86_64-linux" [./hosts/nix-wsl-01.nix];
