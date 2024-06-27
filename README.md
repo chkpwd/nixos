@@ -29,5 +29,5 @@ sudo nixos-rebuild switch --flake github:chkpwd/nixos/<branch>#<name-of-host>
 ```
 
 ### TODO
-- [ ] MacOS Setup
+- [x] MacOS Setup
 - [x] Setup Overlays
