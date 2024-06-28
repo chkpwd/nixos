@@ -9,6 +9,6 @@
       alejandra
       vim
     ];
-    variables.EDITOR = lib.mkDefault "nano"; #TODO: change to vim
+    variables.EDITOR = "nvim";
   };
 }
