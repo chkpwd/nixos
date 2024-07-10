@@ -2,6 +2,7 @@
   lib,
   config,
   username,
+  sshPubKey,
   pkgs,
   ...
 }:
@@ -10,13 +11,29 @@ with lib; let
 in {
   imports = [./packages];
   options.local.users.${username} = {
-    enable = mkEnableOption "Enable user ${username} configuration";
+    enable = mkEnableOption "Enable user configuration";
   };
 
   config = mkIf (cfg.enable) {
-    programs.zsh.enable = true;
-    users.users.chkpwd = {
+    users.users.${username} = {
+      isNormalUser = true;
+      home = "/home/${username}";
+      extraGroups = ["wheel"];
       shell = pkgs.zsh;
+      openssh.authorizedKeys.keys = [sshPubKey];
     };
+    programs.zsh.enable = true;
+    security.sudo.extraRules = [
+      {
+        users = ["user"];
+        runAs = "ALL:ALL";
+        commands = [
+          {
+            command = "ALL";
+            options = ["NOPASSWD"];
+          }
+        ];
+      }
+    ];
   };
 }

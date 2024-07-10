@@ -1,55 +1,39 @@
 {
+  modulesPath,
+  config,
+  lib,
   pkgs,
   username,
   ...
 }: {
-  local.vscode-server.enable = true;
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+    (modulesPath + "/profiles/qemu-guest.nix")
+    ../modules/nixos/disk-config.nix
+  ];
+
+  boot.loader.grub = {
+    efiSupport = true;
+    efiInstallAsRemovable = true;
+  };
+
+  services = {
+    openssh.enable = true;
+    qemuGuest.enable = true;
+  };
 
   networking = {
     hostName = "nix-vm-01";
   };
 
-  environment = {
-    systemPackages = with pkgs; [deploy-rs];
-  };
-
   # Configure user
   local.users.${username} = {
     enable = true;
-    enableDevTools = true;
+    enableDevTools = false;
     home-manager = {
-      enable = true;
+      enable = false;
     };
   };
 
-  local.docker.enable = true;
-
-  local.sops = {
-    enable = true;
-    file = {
-      source = ../secrets/default.yml;
-    };
-    age = {
-      source = "/home/${username}/.config/sops/age/keys.txt";
-      destination = "/etc/sops/age/nix.txt";
-    };
-  };
-
-  local.chezmoi.enable = true;
-
-  boot.loader.grub = {
-    enable = true;
-    device = "/dev/sda";
-  };
-
-  fileSystems = {
-    "/" = {
-      device = "/dev/sda";
-      fsType = "ext4";
-    };
-    "/boot" = {
-      device = "/dev/sda";
-      fsType = "vfat";
-    };
-  };
+  system.stateVersion = "23.11";
 }

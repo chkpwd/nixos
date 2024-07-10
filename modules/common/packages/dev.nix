@@ -39,12 +39,13 @@ in {
       ruff
       nodejs_20
       cargo
+      rustc
       clang
       gnumake
       age
       sops
       go
-      neovim
+      unstable.neovim
       # Network
       sshpass
       nmap
@@ -67,6 +68,7 @@ in {
       hugo
       etcd
       terraform
+      opentofu
       packer
       bws
       act
