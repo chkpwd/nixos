@@ -47,7 +47,12 @@
       brewfile = true;
       lockfiles = false;
     };
-    brews = ["php"];
+    brews = [
+      # Some alfred workflows need these path to be static
+      "php"
+      "jq"
+      "bitwarden-cli"
+    ];
     casks = [
       "iterm2"
       "autodesk-fusion"
