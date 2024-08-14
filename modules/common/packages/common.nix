@@ -6,9 +6,9 @@
   ...
 }:
 with lib; let
-  cfg = config.local.users.${username};
+  cfg = config.local.packages;
 in {
-  options.local.users.${username} = {
+  options.local.packages = {
     enableCommonTools =
       mkEnableOption "Enable common tools";
   };
@@ -26,6 +26,7 @@ in {
       # Network
       drill
       dnsutils
+      terraform
     ];
 
     users.users.${username}.packages = with pkgs; [

@@ -7,10 +7,10 @@
   ...
 }:
 with lib; let
-  cfg = config.local.users.${username};
+  cfg = config.local.packages;
   nix-inspect = inputs.nix-inspect.packages.${pkgs.system}.default;
 in {
-  options.local.users.${username} = {
+  options.local.packages = {
     enableDevTools =
       mkEnableOption "Enable dev tools";
   };
@@ -26,7 +26,6 @@ in {
     environment.systemPackages = with pkgs; [
       # Shell
       bat
-      zsh
       fd
       file
       ripgrep
@@ -34,6 +33,7 @@ in {
       pet
       chezmoi
       tmux
+      iterm2
       complete-alias
       # System
       ruff
@@ -65,29 +65,21 @@ in {
       jqp
       # Service
       fluxcd
-      hugo
-      etcd
       terraform
-      opentofu
       packer
       bws
-      act
-      lazygit
       just
-      navi
       crane
       gh
       # Python
       (python311.withPackages (ps: [
         ps.pip
         ps.ansible-core
-        ps.molecule
       ]))
       pre-commit
       poetry
       ansible-lint
       # Misc
-      tokei
       ffmpeg
       yt-dlp
       mkdocs

@@ -12,7 +12,7 @@
         # Reference: https://github.com/kevinSuttle/macOS-Defaults/issues/17#issuecomment-266633501
         AppleFontSmoothing = 1;
         # Set to 'Dark' to enable dark mode, or leave unset for normal mode
-        AppleInterfaceStyle = null;
+        AppleInterfaceStyle = "Dark";
         # Whether to automatically switch between light and dark mode. The default is false
         AppleInterfaceStyleSwitchesAutomatically = false;
         # Configures the keyboard control behavior.  Mode 3 enables full keyboard control
@@ -143,7 +143,7 @@
         # Show recent applications in the dock. The default is true
         show-recents = true;
         # Show only open applications in the Dock. The default is false
-        static-only = false;
+        static-only = true;
         # Size of the icons in the dock.  The default is 64
         tilesize = 36;
         # Magnify icon on hover. The default is false
@@ -164,7 +164,7 @@
         # * `13`: Lock Screen
         # * `14`: Quick Note
         wvous-tl-corner = 1;
-        wvous-bl-corner = 2;
+        wvous-bl-corner = 3;
         wvous-tr-corner = 10;
         wvous-br-corner = 14;
       };
@@ -179,7 +179,7 @@
         # Finder search in this mac
         FXDefaultSearchScope = "SCev";
         # Default Finder window set to list view
-        FXPreferredViewStyle = "Nlsv";
+        FXPreferredViewStyle = "clmv";
         # Show all extensions
         AppleShowAllExtensions = true;
         # Show icons on desktop
@@ -241,10 +241,9 @@
         # Show the day of the week. Default is null
         ShowDayOfWeek = true;
         # Show the full date. Default is null.
-        # 0 = Show the date
-        # 1 = Don't show
-        # 2 = Don't show
-        # TODO: I don't know what the difference is between 1 and 2.
+        # 0 = When Space Allows
+        # 1 = Always
+        # 2 = Never
         ShowDate = 1;
         # Show the clock with second precision, instead of minutes. Default is null
         ShowSeconds = false;
@@ -258,7 +257,7 @@
 
       screencapture = {
         # The filesystem path to which screencaptures should be written
-        location = "/Users/test/Download/Screenshots";
+        location = "/Users/chkpwd/Download/Screenshots";
         # The image format to use, such as "jpg"
         type = "png";
         # Disable drop shadow border around screencaptures. The default is false
@@ -277,7 +276,7 @@
         # Disable transparency in the menu bar and elsewhere.
         # Requires macOS Yosemite or later.
         # The default is false.
-        reduceTransparency = true;
+        reduceTransparency = false;
       };
 
       trackpad = {
@@ -288,7 +287,7 @@
         # Whether to enable trackpad right click.  The default is false
         TrackpadRightClick = true;
         # Whether to enable three finger drag.  The default is false
-        TrackpadThreeFingerDrag = false;
+        TrackpadThreeFingerDrag = true;
         # 0 to enable Silent Clicking, 1 to disable.  The default is 1
         ActuationStrength = 1;
         # For normal click: 0 for light clicking, 1 for medium, 2 for firm.
@@ -346,20 +345,11 @@
       };
     };
 
-    activationScripts.preUserActivation.text = ''
-      sudo rm -f /etc/bashrc /etc/zshrc /etc/zshenv
-      # sudo mv -f /etc/bashrc /etc/bashrc-before-nix
-      # sudo mv -f /etc/zshrc /etc/zshrc-before-nix
-      # sudo mv -f /etc/zshenv /etc/zshenv-before-nix
-      # sudo mv -f /etc/shells /etc/shells-before-nix
-      # sudo mv -f /etc/nfs.conf /etc/nfs.conf-before-nix
-    '';
-
     # See https://github.com/mathiasbynens/dotfiles/blob/master/.macos
     activationScripts.postUserActivation.text = ''
         # echo "setting ui defaults..."
 
-        mkdir -p /Users/test/Downloads/Screenshots
+        mkdir -p /Users/chkpwd/Downloads/Screenshots
 
         # Never go into computer sleep mode
         sudo /usr/sbin/systemsetup -setcomputersleep Off 2> /dev/null 1>&2
@@ -378,18 +368,6 @@
         # Following line should allow us to avoid a logout/login cycle
         /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
 
-      #   ###############################################################################
-      #   # Screen                                                                      #
-      #   ###############################################################################
-      #   echo "setting screen..."
-
-      #   # Require password immediately after sleep or screen saver begins
-      #   defaults write com.apple.screensaver askForPassword -int 1
-      #   defaults write com.apple.screensaver askForPasswordDelay -int 0
-      #   # Save screenshots to Downloads/Screenshots
-      #   defaults write com.apple.screencapture location -string "/Users/test/Downloads/Screenshots"
-      #   # Enable HiDPI display modes (requires restart)
-      #   sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
         ###############################################################################
         # Finder                                                                      #
         ###############################################################################
@@ -400,177 +378,10 @@
         # Set HOME as the default location for new Finder windows
         # For other paths, use `PfLo` and `file:///full/path/here/`
         defaults write com.apple.finder NewWindowTarget -string "PfLo"
-        defaults write com.apple.finder NewWindowTargetPath -string "file:///Users/test/"
+        defaults write com.apple.finder NewWindowTargetPath -string "file:///Users/chkpwd/"
         # Avoid creating .DS_Store files on network or USB volumes
         defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
         defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
-      #   # Hide icons for hard drives, servers, and removable media on the desktop
-      #   defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false
-      #   defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
-      #   defaults write com.apple.finder ShowMountedServersOnDesktop -bool false
-      #   defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
-      #   # Keep folders on top when sorting by name
-      #   defaults write com.apple.finder _FXSortFoldersFirst -bool true
-      #   # Disable disk image verification
-      #   defaults write com.apple.frameworks.diskimages skip-verify -bool true
-      #   defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true
-      #   defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
-      #   # Automatically open a new Finder window when a volume is mounted
-      #   defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
-      #   defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
-      #   defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
-      #   # Use list view in all Finder windows by default
-      #   # Four-letter codes for the other view modes: `icnv`, `clmv`, `glyv`
-      #   # defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
-      #   # Show the ~/Library folder
-      #   chflags nohidden ~/Library
-      #   # Show the /Volumes folder
-      #   sudo chflags nohidden /Volumes
-      #   # Expand the following File Info panes:
-      #   # "General", "Open with", and "Sharing & Permissions"
-      #   defaults write com.apple.finder FXInfoPanesExpanded -dict \
-      #     General -bool true \
-      #     OpenWith -bool true \
-      #     Privileges -bool true
-      #   ###############################################################################
-      #   # Safari & WebKit                                                             #
-      #   ###############################################################################
-      #   echo "setting safari/webkit..."
-
-      #   # Privacy: don't send search queries to Apple
-      #   defaults write com.apple.Safari UniversalSearchEnabled -bool false
-      #   defaults write com.apple.Safari SuppressSearchSuggestions -bool true
-      #   # Press Tab to highlight each item on a web page
-      #   defaults write com.apple.Safari WebKitTabToLinksPreferenceKey -bool true
-      #   defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2TabsToLinks -bool true
-      #   # Show the full URL in the address bar (note: this still hides the scheme)
-      #   defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
-      #   # Set Safari's home page to `about:blank` for faster loading
-      #   defaults write com.apple.Safari HomePage -string "about:blank"
-      #   # Prevent Safari from opening 'safe' files automatically after downloading
-      #   defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
-      #   # Hide Safari's bookmarks bar by default
-      #   defaults write com.apple.Safari ShowFavoritesBar -bool false
-      #   # Hide Safari's sidebar in Top Sites
-      #   defaults write com.apple.Safari ShowSidebarInTopSites -bool false
-      #   # Disable Safari's thumbnail cache for History and Top Sites
-      #   defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
-      #   # Enable Safari's debug menu
-      #   defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
-      #   # Make Safari's search banners default to Contains instead of Starts With
-      #   defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
-      #   # Enable the Develop menu and the Web Inspector in Safari
-      #   defaults write com.apple.Safari IncludeDevelopMenu -bool true
-      #   defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
-      #   defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
-      #   # Add a context menu item for showing the Web Inspector in web views
-      #   defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
-      #   # Enable continuous spellchecking
-      #   defaults write com.apple.Safari WebContinuousSpellCheckingEnabled -bool true
-      #   # Disable auto-correct
-      #   defaults write com.apple.Safari WebAutomaticSpellingCorrectionEnabled -bool false
-      #   # Warn about fraudulent websites
-      #   defaults write com.apple.Safari WarnAboutFraudulentWebsites -bool true
-      #   # Enable "Do Not Track"
-      #   defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
-      #   # Update extensions automatically
-      #   defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
-      #   # Show Favorites bar
-      #   defaults write com.apple.Safari ShowFavoritesBar-v2 -bool true
-      #   # Enable narrow tabs
-      #   defaults write com.apple.Safari EnableNarrowTabs -int 1
-      #   # Enable compact display
-      #   defaults write com.apple.Safari ShowStandaloneTabBar -int 0
-      #   ###############################################################################
-      #   # Spotlight                                                                   #
-      #   ###############################################################################
-      #   echo "setting spotlight..."
-
-      #   # Disable Spotlight indexing for any volume that gets mounted and has not yet
-      #   # been indexed before.
-      #   # Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
-      #   # sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
-      #   # Change indexing order and disable some search results
-      #   # Yosemite-specific search results (remove them if you are using macOS 10.9 or older):
-      #   #     MENU_DEFINITION
-      #   #     MENU_CONVERSION
-      #   #     MENU_EXPRESSION
-      #   #     MENU_SPOTLIGHT_SUGGESTIONS (send search queries to Apple)
-      #   #     MENU_WEBSEARCH             (send search queries to Apple)
-      #   #     MENU_OTHER
-      #   defaults write com.apple.spotlight orderedItems -array \
-      #     '{"enabled" = 1;"name" = "APPLICATIONS";}' \
-      #     '{"enabled" = 1;"name" = "SYSTEM_PREFS";}' \
-      #     '{"enabled" = 1;"name" = "DIRECTORIES";}' \
-      #     '{"enabled" = 1;"name" = "PDF";}' \
-      #     '{"enabled" = 1;"name" = "FONTS";}' \
-      #     '{"enabled" = 0;"name" = "DOCUMENTS";}' \
-      #     '{"enabled" = 0;"name" = "MESSAGES";}' \
-      #     '{"enabled" = 0;"name" = "CONTACT";}' \
-      #     '{"enabled" = 0;"name" = "EVENT_TODO";}' \
-      #     '{"enabled" = 0;"name" = "IMAGES";}' \
-      #     '{"enabled" = 0;"name" = "BOOKMARKS";}' \
-      #     '{"enabled" = 0;"name" = "MUSIC";}' \
-      #     '{"enabled" = 0;"name" = "MOVIES";}' \
-      #     '{"enabled" = 0;"name" = "PRESENTATIONS";}' \
-      #     '{"enabled" = 0;"name" = "SPREADSHEETS";}' \
-      #     '{"enabled" = 0;"name" = "SOURCE";}' \
-      #     '{"enabled" = 0;"name" = "MENU_DEFINITION";}' \
-      #     '{"enabled" = 0;"name" = "MENU_OTHER";}' \
-      #     '{"enabled" = 0;"name" = "MENU_CONVERSION";}' \
-      #     '{"enabled" = 0;"name" = "MENU_EXPRESSION";}' \
-      #     '{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \
-      #     '{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
-      #   # # Load new settings before rebuilding the index
-      #   # killall mds > /dev/null 2>&1
-      #   # # Make sure indexing is enabled for the main volume
-      #   # sudo mdutil -i on / > /dev/null
-      #   # # Rebuild the index from scratch
-      #   # sudo mdutil -E / > /dev/null
-      #   ###############################################################################
-      #   # Time Machine                                                                #
-      #   ###############################################################################
-      #   echo "setting time machine..."
-
-      #   # Prevent Time Machine from prompting to use new hard drives as backup volume
-      #   defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
-      #   # Disable local Time Machine backups
-      #   # hash tmutil &> /dev/null && sudo tmutil disablelocal
-      #   ###############################################################################
-      #   # Mac App Store                                                               #
-      #   ###############################################################################
-      #   echo "setting mac app store..."
-
-      #   # Enable the WebKit Developer Tools in the Mac App Store
-      #   defaults write com.apple.appstore WebKitDeveloperExtras -bool true
-      #   # Enable Debug Menu in the Mac App Store
-      #   defaults write com.apple.appstore ShowDebugMenu -bool true
-      #   # Enable the automatic update check
-      #   defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
-      #   # Check for software updates daily, not just once per week
-      #   defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
-      #   # Download newly available updates in background
-      #   defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1
-      #   # Install System data files & security updates
-      #   defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
-      #   # Automatically download apps purchased on other Macs
-      #   defaults write com.apple.SoftwareUpdate ConfigDataInstall -int 1
-      #   # Turn on app auto-update
-      #   defaults write com.apple.commerce AutoUpdate -bool true
-      #   # Allow the App Store to reboot machine on macOS updates
-      #   defaults write com.apple.commerce AutoUpdateRestartRequired -bool true
-      #   ###############################################################################
-      #   # GPGMail 2                                                                   #
-      #   ###############################################################################
-      #   # Disable signing emails by default
-      #   defaults write ~/Library/Preferences/org.gpgtools.gpgmail SignNewEmailsByDefault -bool false
-      #   ###############################################################################
-      #   # GPGTools                                                                    #
-      #   ###############################################################################
-      #   # Don't check the use keychain for PGP
-      #   defaults write org.gpgtools.common UseKeychain -bool false
-
-      # echo "ui defaults complete"
     '';
   };
 }

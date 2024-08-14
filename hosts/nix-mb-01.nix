@@ -2,36 +2,82 @@
   inputs,
   pkgs,
   username,
+  sshPubKey,
+  config,
   ...
 }: {
-  config = {
-    programs.zsh.enable = true;
-    networking = {
-      hostName = "nix-mb-01";
-    };
+  networking = {
+    hostName = "nix-mb-01";
+    knownNetworkServices = ["Wi-Fi"];
+  };
 
-    homebrew = {
-      enable = true;
-      onActivation = {
-        autoUpdate = false; # Don't update during rebuild
-        cleanup = "zap"; # Uninstall all programs not declared
-        upgrade = true;
-      };
-      global = {
-        brewfile = true; # Run brew bundle from anywhere
-        lockfiles = false; # Don't save lockfile (since running from anywhere)
-      };
+  system = {
+    activationScripts.postActivation.text = ''
+      sudo chsh -s /run/current-system/sw/bin/zsh chkpwd
+    '';
+    keyboard = {
+      enableKeyMapping = true;
+      remapCapsLockToEscape = true;
     };
+  };
 
-    # Configure user
-    local.users.${username} = {
-      enable = true;
-      enableCommonTools = true;
-      enableDevTools = true;
-      enableKubernetesTools = true;
-      #home-manager = {
-      #  enable = true;
-      #};
+  programs.zsh.enable = true;
+
+  users.users.${username} = {
+    name = "${username}";
+    home = "/Users/${username}";
+    shell = pkgs.zsh;
+    openssh.authorizedKeys.keys = [sshPubKey];
+  };
+
+  local.packages = {
+    enableCommonTools = true;
+    enableDevTools = true;
+    enableKubernetesTools = true;
+  };
+
+  homebrew = {
+    enable = true;
+    onActivation = {
+      autoUpdate = false;
+      cleanup = "zap";
+      upgrade = true;
+    };
+    global = {
+      brewfile = true;
+      lockfiles = false;
+    };
+    brews = ["php"];
+    casks = [
+      "iterm2"
+      "autodesk-fusion"
+      "zoom"
+      "aldente"
+      "transmit"
+      "aerial"
+      #"alfred" installed via other mediums
+      "firefox"
+      "discord"
+      "orbstack"
+      "keyboardcleantool"
+      "orcaslicer"
+      "spotify"
+      "postman"
+      "raspberry-pi-imager"
+      "usr-sse2-rdm"
+      "vlc"
+      "plex"
+      "stats"
+    ];
+    masApps = {
+      "Xcode" = 497799835;
+      "Nautik" = 1672838783;
+      "Twingate" = 1501592214;
+      "Bitwarden" = 1352778147;
+      "Wireguard" = 1451685025;
+      "Microsoft Remote Desktop" = 1295203466;
+      "Amphetamine" = 937984704;
+      "WhatsApp" = 310633997;
     };
   };
 }

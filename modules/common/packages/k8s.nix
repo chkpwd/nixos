@@ -6,9 +6,9 @@
   ...
 }:
 with lib; let
-  cfg = config.local.users.${username};
+  cfg = config.local.packages;
 in {
-  options.local.users.${username} = {
+  options.local.packages = {
     enableKubernetesTools =
       mkEnableOption "Enable Kubernetes tools";
   };

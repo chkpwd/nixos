@@ -1,25 +1,18 @@
-{pkgs, ...}: {
+{pkgs, username, ...}: {
   imports = [
     ./macos-defaults.nix
     ./networking.nix
   ];
 
   config = {
-    nix.gc.interval = {
-      Hour = 12;
-      Minute = 15;
-      Day = 1;
+    nix = {
+      package = pkgs.nix;
+      settings.trusted-users = [ "@admin" "${username}" ];
     };
 
     services.nix-daemon.enable = true;
 
     security.pam.enableSudoTouchIdAuth = true;
-
-    nix = {
-      extraOptions = ''
-        experimental-features = nix-command flakes
-      '';
-    };
 
     system.stateVersion = 4;
   };

@@ -8,5 +8,6 @@
     ./open-ssh.nix
     ./vscode-server.nix
     ./wsl.nix
+    ./user.nix
   ];
 }
