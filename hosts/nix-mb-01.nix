@@ -48,7 +48,7 @@
       lockfiles = false;
     };
     brews = [
-      # Some alfred workflows need these path to be static
+      # Some of alfred's workflows need these path to be static
       "php"
       "jq"
       "bitwarden-cli"
@@ -57,10 +57,11 @@
       "iterm2"
       "autodesk-fusion"
       "zoom"
-      "aldente"
       "transmit"
-      "aerial"
-      #"alfred" installed via other mediums
+      # installed via other mediums
+      #"aldente"
+      #"alfred"
+      #"dash"
       "firefox"
       "discord"
       "orbstack"
