@@ -75,7 +75,6 @@
       "stats"
     ];
     masApps = {
-      "Xcode" = 497799835;
       "Nautik" = 1672838783;
       "Twingate" = 1501592214;
       "Bitwarden" = 1352778147;
@@ -83,6 +82,8 @@
       "Microsoft Remote Desktop" = 1295203466;
       "Amphetamine" = 937984704;
       "WhatsApp" = 310633997;
+      # "JW Library" = 672417831;
+      # "NW Publisher" = 1561127070;
     };
   };
 }

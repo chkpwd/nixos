@@ -98,13 +98,13 @@
         # Whether to enable "Natural" scrolling direction.  The default is true.
         "com.apple.swipescrolldirection" = true;
         # Whether to use centimeters (metric) or inches (US, UK) as the measurement unit.  The default is based on region settings.
-        # AppleMeasurementUnits = "Centimeters";
+        AppleMeasurementUnits = "Centimeters";
         # Whether to use the metric system.  The default is based on region settings.
-        # AppleMetricUnits = 1;
+        AppleMetricUnits = 1;
         # Whether to use Celsius or Fahrenheit.  The default is based on region settings.
-        # AppleTemperatureUnit = "Celsius";
+        AppleTemperatureUnit = "Fahrenheit";
         # Whether to use 24-hour or 12-hour time.  The default is based on region settings.
-        # AppleICUForce = false;
+        #AppleICUForce = false;
         # Whether to autohide the menu bar.  The default is false.
         _HIHideMenuBar = false;
       };
@@ -347,41 +347,41 @@
 
     # See https://github.com/mathiasbynens/dotfiles/blob/master/.macos
     activationScripts.postUserActivation.text = ''
-        # echo "setting ui defaults..."
+      # echo "setting ui defaults..."
 
-        mkdir -p /Users/chkpwd/Downloads/Screenshots
+      mkdir -p /Users/chkpwd/Downloads/Screenshots
 
-        # Never go into computer sleep mode
-        sudo /usr/sbin/systemsetup -setcomputersleep Off 2> /dev/null 1>&2
+      # Never go into computer sleep mode
+      sudo /usr/sbin/systemsetup -setcomputersleep Off 2> /dev/null 1>&2
 
-        # Restart automatically if the computer freezes
-        sudo /usr/sbin/systemsetup -setrestartfreeze on 2> /dev/null 1>&2
+      # Restart automatically if the computer freezes
+      sudo /usr/sbin/systemsetup -setrestartfreeze on 2> /dev/null 1>&2
 
-        ###############################################################################
-        # General UI/UX                                                               #
-        ###############################################################################
-        # echo "setting general ui/ux..."
+      ###############################################################################
+      # General UI/UX                                                               #
+      ###############################################################################
+      # echo "setting general ui/ux..."
 
-        # Automatically quit printer app once the print jobs complete
-        defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+      # Automatically quit printer app once the print jobs complete
+      defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
-        # Following line should allow us to avoid a logout/login cycle
-        /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+      # Following line should allow us to avoid a logout/login cycle
+      /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
 
-        ###############################################################################
-        # Finder                                                                      #
-        ###############################################################################
-        # echo "setting finder..."
+      ###############################################################################
+      # Finder                                                                      #
+      ###############################################################################
+      # echo "setting finder..."
 
-        # Finder: disable window animations and Get Info animations
-        defaults write com.apple.finder DisableAllAnimations -bool true
-        # Set HOME as the default location for new Finder windows
-        # For other paths, use `PfLo` and `file:///full/path/here/`
-        defaults write com.apple.finder NewWindowTarget -string "PfLo"
-        defaults write com.apple.finder NewWindowTargetPath -string "file:///Users/chkpwd/"
-        # Avoid creating .DS_Store files on network or USB volumes
-        defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
-        defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+      # Finder: disable window animations and Get Info animations
+      defaults write com.apple.finder DisableAllAnimations -bool true
+      # Set HOME as the default location for new Finder windows
+      # For other paths, use `PfLo` and `file:///full/path/here/`
+      defaults write com.apple.finder NewWindowTarget -string "PfLo"
+      defaults write com.apple.finder NewWindowTargetPath -string "file:///Users/chkpwd/"
+      # Avoid creating .DS_Store files on network or USB volumes
+      defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+      defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
     '';
   };
 }

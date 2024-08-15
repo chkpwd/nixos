@@ -18,7 +18,7 @@ with lib; {
       experimental-features = ["nix-command" "flakes"];
       auto-optimise-store = true;
       accept-flake-config = true;
-      trusted-users = ["root" "@wheel"];
+      trusted-users = mkDefault ["root" "@wheel"];
       substituters = [
         "https://nix-community.cachix.org"
         "https://cache.nixos.org/"
