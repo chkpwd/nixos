@@ -80,8 +80,6 @@ in {
       poetry
       ansible-lint
       # Misc
-      ffmpeg
-      yt-dlp
       mkdocs
       android-tools
     ];

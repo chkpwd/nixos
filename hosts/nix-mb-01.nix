@@ -50,14 +50,18 @@
     brews = [
       # Some of alfred's workflows need these path to be static
       "php"
+      "ruby"
       "jq"
       "bitwarden-cli"
+      "yt-dlp"
+      "ffmpeg"
     ];
     casks = [
       "iterm2"
       "autodesk-fusion"
       "zoom"
       "transmit"
+      "visual-studio-code"
       # installed via other mediums
       #"aldente"
       #"alfred"
@@ -74,6 +78,8 @@
       "vlc"
       "plex"
       "stats"
+      "rectangle"
+      "ente-auth"
     ];
     masApps = {
       "Nautik" = 1672838783;
