@@ -62,6 +62,9 @@
       "zoom"
       "transmit"
       "visual-studio-code"
+      "steam"
+      "wins"
+      "audacity"
       # installed via other mediums
       #"aldente"
       #"alfred"
