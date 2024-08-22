@@ -15,7 +15,7 @@
         sshOpts = [];
         remoteBuild = false;
       }
-      // cfg; # Update operator to merge two attrSets
+      // cfg; # Update operator to merge two attrSets; right wins
   };
 in {
   deploy.nodes = {
