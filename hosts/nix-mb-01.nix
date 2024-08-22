@@ -57,13 +57,13 @@
       "ffmpeg"
     ];
     casks = [
+      "itsycal"
       "iterm2"
       "autodesk-fusion"
       "zoom"
       "transmit"
-      "visual-studio-code"
       "steam"
-      "wins"
+      "rectangle"
       "audacity"
       # installed via other mediums
       #"aldente"
@@ -81,7 +81,6 @@
       "vlc"
       "plex"
       "stats"
-      "rectangle"
       "ente-auth"
     ];
     masApps = {

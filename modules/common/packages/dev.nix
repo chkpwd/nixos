@@ -33,8 +33,8 @@ in {
       pet
       chezmoi
       tmux
-      iterm2
       complete-alias
+      tldr
       # System
       ruff
       nodejs_20
@@ -82,6 +82,7 @@ in {
       # Misc
       mkdocs
       android-tools
+      imagemagick
     ];
   };
 }
