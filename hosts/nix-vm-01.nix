@@ -17,22 +17,17 @@
     efiInstallAsRemovable = true;
   };
 
+  networking = {
+    hostName = "nix-vm-01";
+  };
+
   services = {
     openssh.enable = true;
     qemuGuest.enable = true;
   };
 
-  networking = {
-    hostName = "nix-vm-01";
-  };
-
-  # Configure user
-  local.users.${username} = {
+  local.user-config = {
     enable = true;
-    enableDevTools = false;
-    home-manager = {
-      enable = false;
-    };
   };
 
   system.stateVersion = "23.11";
