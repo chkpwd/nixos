@@ -65,6 +65,7 @@
       nixosConfigurations = {
         nix-vm-01 = systemConfig "x86_64-linux" [./hosts/nix-vm-01.nix];
         nix-wsl-01 = systemConfig "x86_64-linux" [./hosts/nix-wsl-01.nix];
+        nix-host-01 = systemConfig "x86_64-linux" [./hosts/nix-host-01.nix];
       };
     }
     // import ./deploy.nix {inherit self inputs username;};
