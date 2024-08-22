@@ -33,6 +33,18 @@
     interfaces.enp0s31f6.useDHCP = true;
     interfaces.wlp2s0.useDHCP = false;
     nftables.enable = true;
+    firewall = {
+      allowedTCPPorts = [
+        8443
+        53
+        67
+        22
+      ];
+      allowedUDPPorts = [
+        53
+        67
+      ];
+    };
   };
 
   services = {
