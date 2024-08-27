@@ -57,6 +57,8 @@
       "ffmpeg"
     ];
     casks = [
+      "lm-studio"
+      "ollama"
       "itsycal"
       "iterm2"
       "autodesk-fusion"
