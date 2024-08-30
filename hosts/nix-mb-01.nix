@@ -21,7 +21,9 @@
     };
   };
 
-  programs.zsh.enable = true;
+  programs = {
+    zsh.enable = true;
+  };
 
   users.users.${username} = {
     name = "${username}";
@@ -30,10 +32,13 @@
     openssh.authorizedKeys.keys = [sshPubKey];
   };
 
-  local.packages = {
-    enableCommonTools = true;
-    enableDevTools = true;
-    enableKubernetesTools = true;
+  local = {
+    home-manager.enable = true;
+    packages = {
+      enableCommonTools = true;
+      enableDevTools = true;
+      enableKubernetesTools = true;
+    };
   };
 
   homebrew = {

@@ -24,6 +24,7 @@
     };
     deploy-rs.url = "github:serokell/deploy-rs";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
+    nixcord.url = "github:kaylorben/nixcord";
   };
 
   outputs = {self, ...} @ inputs: let
