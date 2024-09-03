@@ -26,7 +26,6 @@ in {
       # Network
       drill
       dnsutils
-      terraform
     ];
 
     users.users.${username}.packages = with pkgs; [

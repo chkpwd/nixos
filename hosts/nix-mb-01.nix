@@ -33,7 +33,6 @@
   };
 
   home-manager = {
-    enable = true;
     users.${username} = {
       imports = [inputs.nixcord.homeManagerModules.nixcord];
       # programs.nixcord = {
@@ -68,12 +67,12 @@
     };
     brews = [
       # Some of alfred's workflows need these path to be static
-      "php"
-      "ruby"
-      "jq"
-      "bitwarden-cli"
-      "yt-dlp"
-      "ffmpeg"
+     # "php"
+     # "ruby"
+     # "jq"
+     # "bitwarden-cli"
+     # "yt-dlp"
+     # "ffmpeg"
     ];
     casks = [
       "lm-studio"
