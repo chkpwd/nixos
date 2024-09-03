@@ -32,8 +32,22 @@
     openssh.authorizedKeys.keys = [sshPubKey];
   };
 
+  home-manager = {
+    enable = true;
+    users.${username} = {
+      imports = [inputs.nixcord.homeManagerModules.nixcord];
+      # programs.nixcord = {
+      #   enable = true;
+      #   vencord.enable = true;
+      #   discord.enable = false;
+      #   config.plugins = {
+      #     alwaysAnimate.enable = true;
+      #   };
+      # };
+    };
+  };
+
   local = {
-    home-manager.enable = true;
     packages = {
       enableCommonTools = true;
       enableDevTools = true;

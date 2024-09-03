@@ -45,7 +45,12 @@
           ++ modules;
       };
 
-    darwinConfig = system: modules:
+    darwinConfig = system: modules: addHM: let
+      hmModule =
+        if addHM
+        then [inputs.home-manager.darwinModules.home-manager]
+        else [];
+    in
       inputs.nix-darwin.lib.darwinSystem {
         specialArgs = {inherit inputs username sshPubKey;};
         inherit system;
@@ -55,12 +60,13 @@
             ./modules/common
             {nixpkgs.overlays = builtins.attrValues overlays;}
           ]
-          ++ modules;
+          ++ modules
+          ++ hmModule;
       };
   in
     {
       darwinConfigurations = {
-        nix-mb-01 = darwinConfig "aarch64-darwin" [./hosts/nix-mb-01.nix];
+        nix-mb-01 = darwinConfig "aarch64-darwin" [./hosts/nix-mb-01.nix] true;
       };
 
       nixosConfigurations = {

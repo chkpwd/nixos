@@ -7,13 +7,9 @@
   ...
 }:
 with lib; let
-  cfg = config.local.home-manager;
+  cfg = config.home-manager;
 in {
-  imports = [inputs.home-manager.darwinModules.home-manager];
-
-  options.local.home-manager = {
-    enable = mkEnableOption "Enable Home Manager";
-  };
+  options.home-manager.enable = mkEnableOption "Enable Home Manager";
 
   config = mkIf cfg.enable {
     home-manager = {
@@ -24,8 +20,6 @@ in {
         inherit username;
         inherit sshPubKey;
       };
-
-      sharedModules = [inputs.nixcord.homeManagerModules.nixcord];
 
       users.${username} = {
         home = {
