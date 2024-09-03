@@ -2,7 +2,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-23.05-darwin";
+    nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-24.05-darwin";
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,7 +32,31 @@
     sshPubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBK2VnKgOX7i1ISETheqjAO3/xo6D9n7QbWyfDAPsXwa";
     overlays = import ./overlays {inherit inputs;};
 
-    systemConfig = system: modules:
+    mkHomeModules = addHM: moduleType:
+      if addHM
+      then [
+        inputs.home-manager.${moduleType}.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            extraSpecialArgs = {inherit inputs username sshPubKey;};
+            users.${username} = {
+              home = {
+                stateVersion = "24.05";
+              };
+              programs.home-manager.enable = true;
+            };
+          };
+        }
+      ]
+      else [];
+
+    nixosConfig = {
+      system ? "x86_64-linux",
+      modules ? [],
+      addHM ? true,
+    }:
       inputs.nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs username sshPubKey;};
         inherit system;
@@ -42,15 +66,15 @@
             ./modules/common
             {nixpkgs.overlays = builtins.attrValues overlays;}
           ]
-          ++ modules;
+          ++ modules
+          ++ (mkHomeModules addHM "nixosModules");
       };
 
-    darwinConfig = system: modules: addHM: let
-      hmModule =
-        if addHM
-        then [inputs.home-manager.darwinModules.home-manager]
-        else [];
-    in
+    darwinConfig = {
+      system ? "aarch64-darwin",
+      modules ? [],
+      addHM ? true,
+    }:
       inputs.nix-darwin.lib.darwinSystem {
         specialArgs = {inherit inputs username sshPubKey;};
         inherit system;
@@ -61,18 +85,24 @@
             {nixpkgs.overlays = builtins.attrValues overlays;}
           ]
           ++ modules
-          ++ hmModule;
+          ++ (mkHomeModules addHM "darwinModules");
       };
   in
     {
       darwinConfigurations = {
-        nix-mb-01 = darwinConfig "aarch64-darwin" [./hosts/nix-mb-01.nix] true;
+        nix-mb-01 = darwinConfig {
+          system = "x86_64-darwin";
+          modules = [./hosts/nix-mb-01.nix];
+        };
       };
 
       nixosConfigurations = {
-        nix-vm-01 = systemConfig "x86_64-linux" [./hosts/nix-vm-01.nix];
-        nix-wsl-01 = systemConfig "x86_64-linux" [./hosts/nix-wsl-01.nix];
-        nix-host-01 = systemConfig "x86_64-linux" [./hosts/nix-host-01.nix];
+        nix-vm-01 = nixosConfig {
+          modules = [./hosts/nix-vm-01.nix];
+        };
+        nix-host-01 = nixosConfig {
+          modules = [./hosts/nix-host-01.nix];
+        };
       };
     }
     // import ./deploy.nix {inherit self inputs username;};

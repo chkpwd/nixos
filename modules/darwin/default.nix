@@ -6,7 +6,6 @@
   imports = [
     ./macos-defaults.nix
     ./networking.nix
-    ./home-manager.nix
   ];
 
   config = {
