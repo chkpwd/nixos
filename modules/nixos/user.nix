@@ -1,53 +1,36 @@
 {
   lib,
   config,
-  username,
-  sshPubKey,
   pkgs,
   ...
 }:
 with lib; let
   cfg = config.local.user-config;
-  userData = import ../common/user-data.nix;
 in {
   imports = [../common/packages];
 
-  options.local.user-config = {
-    enable = mkEnableOption "Enable user configuration";
-
-    username = mkEnableOption {
-      type = types.str;
-      default = userData.username;
-      description = "Username for the user";
+  options.mainUser = {
+    username = mkOption {
+      type = nullOr str;
+      default = "chkpwd";
+      description = "Username for the main user";
     };
-
-    # nonAdmin = mkEnableOption {
-    #   type = types.bool;
-    #   default = true;
-    #   description = "User is not an admin";
-    # };
-    #
-
-    # noPasswd = mkOption {
-    #   type = types.bool;
-    #   default = false;
-    #   description = "No Password for sudoers";
-    # };
+    email = mkOption ...;
+    fullName = mkOption ...;
   };
 
   config = mkIf (cfg.enable) {
-    users.users.${userData.username} = {
+    users.users.${config.mainUser.username} = {
       isNormalUser = true;
-      home = mkDefault "/home/${userData.username}";
       extraGroups = mkDefault ["wheel"];
       shell = mkForce pkgs.zsh;
       hashedPassword = mkDefault "$2a$10$Twk912seoPb5076byIfjI.IiQ2STRrREwp3hkqUaOLlzYruSXGMuq";
-      openssh.authorizedKeys.keys = [sshPubKey];
+      openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBK2VnKgOX7i1ISETheqjAO3/xo6D9n7QbWyfDAPsXwa" ];
     };
 
     security.sudo.extraRules = [
       {
-        users = mkDefault ["${userData.username}"];
+        users = mkDefault [username];
         runAs = "ALL:ALL";
         commands = [
           {
