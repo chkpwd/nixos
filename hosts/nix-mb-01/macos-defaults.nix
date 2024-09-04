@@ -18,7 +18,7 @@
         # Configures the keyboard control behavior.  Mode 3 enables full keyboard control
         AppleKeyboardUIMode = 3;
         # Whether to enable the press-and-hold feature.  The default is true
-        ApplePressAndHoldEnabled = true;
+        ApplePressAndHoldEnabled = false;
         # Whether to show all file extensions in Finder. The default is false
         AppleShowAllExtensions = true;
         # When to show the scrollbars. Options are 'WhenScrolling', 'Automatic' and 'Always'

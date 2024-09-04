@@ -3,10 +3,7 @@
   username,
   ...
 }: {
-  imports = [
-    ./macos-defaults.nix
-    ./networking.nix
-  ];
+  imports = [./networking.nix];
 
   config = {
     nix = {

@@ -6,6 +6,8 @@
   config,
   ...
 }: {
+  imports = [./macos-defaults.nix];
+
   networking = {
     hostName = "nix-mb-01";
     knownNetworkServices = ["Wi-Fi"];
@@ -32,19 +34,19 @@
     openssh.authorizedKeys.keys = [sshPubKey];
   };
 
-  home-manager = {
-    users.${username} = {
-      imports = [inputs.nixcord.homeManagerModules.nixcord];
-      # programs.nixcord = {
-      #   enable = true;
-      #   vencord.enable = true;
-      #   discord.enable = false;
-      #   config.plugins = {
-      #     alwaysAnimate.enable = true;
-      #   };
-      # };
-    };
-  };
+  # home-manager = {
+  #   users.${username} = {
+  #     imports = [inputs.nixcord.homeManagerModules.nixcord];
+  #     # programs.nixcord = {
+  #     #   enable = true;
+  #     #   vencord.enable = true;
+  #     #   discord.enable = false;
+  #     #   config.plugins = {
+  #     #     alwaysAnimate.enable = true;
+  #     #   };
+  #     # };
+  #   };
+  # };
 
   local = {
     packages = {
@@ -65,15 +67,7 @@
       brewfile = true;
       lockfiles = false;
     };
-    brews = [
-      # Some of alfred's workflows need these path to be static
-     # "php"
-     # "ruby"
-     # "jq"
-     # "bitwarden-cli"
-     # "yt-dlp"
-     # "ffmpeg"
-    ];
+    brews = [];
     casks = [
       "lm-studio"
       "ollama"
@@ -85,9 +79,7 @@
       "steam"
       "rectangle"
       "audacity"
-      # installed via other mediums
       #"aldente"
-      #"alfred"
       #"dash"
       "firefox"
       "discord"
@@ -102,6 +94,7 @@
       "plex"
       "stats"
       "ente-auth"
+      "wireshark"
     ];
     masApps = {
       "Nautik" = 1672838783;

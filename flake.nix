@@ -91,8 +91,8 @@
     {
       darwinConfigurations = {
         nix-mb-01 = darwinConfig {
-          system = "x86_64-darwin";
-          modules = [./hosts/nix-mb-01.nix];
+          system = "aarch64-darwin";
+          modules = [./hosts/nix-mb-01/default.nix];
         };
       };
 
