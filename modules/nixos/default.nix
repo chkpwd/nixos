@@ -3,7 +3,6 @@
     ./chezmoi.nix
     ./networking.nix
     ./docker.nix
-    ./home-manager.nix
     ./incus.nix
     ./sops.nix
     ./open-ssh.nix

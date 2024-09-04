@@ -21,7 +21,9 @@
     };
   };
 
-  programs.zsh.enable = true;
+  programs = {
+    zsh.enable = true;
+  };
 
   users.users.${username} = {
     name = "${username}";
@@ -30,10 +32,26 @@
     openssh.authorizedKeys.keys = [sshPubKey];
   };
 
-  local.packages = {
-    enableCommonTools = true;
-    enableDevTools = true;
-    enableKubernetesTools = true;
+  home-manager = {
+    users.${username} = {
+      imports = [inputs.nixcord.homeManagerModules.nixcord];
+      # programs.nixcord = {
+      #   enable = true;
+      #   vencord.enable = true;
+      #   discord.enable = false;
+      #   config.plugins = {
+      #     alwaysAnimate.enable = true;
+      #   };
+      # };
+    };
+  };
+
+  local = {
+    packages = {
+      enableCommonTools = true;
+      enableDevTools = true;
+      enableKubernetesTools = true;
+    };
   };
 
   homebrew = {
@@ -49,12 +67,12 @@
     };
     brews = [
       # Some of alfred's workflows need these path to be static
-      "php"
-      "ruby"
-      "jq"
-      "bitwarden-cli"
-      "yt-dlp"
-      "ffmpeg"
+     # "php"
+     # "ruby"
+     # "jq"
+     # "bitwarden-cli"
+     # "yt-dlp"
+     # "ffmpeg"
     ];
     casks = [
       "lm-studio"
