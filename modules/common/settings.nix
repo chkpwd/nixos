@@ -14,6 +14,7 @@ with lib; {
       automatic = true;
       options = "--delete-older-than 7d";
     };
+    optimise.automatic = false; # https://github.com/LnL7/nix-darwin/pull/915#issuecomment-2165177905
     settings = {
       experimental-features = ["nix-command" "flakes"];
       auto-optimise-store = true;
