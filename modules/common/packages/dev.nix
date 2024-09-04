@@ -24,34 +24,22 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
-      # Shell
       bat
       fd
       file
       ripgrep
       fzf
-      pet
-      chezmoi
-      tmux
-      complete-alias
-      tldr
-      # System
       ruff
       nodejs_20
       cargo
       rustc
       clang
       gnumake
-      age
-      sops
-      go
       unstable.neovim
-      # Network
       sshpass
       nmap
       ipcalc
       #traceroute
-      # NixOS
       nix-inspect
       deploy-rs
       nh
@@ -59,19 +47,25 @@ in {
     ];
 
     users.users.${username}.packages = with pkgs; [
-      # Parser
+      pet
+      tmux
+      go
       yq-go
+      sops
+      age
+      chezmoi
       jq
       jqp
-      # Service
       fluxcd
       terraform
       packer
       bws
+      bitwarden-cli
       just
       crane
+      complete-alias
+      tldr
       gh
-      # Python
       (python311.withPackages (ps: [
         ps.pip
         ps.ansible-core
@@ -79,10 +73,11 @@ in {
       pre-commit
       poetry
       ansible-lint
-      # Misc
       mkdocs
       android-tools
       imagemagick
+      ffmpeg
+      yt-dlp
     ];
   };
 }
