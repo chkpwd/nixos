@@ -84,7 +84,6 @@
       "firefox"
       "discord"
       "orbstack"
-      "keyboardcleantool"
       "orcaslicer"
       "spotify"
       "postman"
@@ -95,6 +94,7 @@
       "stats"
       "ente-auth"
       "wireshark"
+      "keycastr"
     ];
     masApps = {
       "Nautik" = 1672838783;
