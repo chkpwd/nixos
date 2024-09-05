@@ -1,12 +1,11 @@
 {
   lib,
-  config,
-  username,
   pkgs,
   inputs,
+  config,
   ...
-}:
-with lib; let
+}: let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.local.packages;
   nix-inspect = inputs.nix-inspect.packages.${pkgs.system}.default;
 in {
@@ -46,7 +45,7 @@ in {
       nix-output-monitor
     ];
 
-    users.users.${username}.packages = with pkgs; [
+    users.users.${config.crossSystem.username}.packages = with pkgs; [
       pet
       tmux
       go
@@ -57,7 +56,7 @@ in {
       jq
       jqp
       fluxcd
-      terraform
+      unstable.terraform
       packer
       bws
       bitwarden-cli

@@ -2,8 +2,9 @@
   lib,
   pkgs,
   ...
-}:
-with lib; {
+}: let
+  inherit (lib) mkDefault;
+in {
   system.stateVersion = mkDefault "24.05";
 
   # Allow Proprietary software

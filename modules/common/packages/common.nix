@@ -1,11 +1,10 @@
 {
   lib,
-  config,
-  username,
   pkgs,
+  config,
   ...
-}:
-with lib; let
+}: let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.local.packages;
 in {
   options.local.packages = {
@@ -28,7 +27,7 @@ in {
       dnsutils
     ];
 
-    users.users.${username}.packages = with pkgs; [
+    users.users.${config.crossSystem.username}.packages = with pkgs; [
       todo-txt-cli
     ];
   };

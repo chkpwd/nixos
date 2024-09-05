@@ -1,10 +1,11 @@
 {
   lib,
-  config,
   pkgs,
+  config,
   ...
 }:
-with lib; let
+let
+  inherit (lib) mkOption mkIf mkDefault mkForce;
   cfg = config.local.user-config;
 in {
   imports = [../common/packages];
@@ -25,12 +26,12 @@ in {
       extraGroups = mkDefault ["wheel"];
       shell = mkForce pkgs.zsh;
       hashedPassword = mkDefault "$2a$10$Twk912seoPb5076byIfjI.IiQ2STRrREwp3hkqUaOLlzYruSXGMuq";
-      openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBK2VnKgOX7i1ISETheqjAO3/xo6D9n7QbWyfDAPsXwa" ];
+      openssh.authorizedKeys.keys = [config.crossSystem.sshPubKey];
     };
 
     security.sudo.extraRules = [
       {
-        users = mkDefault [username];
+        users = mkDefault [config.crossSystem.username];
         runAs = "ALL:ALL";
         commands = [
           {

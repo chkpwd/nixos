@@ -3,8 +3,8 @@
   config,
   username,
   ...
-}:
-with lib; let
+}: let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.local.docker;
 in {
   options.local.docker = {
@@ -18,6 +18,6 @@ in {
       };
     };
 
-    users.users.${username}.extraGroups = ["docker"];
+    users.users.${config.crossSystem.username}.extraGroups = ["docker"];
   };
 }

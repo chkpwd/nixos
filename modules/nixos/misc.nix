@@ -2,8 +2,7 @@
   lib,
   pkgs,
   ...
-}:
-with lib; {
+}: {
   system = {
     # Diff system configuration
     activationScripts.report-changes = ''

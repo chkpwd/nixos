@@ -1,7 +1,6 @@
 {
   self,
   inputs,
-  username,
   ...
 }: let
   deployConfig = name: system: cfg: {
@@ -9,7 +8,7 @@
     profiles.system =
       {
         user = "root";
-        sshUser = username;
+        sshUser = ""; #lib.strings.splitString "\n" (builtins.readFile ../../homes/bjw-s/config/ssh/ssh.pub);
         path = inputs.deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.${name};
         magicRollback = true;
         sshOpts = [];

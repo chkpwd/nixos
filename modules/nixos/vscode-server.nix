@@ -1,10 +1,10 @@
 {
   lib,
-  config,
   inputs,
+  config,
   ...
-}:
-with lib; let
+}: let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.local.vscode-server;
 in {
   options.local.vscode-server = {

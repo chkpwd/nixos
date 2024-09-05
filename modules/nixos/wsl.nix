@@ -1,11 +1,10 @@
 {
   lib,
-  config,
   inputs,
-  username,
+  config,
   ...
-}:
-with lib; let
+}: let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.local.wsl;
 in {
   options.local.wsl = {
@@ -17,7 +16,7 @@ in {
   config = mkIf cfg.enable {
     wsl = {
       enable = true;
-      defaultUser = username;
+      defaultUser = config.crossSystem.username;
       startMenuLaunchers = true;
       nativeSystemd = true;
       interop = {

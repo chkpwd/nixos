@@ -1,6 +1,6 @@
 {
-  username,
   pkgs,
+  config,
   ...
 }: {
   local.vscode-server.enable = true;
@@ -10,14 +10,14 @@
   };
 
   environment.sessionVariables = {
-    FLAKE = "/home/${username}/code/nixos";
+    FLAKE = "/home/${config.crossSystem.username}/code/nixos";
   };
 
   # Enable Dynamic Linker
   programs.nix-ld.enable = true;
 
   # Configure user
-  local.users.${username} = {
+  local.users.${config.crossSystem.username} = {
     enable = true;
     enableCommonTools = true;
     enableDevTools = true;

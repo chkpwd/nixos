@@ -1,10 +1,9 @@
 {
   lib,
   config,
-  username,
   ...
-}:
-with lib; let
+}: let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.local.chezmoi;
 in {
   options.local.chezmoi = {
@@ -24,9 +23,9 @@ in {
         " > $HOME/.config/chezmoi/chezmoi.yml
       '';
       serviceConfig = {
-        User = username;
+        User = config.crossSystem.username;
         Type = "oneshot";
-        WorkingDirectory = "/home/${username}";
+        WorkingDirectory = "/home/${config.crossSystem.username}";
       };
     };
   };
