@@ -11,6 +11,10 @@
     knownNetworkServices = ["Wi-Fi"];
   };
 
+  environment.variables = {
+    FLAKE = "/Users/${config.crossSystem.username}/code/nixos";
+  };
+
   system = {
     activationScripts.postActivation.text = ''
       sudo chsh -s /run/current-system/sw/bin/zsh chkpwd
@@ -66,7 +70,7 @@
       brewfile = true;
       lockfiles = false;
     };
-    brews = [];
+    brews = []; # because shared libs are stupid
     casks = [
       "lm-studio"
       "ollama"
@@ -94,6 +98,7 @@
       "ente-auth"
       "wireshark"
       "keycastr"
+      "the-unarchiver"
     ];
     masApps = {
       "Nautik" = 1672838783;

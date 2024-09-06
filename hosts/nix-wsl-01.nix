@@ -13,8 +13,8 @@
     FLAKE = "/home/${config.crossSystem.username}/code/nixos";
   };
 
-  # Enable Dynamic Linker
-  programs.nix-ld.enable = true;
+  # # Enable Dynamic Linker
+  # programs.nix-ld.enable = true;
 
   # Configure user
   local.users.${config.crossSystem.username} = {

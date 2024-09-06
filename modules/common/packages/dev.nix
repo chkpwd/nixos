@@ -28,6 +28,7 @@ in {
       file
       ripgrep
       fzf
+      tmux
       ruff
       nodejs_20
       cargo
@@ -42,12 +43,12 @@ in {
       nix-inspect
       deploy-rs
       nh
+      nvd
       nix-output-monitor
     ];
 
     users.users.${config.crossSystem.username}.packages = with pkgs; [
       pet
-      tmux
       go
       yq-go
       sops
@@ -56,7 +57,7 @@ in {
       jq
       jqp
       fluxcd
-      unstable.terraform
+      terraform
       packer
       bws
       bitwarden-cli
@@ -72,7 +73,6 @@ in {
       pre-commit
       poetry
       ansible-lint
-      mkdocs
       android-tools
       imagemagick
       ffmpeg

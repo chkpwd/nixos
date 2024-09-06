@@ -14,15 +14,12 @@ in {
 
   config = mkIf cfg.enableCommonTools {
     environment.systemPackages = with pkgs; [
-      # Shell
       tree
-      # Utils
       wget
       curl
       htop
       unzip
       git
-      # Network
       drill
       dnsutils
     ];
