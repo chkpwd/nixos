@@ -4,5 +4,6 @@
     ./locale.nix
     ./system-pkgs.nix
     ./settings.nix
+    ./crossSystem.nix
   ];
 }

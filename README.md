@@ -39,3 +39,5 @@ sudo nixos-rebuild switch --flake github:chkpwd/nixos/<branch>#<name-of-host>
 - [x] Setup Overlays
 - [] add wireguard modules
 - [] add per network DNS settings
+- [x] remove all variables from specialArgs
+- [x] remove all with lib; for example = inherit (lib) mkIf mkMerge;

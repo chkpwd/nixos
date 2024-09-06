@@ -28,37 +28,14 @@
   };
 
   outputs = {self, ...} @ inputs: let
-    username = "chkpwd";
-    sshPubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBK2VnKgOX7i1ISETheqjAO3/xo6D9n7QbWyfDAPsXwa";
     overlays = import ./overlays {inherit inputs;};
-
-    mkHomeModules = addHM: moduleType:
-      if addHM
-      then [
-        inputs.home-manager.${moduleType}.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            extraSpecialArgs = {inherit inputs username sshPubKey;};
-            users.${username} = {
-              home = {
-                stateVersion = "24.05";
-              };
-              programs.home-manager.enable = true;
-            };
-          };
-        }
-      ]
-      else [];
 
     nixosConfig = {
       system ? "x86_64-linux",
       modules ? [],
-      addHM ? true,
     }:
       inputs.nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs username sshPubKey;};
+        specialArgs = {inherit inputs;};
         inherit system;
         modules =
           [
@@ -66,17 +43,15 @@
             ./modules/common
             {nixpkgs.overlays = builtins.attrValues overlays;}
           ]
-          ++ modules
-          ++ (mkHomeModules addHM "nixosModules");
+          ++ modules;
       };
 
     darwinConfig = {
       system ? "aarch64-darwin",
       modules ? [],
-      addHM ? true,
     }:
       inputs.nix-darwin.lib.darwinSystem {
-        specialArgs = {inherit inputs username sshPubKey;};
+        specialArgs = {inherit inputs;};
         inherit system;
         modules =
           [
@@ -84,8 +59,7 @@
             ./modules/common
             {nixpkgs.overlays = builtins.attrValues overlays;}
           ]
-          ++ modules
-          ++ (mkHomeModules addHM "darwinModules");
+          ++ modules;
       };
   in
     {
@@ -105,5 +79,5 @@
         };
       };
     }
-    // import ./deploy.nix {inherit self inputs username;};
+    // import ./deploy.nix {inherit self inputs;};
 }

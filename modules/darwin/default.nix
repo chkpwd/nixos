@@ -1,15 +1,15 @@
 {
   pkgs,
-  username,
+  config,
   ...
 }: {
-  imports = [./networking.nix];
+  imports = [./networking.nix ./home-manager.nix];
 
   config = {
     nix = {
       package = pkgs.nix;
       settings = {
-        trusted-users = ["@admin" "${username}"];
+        trusted-users = ["@admin" "${config.crossSystem.username}"];
         extra-nix-path = "nixpkgs=flake:nixpkgs";
       };
     };

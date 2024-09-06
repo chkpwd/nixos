@@ -1,12 +1,11 @@
 {
-  pkgs,
-  config,
-  username,
-  inputs,
   lib,
+  pkgs,
+  inputs,
+  config,
   ...
-}:
-with lib; let
+}: let
+  inherit (lib) mkEnableOption mkOption mkIf;
   cfg = config.local.sops;
 in {
   options.local.sops = {
@@ -35,13 +34,13 @@ in {
 
       user = mkOption {
         type = types.str;
-        default = config.users.users.${username}.name;
+        default = config.crossSystem.username;
         description = "User for age key file";
       };
 
       group = mkOption {
         type = types.str;
-        default = config.users.users.${username}.group;
+        default = config.crossSystem.username;
         description = "Group for age key file";
       };
     };

@@ -9,5 +9,6 @@
     ./vscode-server.nix
     ./wsl.nix
     ./user.nix
+    ./home-manager.nix
   ];
 }

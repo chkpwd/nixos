@@ -1,8 +1,6 @@
 {
   inputs,
   pkgs,
-  username,
-  sshPubKey,
   config,
   ...
 }: {
@@ -27,24 +25,25 @@
     zsh.enable = true;
   };
 
-  users.users.${username} = {
-    name = "${username}";
-    home = "/Users/${username}";
+  users.users.${config.crossSystem.username} = {
+    name = "${config.crossSystem.username}";
+    home = "/Users/${config.crossSystem.username}";
     shell = pkgs.zsh;
-    openssh.authorizedKeys.keys = [sshPubKey];
+    openssh.authorizedKeys.keys = [config.crossSystem.sshPubKey];
   };
 
   # home-manager = {
-  #   users.${username} = {
+  #   users.${config.crossSystem.username} = {
   #     imports = [inputs.nixcord.homeManagerModules.nixcord];
-  #     # programs.nixcord = {
-  #     #   enable = true;
-  #     #   vencord.enable = true;
-  #     #   discord.enable = false;
-  #     #   config.plugins = {
-  #     #     alwaysAnimate.enable = true;
-  #     #   };
-  #     # };
+  #     programs.nixcord = {
+  #       enable = true;
+  #       vencord.enable = true;
+  #       vesktop.enable = true;
+  #       discord.enable = false;
+  #       config.plugins = {
+  #         alwaysAnimate.enable = true;
+  #       };
+  #     };
   #   };
   # };
 
