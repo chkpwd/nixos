@@ -52,7 +52,7 @@
       brewfile = true;
       lockfiles = false;
     };
-    brews = [];
+    brews = ["ffmpeg"];
     casks = [
       "ollama"
       "itsycal"
