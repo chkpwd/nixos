@@ -27,7 +27,6 @@
   programs = {
     nh = {
       enable = true;
-      #flake = "/h";
       # Installation option once https://github.com/LnL7/nix-darwin/pull/942 is merged:
       # package = nh-darwin.packages.${pkgs.stdenv.hostPlatform.system}.default;
     };
