@@ -1,7 +1,6 @@
 {
-  inputs,
-  pkgs,
   config,
+  pkgs,
   ...
 }: {
   imports = [./macos-defaults.nix];
@@ -25,9 +24,7 @@
     };
   };
 
-  programs = {
-    zsh.enable = true;
-  };
+  programs.zsh.enable = true;
 
   users.users.${config.crossSystem.username} = {
     name = "${config.crossSystem.username}";
@@ -35,21 +32,6 @@
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [config.crossSystem.sshPubKey];
   };
-
-  # home-manager = {
-  #   users.${config.crossSystem.username} = {
-  #     imports = [inputs.nixcord.homeManagerModules.nixcord];
-  #     programs.nixcord = {
-  #       enable = true;
-  #       vencord.enable = true;
-  #       vesktop.enable = true;
-  #       discord.enable = false;
-  #       config.plugins = {
-  #         alwaysAnimate.enable = true;
-  #       };
-  #     };
-  #   };
-  # };
 
   local = {
     packages = {
@@ -70,9 +52,8 @@
       brewfile = true;
       lockfiles = false;
     };
-    brews = []; # because shared libs are stupid
+    brews = [];
     casks = [
-      "lm-studio"
       "ollama"
       "itsycal"
       "iterm2"
@@ -112,4 +93,19 @@
       # "NW Publisher" = 1561127070;
     };
   };
+
+  # home-manager = {
+  #   users.${config.crossSystem.username} = {
+  #     imports = [inputs.nixcord.homeManagerModules.nixcord];
+  #     programs.nixcord = {
+  #       enable = true;
+  #       vencord.enable = true;
+  #       vesktop.enable = true;
+  #       discord.enable = false;
+  #       config.plugins = {
+  #         alwaysAnimate.enable = true;
+  #       };
+  #     };
+  #   };
+  # };
 }
