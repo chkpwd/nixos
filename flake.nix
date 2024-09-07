@@ -28,8 +28,17 @@
     nh-darwin.url = "github:ToyVo/nh-darwin";
   };
 
-  outputs = {self, ...} @ inputs: let
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: let
     overlays = import ./overlays {inherit inputs;};
+    forAllSystems = function:
+      nixpkgs.lib.genAttrs [
+        "x86_64-linux"
+        "aarch64-darwin"
+      ] (system: function nixpkgs.legacyPackages.${system});
 
     nixosConfig = {
       system ? "x86_64-linux",
@@ -79,6 +88,46 @@
           modules = [./hosts/nix-host-01.nix];
         };
       };
+
+      devShells = forAllSystems (pkgs: {
+        default = pkgs.mkShell {
+          packages = with pkgs; [
+            inputs.nh-darwin.packages.${pkgs.system}.default
+            nix-inspect
+            deploy-rs
+            nvd
+            nix-output-monitor
+          ];
+          shellHook = ''
+            echo "Nix Development Environment"
+          '';
+        };
+      });
+
+      checks = forAllSystems (pkgs: {
+        codeCheck = pkgs.callPackage (
+          {
+            runCommandNoCCLocal,
+            statix,
+            deadnix,
+            #nixfmt-rfc-style,
+          }:
+            runCommandNoCCLocal "statix-check"
+            {
+              buildInputs = [
+                statix
+                deadnix
+                #nixfmt-rfc-style
+              ];
+            }
+            ''
+              touch $out
+              statix check ${self}  | tee -a $out
+              deadnix check --fail ${self} | tee -a $out
+              #nixfmt -c ${self} | tee -a $out
+            ''
+        ) {};
+      });
     }
     // import ./deploy.nix {inherit self inputs;};
 }
