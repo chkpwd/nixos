@@ -1,9 +1,4 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}: {
+{lib, ...}: {
   options.crossSystem = lib.mkOption {
     type = lib.types.attrs;
     default = {

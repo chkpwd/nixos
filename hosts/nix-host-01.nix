@@ -52,9 +52,7 @@
     qemuGuest.enable = true;
   };
 
-  local.user-config = {
-    enable = true;
-  };
+  mainUser.enable = true;
 
   local.incus = {
     enable = true;

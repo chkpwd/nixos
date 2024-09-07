@@ -1,14 +1,14 @@
 # This file defines overlays
 {inputs, ...}: {
-  additions = final: prev: {};
+  additions = _final: _prev: {};
 
-  modifications = final: prev: {};
+  modifications = _final: _prev: {};
 
   # The unstable nixpkgs set (declared in the flake inputs) will
   # be accessible through 'pkgs.unstable'
   unstable-packages = final: _prev: {
     unstable = import inputs.nixpkgs-unstable {
-      system = final.system;
+      inherit (final) system;
       config.allowUnfree = true;
     };
   };

@@ -3,26 +3,28 @@
   pkgs,
   config,
   ...
-}:
-let
-  inherit (lib) mkOption mkIf mkDefault mkForce;
-  cfg = config.local.user-config;
+}: let
+  inherit (lib) mkEnableOption mkOption mkIf mkDefault mkForce;
+  inherit (lib.types) nullOr str;
+  cfg = config.mainUser;
 in {
   imports = [../common/packages];
 
   options.mainUser = {
+    enable = mkEnableOption "Enable the main user";
     username = mkOption {
       type = nullOr str;
       default = "chkpwd";
       description = "Username for the main user";
     };
-    email = mkOption ...;
-    fullName = mkOption ...;
+    email = mkOption;
+    fullName = mkOption;
   };
 
-  config = mkIf (cfg.enable) {
+  config = mkIf cfg.enable {
     users.users.${config.mainUser.username} = {
       isNormalUser = true;
+      group = "users";
       extraGroups = mkDefault ["wheel"];
       shell = mkForce pkgs.zsh;
       hashedPassword = mkDefault "$2a$10$Twk912seoPb5076byIfjI.IiQ2STRrREwp3hkqUaOLlzYruSXGMuq";

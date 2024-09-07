@@ -5,7 +5,7 @@
   config,
   ...
 }: let
-  inherit (lib) mkEnableOption mkOption mkIf;
+  inherit (lib) mkEnableOption mkOption mkIf types strings;
   cfg = config.local.sops;
 in {
   options.local.sops = {
@@ -56,9 +56,7 @@ in {
       ];
       etc = {
         "${(strings.removePrefix "/etc/" cfg.age.destination)}" = {
-          source = cfg.age.source;
-          user = cfg.age.user;
-          group = cfg.age.group;
+          inherit (cfg.age) source user group;
         };
       };
     };
@@ -67,7 +65,7 @@ in {
       validateSopsFiles = false;
       defaultSopsFile = cfg.file.source;
       age.keyFile = cfg.age.destination;
-      secrets.chezmoi_token.owner = username;
+      secrets.chezmoi_token.owner = config.crossSystem.username;
     };
   };
 }
