@@ -22,6 +22,7 @@ in {
       git
       drill
       dnsutils
+      rmw
     ];
 
     users.users.${config.crossSystem.username}.packages = with pkgs; [
