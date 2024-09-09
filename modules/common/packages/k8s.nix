@@ -25,7 +25,6 @@ in {
       nova
       pluto
       kubectl
-      krew
       kubectx
       kubernetes-helm
       kustomize
