@@ -65,6 +65,7 @@ in {
       android-tools
       imagemagick
       yt-dlp
+      unstable.mods
     ];
   };
 }
