@@ -1,6 +1,7 @@
 {
-  config,
   pkgs,
+  inputs,
+  config,
   ...
 }: {
   imports = [./macos-defaults.nix];
@@ -38,6 +39,45 @@
       enableCommonTools = true;
       enableDevTools = true;
       enableKubernetesTools = true;
+    };
+    home-manager = {
+      enable = true;
+      userOptions = {
+        users.${config.crossSystem.username} = {
+          imports = [inputs.nixcord.homeManagerModules.nixcord inputs.krewfile.homeManagerModules.krewfile];
+          programs = {
+            krewfile = {
+              enable = true;
+              krewPackage = pkgs.krew;
+              plugins = [
+                "explore"
+                "modify-secret"
+                "neat"
+                "oidc-login"
+                "pv-migrate"
+                "stern"
+              ];
+            };
+
+            # nixcord = {
+            #   enable = true;
+            #   config = {
+            #     themeLinks = ["https://catppuccin.github.io/discord/dist/catppuccin-macchiato.theme.css"];
+            #     plugins = {
+            #       fakeNitro.enable = true;
+            #       pinDMs.enable = true;
+            #     };
+            #   };
+            #
+            #   discord.enable = false;
+            #   vencord.enable = false;
+            #
+            #   vesktop.enable = true;
+            #   vesktopPackage = pkgs.unstable.vesktop;
+            # };
+          };
+        };
+      };
     };
   };
 
@@ -89,23 +129,9 @@
       "Microsoft Remote Desktop" = 1295203466;
       "Amphetamine" = 937984704;
       "WhatsApp" = 310633997;
+      # https://github.com/mas-cli/mas/issues/321
       # "JW Library" = 672417831;
       # "NW Publisher" = 1561127070;
     };
   };
-
-  # home-manager = {
-  #   users.${config.crossSystem.username} = {
-  #     imports = [inputs.nixcord.homeManagerModules.nixcord];
-  #     programs.nixcord = {
-  #       enable = true;
-  #       vencord.enable = true;
-  #       vesktop.enable = true;
-  #       discord.enable = false;
-  #       config.plugins = {
-  #         alwaysAnimate.enable = true;
-  #       };
-  #     };
-  #   };
-  # };
 }
