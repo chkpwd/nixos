@@ -24,8 +24,12 @@
     };
     deploy-rs.url = "github:serokell/deploy-rs";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
-    #nixcord.url = "github:kaylorben/nixcord";
+    nixcord.url = "github:kaylorben/nixcord";
     nh-darwin.url = "github:ToyVo/nh-darwin";
+    krewfile = {
+      url = "github:ajgon/krewfile?ref=feat/fix-deps";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
