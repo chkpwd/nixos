@@ -56,6 +56,8 @@
                 "oidc-login"
                 "pv-migrate"
                 "stern"
+                "ctx"
+                "ns"
               ];
             };
 

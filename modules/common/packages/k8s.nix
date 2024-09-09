@@ -15,17 +15,11 @@ in {
   config = mkIf cfg.enableKubernetesTools {
     users.users.${config.crossSystem.username}.packages = with pkgs; [
       hubble
-      kubecm
       kubecolor
-      minikube
-      stern
       viddy
-      k9s
-      vcluster
       nova
       pluto
       kubectl
-      kubectx
       kubernetes-helm
       kustomize
       cmctl
