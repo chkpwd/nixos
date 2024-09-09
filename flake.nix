@@ -27,7 +27,7 @@
     nixcord.url = "github:kaylorben/nixcord";
     nh-darwin.url = "github:ToyVo/nh-darwin";
     krewfile = {
-      url = "github:ajgon/krewfile?ref=feat/fix-deps";
+      url = "github:brumhard/krewfile";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
