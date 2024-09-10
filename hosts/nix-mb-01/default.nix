@@ -122,6 +122,7 @@
       "wireshark"
       "keycastr"
       "the-unarchiver"
+      "moonlight"
     ];
     masApps = {
       "Nautik" = 1672838783;
