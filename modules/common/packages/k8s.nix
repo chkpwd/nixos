@@ -23,6 +23,7 @@ in {
       kubernetes-helm
       kustomize
       cmctl
+      fluxcd
     ];
   };
 }

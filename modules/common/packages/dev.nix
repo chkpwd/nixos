@@ -25,6 +25,7 @@ in {
       fd
       file
       ripgrep
+      nixfmt-rfc-style
       fzf
       tmux
       ruff
@@ -40,6 +41,8 @@ in {
     ];
 
     users.users.${config.crossSystem.username}.packages = with pkgs; [
+      terraform
+      packer
       pet
       go
       yq-go
@@ -60,12 +63,15 @@ in {
         ps.pip
         ps.ansible-core
       ]))
+      ansible-lint
       pre-commit
       poetry
       android-tools
       imagemagick
       yt-dlp
       unstable.mods
+      glow
+      tig
     ];
   };
 }
