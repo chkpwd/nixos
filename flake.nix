@@ -75,7 +75,6 @@
           [
             ./modules/darwin
             ./modules/common
-            inputs.lix-module.nixosModules.default
             {nixpkgs.overlays = builtins.attrValues overlays;}
           ]
           ++ modules;
