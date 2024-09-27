@@ -344,44 +344,5 @@ _: {
         "com.apple.commerce".AutoUpdate = true;
       };
     };
-
-    # See https://github.com/mathiasbynens/dotfiles/blob/master/.macos
-    activationScripts.postUserActivation.text = ''
-      # echo "setting ui defaults..."
-
-      mkdir -p /Users/chkpwd/Downloads/Screenshots
-
-      # Never go into computer sleep mode
-      sudo /usr/sbin/systemsetup -setcomputersleep Off 2> /dev/null 1>&2
-
-      # Restart automatically if the computer freezes
-      sudo /usr/sbin/systemsetup -setrestartfreeze on 2> /dev/null 1>&2
-
-      ###############################################################################
-      # General UI/UX                                                               #
-      ###############################################################################
-      # echo "setting general ui/ux..."
-
-      # Automatically quit printer app once the print jobs complete
-      defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
-
-      # Following line should allow us to avoid a logout/login cycle
-      /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-
-      ###############################################################################
-      # Finder                                                                      #
-      ###############################################################################
-      # echo "setting finder..."
-
-      # Finder: disable window animations and Get Info animations
-      defaults write com.apple.finder DisableAllAnimations -bool true
-      # Set HOME as the default location for new Finder windows
-      # For other paths, use `PfLo` and `file:///full/path/here/`
-      defaults write com.apple.finder NewWindowTarget -string "PfLo"
-      defaults write com.apple.finder NewWindowTargetPath -string "file:///Users/chkpwd/"
-      # Avoid creating .DS_Store files on network or USB volumes
-      defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
-      defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
-    '';
   };
 }

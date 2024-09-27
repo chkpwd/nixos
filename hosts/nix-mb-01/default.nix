@@ -4,7 +4,7 @@
   config,
   ...
 }: {
-  imports = [./macos-defaults.nix];
+  imports = [./macos-defaults.nix ./scripts.nix ./homebrew.nix];
 
   networking = {
     hostName = "nix-mb-01";
@@ -81,61 +81,6 @@
           };
         };
       };
-    };
-  };
-
-  homebrew = {
-    enable = true;
-    onActivation = {
-      autoUpdate = false;
-      cleanup = "zap";
-      upgrade = true;
-    };
-    global = {
-      brewfile = true;
-      lockfiles = false;
-    };
-    brews = ["ffmpeg"];
-    casks = [
-      "ollama"
-      "itsycal"
-      "iterm2"
-      "autodesk-fusion"
-      "zoom"
-      "transmit"
-      "steam"
-      "rectangle"
-      "audacity"
-      #"aldente"
-      #"dash"
-      "firefox"
-      "discord"
-      "orbstack"
-      "orcaslicer"
-      "spotify"
-      "postman"
-      "raspberry-pi-imager"
-      "usr-sse2-rdm"
-      "vlc"
-      "plex"
-      "stats"
-      "ente-auth"
-      "wireshark"
-      "keycastr"
-      "the-unarchiver"
-      "moonlight"
-    ];
-    masApps = {
-      "Nautik" = 1672838783;
-      "Twingate" = 1501592214;
-      "Bitwarden" = 1352778147;
-      "Wireguard" = 1451685025;
-      "Microsoft Remote Desktop" = 1295203466;
-      "Amphetamine" = 937984704;
-      "WhatsApp" = 310633997;
-      # https://github.com/mas-cli/mas/issues/321
-      # "JW Library" = 672417831;
-      # "NW Publisher" = 1561127070;
     };
   };
 }
