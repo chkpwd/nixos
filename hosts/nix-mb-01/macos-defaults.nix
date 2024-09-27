@@ -257,7 +257,7 @@ _: {
 
       screencapture = {
         # The filesystem path to which screencaptures should be written
-        location = "/Users/chkpwd/Download/Screenshots";
+        location = "/Users/chkpwd/Documents/Screenshots";
         # The image format to use, such as "jpg"
         type = "png";
         # Disable drop shadow border around screencaptures. The default is false
