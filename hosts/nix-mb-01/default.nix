@@ -13,6 +13,7 @@
 
   environment.variables = {
     FLAKE = "/Users/${config.crossSystem.username}/code/nixos";
+    KREW_ROOT = "/Users/${config.crossSystem.username}/.krew/bin";
   };
 
   system = {
