@@ -72,6 +72,7 @@ in {
       unstable.mods
       glow
       tig
+      awscli2
     ];
   };
 }
