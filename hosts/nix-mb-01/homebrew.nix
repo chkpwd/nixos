@@ -38,6 +38,7 @@ _: {
       "loopback"
       "betterdisplay"
       "visual-studio-code"
+      "slack"
       # "postman"
       # "loopback"
       # "farrago"
