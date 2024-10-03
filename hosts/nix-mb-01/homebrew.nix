@@ -39,6 +39,7 @@ _: {
       "betterdisplay"
       "visual-studio-code"
       "slack"
+      "nikitabobko/tap/aerospace"
       # "postman"
       # "loopback"
       # "farrago"
