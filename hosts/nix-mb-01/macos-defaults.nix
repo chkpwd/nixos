@@ -277,6 +277,9 @@ _: {
         # Requires macOS Yosemite or later.
         # The default is false.
         reduceTransparency = false;
+        # Use scroll gesture with the Ctrl (^) modifier key to zoom.
+        # The default is false.
+        closeViewScrollWheelToggle = true;
       };
 
       trackpad = {
