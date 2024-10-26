@@ -29,6 +29,7 @@ in {
         users.${config.crossSystem.username} = {
           home = {
             stateVersion = "23.11";
+            homeDirectory = "/Users/${config.crossSystem.username}";
           };
           programs.home-manager.enable = true;
         };

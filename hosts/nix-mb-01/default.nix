@@ -3,7 +3,9 @@
   inputs,
   config,
   ...
-}: {
+}: let
+  homeDirectory = "/Users/${config.crossSystem.username}";
+in {
   imports = [./macos-defaults.nix ./scripts.nix ./homebrew.nix];
 
   networking = {
@@ -12,25 +14,20 @@
   };
 
   environment.variables = {
-    FLAKE = "/Users/${config.crossSystem.username}/code/nixos";
-    KREW_ROOT = "/Users/${config.crossSystem.username}/.krew/bin";
+    FLAKE = "${homeDirectory}/code/nixos";
   };
 
   system = {
     activationScripts.postActivation.text = ''
       sudo chsh -s /run/current-system/sw/bin/zsh chkpwd
     '';
-    keyboard = {
-      enableKeyMapping = true;
-      remapCapsLockToEscape = true;
-    };
   };
 
   programs.zsh.enable = true;
 
   users.users.${config.crossSystem.username} = {
     name = "${config.crossSystem.username}";
-    home = "/Users/${config.crossSystem.username}";
+    home = homeDirectory;
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [config.crossSystem.sshPubKey];
   };
@@ -45,11 +42,14 @@
       enable = true;
       userOptions = {
         users.${config.crossSystem.username} = {
-          imports = [inputs.nixcord.homeManagerModules.nixcord inputs.krewfile.homeManagerModules.krewfile];
+          imports = [
+            inputs.krewfile.homeManagerModules.krewfile
+          ];
           programs = {
             krewfile = {
               enable = true;
               krewPackage = pkgs.krew;
+              krewRoot = "${homeDirectory}/.krew/bin";
               plugins = [
                 "explore"
                 "modify-secret"
@@ -61,23 +61,6 @@
                 "ns"
               ];
             };
-
-            # nixcord = {
-            #   enable = true;
-            #   config = {
-            #     themeLinks = ["https://catppuccin.github.io/discord/dist/catppuccin-macchiato.theme.css"];
-            #     plugins = {
-            #       fakeNitro.enable = true;
-            #       pinDMs.enable = true;
-            #     };
-            #   };
-            #
-            #   discord.enable = false;
-            #   vencord.enable = false;
-            #
-            #   vesktop.enable = true;
-            #   vesktopPackage = pkgs.unstable.vesktop;
-            # };
           };
         };
       };
