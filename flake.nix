@@ -117,21 +117,21 @@
             runCommandNoCCLocal,
             statix,
             deadnix,
-            #nixfmt-rfc-style,
+            nixfmt-rfc-style,
           }:
             runCommandNoCCLocal "statix-check"
             {
               buildInputs = [
                 statix
                 deadnix
-                #nixfmt-rfc-style
+                nixfmt-rfc-style
               ];
             }
             ''
               touch $out
               statix check ${self}  | tee -a $out
               deadnix check --fail ${self} | tee -a $out
-              #nixfmt -c ${self} | tee -a $out
+              nixfmt -c ${self} | tee -a $out
             ''
         ) {};
       });

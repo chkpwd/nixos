@@ -286,11 +286,9 @@ _: {
         # Whether to enable trackpad tap to click.  The default is false
         Clicking = true;
         # Whether to enable tap-to-drag. The default is false
-        Dragging = false;
+        Dragging = true;
         # Whether to enable trackpad right click.  The default is false
         TrackpadRightClick = true;
-        # Whether to enable three finger drag.  The default is false
-        TrackpadThreeFingerDrag = true;
         # 0 to enable Silent Clicking, 1 to disable.  The default is 1
         ActuationStrength = 1;
         # For normal click: 0 for light clicking, 1 for medium, 2 for firm.
@@ -302,14 +300,42 @@ _: {
       };
 
       CustomUserPreferences = {
+        ZoomChat = {
+            ZoomShowIconInMenuBar = false;
+        };
+        "com.apple.dock" = {
+          showAppExposeGestureEnabled = 1;
+        };
+        "com.apple.controlcenter" = {
+          Battery = 1;
+          Hearing = 2;
+          UserSwitcher = 24;
+        };
+        NSGlobalDomain = {
+          AppleMenuBarVisibleInFullscreen = true;
+        };
+        "com.apple.trackpad" = {
+          threeFingerVertSwipeGesture = 1;
+          threeFingerDragGesture = 1;
+        };
+        "com.apple.WindowManager" = {
+          EnableTiledWindowMargins = 0;
+        };
         "com.apple.finder" = {
           ShowExternalHardDrivesOnDesktop = false;
           ShowHardDrivesOnDesktop = false;
           ShowMountedServersOnDesktop = false;
           ShowRemovableMediaOnDesktop = false;
           _FXSortFoldersFirst = true;
+          DisableAllAnimations = true;
+          NewWindowTarget = "PfLo";
+          NewWindowTargetPath = "file:///Users/chkpwd/";
         };
-
+        "com.apple.desktopservices" = {
+          # Avoid creating .DS_Store files on network or USB volumes
+          DSDontWriteNetworkStores = true;
+          DSDontWriteUSBStores = true;
+        };
         "com.apple.Safari" = {
           # Privacy: don't send search queries to Apple
           UniversalSearchEnabled = false;
