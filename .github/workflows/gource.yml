@@ -1,0 +1,25 @@
+name: Gource Action for Docker CLI
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  action:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Gource Action'
+        uses: nbprojekt/gource-action@v1
+        with:
+          git_url: 'https://github.com/${{ github.repository }}'
+          gource_title: 'NixOS Configuration'
+          logo_url: 'https://github.com/chkpwd.png'
+          gource_resolution: '1080p'
+          gource_fps: 60
+          gource_font_size: 40
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: gource
+          path: ./gource/gource.mp4
