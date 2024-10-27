@@ -3,13 +3,14 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.local.packages;
-in {
+in
+{
   options.local.packages = {
-    enableKubernetesTools =
-      mkEnableOption "Enable Kubernetes tools";
+    enableKubernetesTools = mkEnableOption "Enable Kubernetes tools";
   };
 
   config = mkIf cfg.enableKubernetesTools {

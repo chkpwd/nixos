@@ -3,13 +3,14 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.local.packages;
-in {
+in
+{
   options.local.packages = {
-    enableCommonTools =
-      mkEnableOption "Enable common tools";
+    enableCommonTools = mkEnableOption "Enable common tools";
   };
 
   config = mkIf cfg.enableCommonTools {
@@ -24,8 +25,6 @@ in {
       dnsutils
     ];
 
-    users.users.${config.crossSystem.username}.packages = with pkgs; [
-      todo-txt-cli
-    ];
+    users.users.${config.crossSystem.username}.packages = with pkgs; [ todo-txt-cli ];
   };
 }

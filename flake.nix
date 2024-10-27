@@ -32,68 +32,63 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    ...
-  } @ inputs: let
-    overlays = import ./overlays {inherit inputs;};
-    forAllSystems = function:
-      nixpkgs.lib.genAttrs [
-        "x86_64-linux"
-        "aarch64-darwin"
-      ] (system: function nixpkgs.legacyPackages.${system});
+  outputs =
+    { self, nixpkgs, ... }@inputs:
+    let
+      overlays = import ./overlays { inherit inputs; };
+      forAllSystems =
+        function:
+        nixpkgs.lib.genAttrs [
+          "x86_64-linux"
+          "aarch64-darwin"
+        ] (system: function nixpkgs.legacyPackages.${system});
 
-    nixosConfig = {
-      system ? "x86_64-linux",
-      modules ? [],
-    }:
-      inputs.nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        inherit system;
-        modules =
-          [
+      nixosConfig =
+        {
+          system ? "x86_64-linux",
+          modules ? [ ],
+        }:
+        inputs.nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs;
+          };
+          inherit system;
+          modules = [
             ./modules/nixos
             ./modules/common
-            {nixpkgs.overlays = builtins.attrValues overlays;}
-          ]
-          ++ modules;
-      };
+            { nixpkgs.overlays = builtins.attrValues overlays; }
+          ] ++ modules;
+        };
 
-    darwinConfig = {
-      system ? "aarch64-darwin",
-      modules ? [],
-    }:
-      inputs.nix-darwin.lib.darwinSystem {
-        specialArgs = {inherit inputs;};
-        inherit system;
-        modules =
-          [
+      darwinConfig =
+        {
+          system ? "aarch64-darwin",
+          modules ? [ ],
+        }:
+        inputs.nix-darwin.lib.darwinSystem {
+          specialArgs = {
+            inherit inputs;
+          };
+          inherit system;
+          modules = [
             ./modules/darwin
             ./modules/common
-            {nixpkgs.overlays = builtins.attrValues overlays;}
-          ]
-          ++ modules;
-      };
-  in
+            { nixpkgs.overlays = builtins.attrValues overlays; }
+          ] ++ modules;
+        };
+    in
     {
       darwinConfigurations = {
         nix-mb-01 = darwinConfig {
           system = "aarch64-darwin";
-          modules = [./hosts/nix-mb-01/default.nix];
+          modules = [ ./hosts/nix-mb-01/default.nix ];
         };
       };
 
       nixosConfigurations = {
-        nix-vm-01 = nixosConfig {
-          modules = [./hosts/nix-vm-01.nix];
-        };
-        nix-host-01 = nixosConfig {
-          modules = [./hosts/nix-host-01.nix];
-        };
-        nix-wsl-01 = nixosConfig {
-          modules = [./hosts/nix-wsl-01.nix];
-        };
+        nix-vm-01 = nixosConfig { modules = [ ./hosts/nix-vm-01.nix ]; };
+        nix-host-01 = nixosConfig { modules = [ ./hosts/nix-host-01.nix ]; };
+        nix-wsl-01 = nixosConfig { modules = [ ./hosts/nix-wsl-01.nix ]; };
       };
 
       devShells = forAllSystems (pkgs: {
@@ -119,7 +114,7 @@
             deadnix,
             nixfmt-rfc-style,
           }:
-            runCommandNoCCLocal "statix-check"
+          runCommandNoCCLocal "statix-check"
             {
               buildInputs = [
                 statix
@@ -133,8 +128,8 @@
               deadnix check --fail ${self} | tee -a $out
               nixfmt -c ${self} | tee -a $out
             ''
-        ) {};
+        ) { };
       });
     }
-    // import ./deploy.nix {inherit self inputs;};
+    // import ./deploy.nix { inherit self inputs; };
 }

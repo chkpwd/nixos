@@ -3,17 +3,17 @@
   inputs,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.local.vscode-server;
-in {
+in
+{
   options.local.vscode-server = {
     enable = mkEnableOption "Enable VSCode Server";
   };
 
-  imports = [inputs.vscode-server.nixosModules.default];
+  imports = [ inputs.vscode-server.nixosModules.default ];
 
-  config = mkIf cfg.enable {
-    services.vscode-server.enable = true;
-  };
+  config = mkIf cfg.enable { services.vscode-server.enable = true; };
 }

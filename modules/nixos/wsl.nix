@@ -3,15 +3,17 @@
   inputs,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.local.wsl;
-in {
+in
+{
   options.local.wsl = {
     enable = mkEnableOption "Enable WSL on the host";
   };
 
-  imports = [inputs.nixos-wsl.nixosModules.wsl];
+  imports = [ inputs.nixos-wsl.nixosModules.wsl ];
 
   config = mkIf cfg.enable {
     wsl = {

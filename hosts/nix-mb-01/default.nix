@@ -3,14 +3,20 @@
   inputs,
   config,
   ...
-}: let
+}:
+let
   homeDirectory = "/Users/${config.crossSystem.username}";
-in {
-  imports = [./macos-defaults.nix ./scripts.nix ./homebrew.nix];
+in
+{
+  imports = [
+    ./macos-defaults.nix
+    ./scripts.nix
+    ./homebrew.nix
+  ];
 
   networking = {
     hostName = "nix-mb-01";
-    knownNetworkServices = ["Wi-Fi"];
+    knownNetworkServices = [ "Wi-Fi" ];
   };
 
   environment.variables = {
@@ -29,7 +35,7 @@ in {
     name = "${config.crossSystem.username}";
     home = homeDirectory;
     shell = pkgs.zsh;
-    openssh.authorizedKeys.keys = [config.crossSystem.sshPubKey];
+    openssh.authorizedKeys.keys = [ config.crossSystem.sshPubKey ];
   };
 
   local = {
@@ -42,9 +48,7 @@ in {
       enable = true;
       userOptions = {
         users.${config.crossSystem.username} = {
-          imports = [
-            inputs.krewfile.homeManagerModules.krewfile
-          ];
+          imports = [ inputs.krewfile.homeManagerModules.krewfile ];
           programs = {
             krewfile = {
               enable = true;

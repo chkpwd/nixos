@@ -4,10 +4,18 @@
   inputs,
   config,
   ...
-}: let
-  inherit (lib) mkEnableOption mkOption mkIf types strings;
+}:
+let
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    types
+    strings
+    ;
   cfg = config.local.sops;
-in {
+in
+{
   options.local.sops = {
     enable = mkEnableOption "Enable SOPS on the host";
 
@@ -46,7 +54,7 @@ in {
     };
   };
 
-  imports = [inputs.sops-nix.nixosModules.sops];
+  imports = [ inputs.sops-nix.nixosModules.sops ];
 
   config = mkIf cfg.enable {
     environment = {

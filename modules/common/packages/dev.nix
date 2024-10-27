@@ -3,13 +3,14 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.local.packages;
-in {
+in
+{
   options.local.packages = {
-    enableDevTools =
-      mkEnableOption "Enable dev tools";
+    enableDevTools = mkEnableOption "Enable dev tools";
   };
 
   config = mkIf cfg.enableDevTools {

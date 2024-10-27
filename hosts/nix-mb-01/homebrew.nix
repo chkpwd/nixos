@@ -10,7 +10,7 @@ _: {
       brewfile = true;
       lockfiles = false;
     };
-    brews = ["ffmpeg"];
+    brews = [ "ffmpeg" ];
     casks = [
       "ollama"
       "itsycal"

@@ -301,7 +301,7 @@ _: {
 
       CustomUserPreferences = {
         ZoomChat = {
-            ZoomShowIconInMenuBar = false;
+          ZoomShowIconInMenuBar = false;
         };
         "com.apple.dock" = {
           showAppExposeGestureEnabled = 1;

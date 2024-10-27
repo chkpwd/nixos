@@ -1,11 +1,9 @@
-{
-  lib,
-  config,
-  ...
-}: let
+{ lib, config, ... }:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.local.incus;
-in {
+in
+{
   options.local.incus = {
     enable = mkEnableOption "Enable Incus on the host";
   };
@@ -73,6 +71,6 @@ in {
         ];
       };
     };
-    users.users.${config.crossSystem.username}.extraGroups = ["incus-admin"];
+    users.users.${config.crossSystem.username}.extraGroups = [ "incus-admin" ];
   };
 }

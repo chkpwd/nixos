@@ -1,9 +1,11 @@
-{lib, ...}: let
+{ lib, ... }:
+let
   inherit (lib) mkDefault;
-in {
+in
+{
   networking = {
     hostName = mkDefault "nixos";
-    nameservers = mkDefault ["172.16.16.1"];
+    nameservers = mkDefault [ "172.16.16.1" ];
     domain = mkDefault "local.chkpwd.com";
   };
 }

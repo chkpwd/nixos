@@ -1,11 +1,9 @@
-{
-  lib,
-  config,
-  ...
-}: let
+{ lib, config, ... }:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.local.chezmoi;
-in {
+in
+{
   options.local.chezmoi = {
     enable = mkEnableOption "Enable chezmoi";
   };
@@ -13,8 +11,8 @@ in {
   config = mkIf cfg.enable {
     systemd.services."chezmoi-init" = {
       description = "Initialize Chezmoi";
-      after = ["network.target"];
-      wantedBy = ["multi-user.target"];
+      after = [ "network.target" ];
+      wantedBy = [ "multi-user.target" ];
       script = ''
         mkdir -p $HOME/.config/chezmoi
         echo "

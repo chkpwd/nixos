@@ -1,4 +1,5 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   options.crossSystem = lib.mkOption {
     type = lib.types.attrs;
     default = {

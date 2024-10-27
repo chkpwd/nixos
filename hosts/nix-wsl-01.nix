@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   networking = {
     hostName = "nix-wsl-01";
   };

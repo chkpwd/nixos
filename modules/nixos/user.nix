@@ -3,12 +3,20 @@
   pkgs,
   config,
   ...
-}: let
-  inherit (lib) mkEnableOption mkOption mkIf mkDefault mkForce;
+}:
+let
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    mkDefault
+    mkForce
+    ;
   inherit (lib.types) nullOr str;
   cfg = config.mainUser;
-in {
-  imports = [../common/packages];
+in
+{
+  imports = [ ../common/packages ];
 
   options.mainUser = {
     enable = mkEnableOption "Enable the main user";
@@ -25,20 +33,20 @@ in {
     users.users.${config.mainUser.username} = {
       isNormalUser = true;
       group = "users";
-      extraGroups = mkDefault ["wheel"];
+      extraGroups = mkDefault [ "wheel" ];
       shell = mkForce pkgs.zsh;
       hashedPassword = mkDefault "$2a$10$Twk912seoPb5076byIfjI.IiQ2STRrREwp3hkqUaOLlzYruSXGMuq";
-      openssh.authorizedKeys.keys = [config.crossSystem.sshPubKey];
+      openssh.authorizedKeys.keys = [ config.crossSystem.sshPubKey ];
     };
 
     security.sudo.extraRules = [
       {
-        users = mkDefault [config.crossSystem.username];
+        users = mkDefault [ config.crossSystem.username ];
         runAs = "ALL:ALL";
         commands = [
           {
             command = "ALL";
-            options = ["NOPASSWD"];
+            options = [ "NOPASSWD" ];
           }
         ];
       }

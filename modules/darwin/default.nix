@@ -3,7 +3,8 @@
   inputs,
   config,
   ...
-}: {
+}:
+{
   imports = [
     ./networking.nix
     ./home-manager.nix
@@ -13,13 +14,16 @@
   nix = {
     package = pkgs.nix;
     settings = {
-      trusted-users = ["@admin" "${config.crossSystem.username}"];
+      trusted-users = [
+        "@admin"
+        "${config.crossSystem.username}"
+      ];
       extra-nix-path = "nixpkgs=flake:nixpkgs";
     };
   };
 
   environment = {
-    shells = [pkgs.bashInteractive];
+    shells = [ pkgs.bashInteractive ];
     shellAliases.nh = "nh-darwin";
     #variables.EDITOR = "${lib.getBin pkgs.neovim}/bin/nvim";
   };
