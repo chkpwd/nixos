@@ -310,6 +310,7 @@ _: {
           Battery = 1;
           Hearing = 2;
           UserSwitcher = 24;
+          NowPlaying = 8;
         };
         NSGlobalDomain = {
           AppleMenuBarVisibleInFullscreen = true;
