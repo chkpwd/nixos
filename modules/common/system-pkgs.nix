@@ -3,8 +3,7 @@
   environment = {
     systemPackages = with pkgs; [
       nil
-      alejandra
-      vim
+      nixd
     ];
     variables.EDITOR = "nvim";
   };

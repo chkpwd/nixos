@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, inputs, ... }:
 let
   inherit (lib) mkDefault;
 in
@@ -9,6 +9,7 @@ in
   nixpkgs.config.allowUnfree = true;
 
   nix = {
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
     gc = {
       automatic = true;
       options = "--delete-older-than 7d";
