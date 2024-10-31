@@ -22,6 +22,7 @@ _: {
       "gimp"
       "audacity"
       "firefox"
+      "zen-browser"
       "discord"
       "orbstack"
       "orcaslicer"
