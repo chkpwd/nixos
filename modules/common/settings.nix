@@ -1,8 +1,13 @@
-{ lib, inputs, ... }:
+{ lib, pkgs, inputs, ... }:
 let
   inherit (lib) mkDefault;
 in
 {
+  environment.systemPackages = [
+    pkgs.nil
+    pkgs.nixd
+  ];
+
   system.stateVersion = mkDefault "24.05";
 
   # Allow Proprietary software
