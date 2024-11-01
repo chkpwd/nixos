@@ -1,12 +1,28 @@
 {
-  "alejandra.program": "alejandra",
   "[nix]": {
-    "editor.defaultFormatter": "kamadorueda.alejandra",
+    "editor.defaultFormatter": "jnoortheen.nix-ide",
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
     "editor.formatOnType": false
   },
-  "nix.serverPath": "nil",
-  "nix.formatterPath": ["alejandra"],
-  "nix.enableLanguageServer": true
+  "nix.serverPath": "nixd",
+  "nix.enableLanguageServer": true,
+  "nix.serverSettings": {
+    "nixd": {
+      "formatting": {
+        "command": [ "nixfmt" ],
+      },
+      "options": {
+        "nixos": {
+          "expr": "(builtins.getFlake \"${workspaceFolder}\").nixosConfigurations.nix-mb-01.options"
+        },
+        "home_manager": {
+          "expr": "(builtins.getFlake \"${workspaceFolder}\").homeConfigurations.nix-mb-01.options"
+        },
+        "nix-darwin": {
+          "expr": "(builtins.getFlake \"${workspaceFolder}\").darwinConfigurations.nix-mb-01.options"
+        },
+      },
+    }
+  },
 }
