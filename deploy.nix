@@ -16,6 +16,9 @@ in
   deploy.nodes = {
     nix-vm-01 = deployConfig "nix-vm-01" "x86_64-linux" { };
     nix-wsl-01 = deployConfig "nix-wsl-01" "x86_64-linux" { };
-    nix-host-01 = deployConfig "nix-host-01" "x86_64-linux" { remoteBuild = true; };
+    nix-host-01 = deployConfig "nix-host-01" "x86_64-linux" {
+      sshUser = "chkpwd";
+      remoteBuild = true;
+    };
   };
 }
