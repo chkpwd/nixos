@@ -25,10 +25,21 @@
 
   networking = {
     useDHCP = false;
-    interfaces.enp0s31f6.useDHCP = true;
     interfaces.wlp2s0.useDHCP = false;
+    interfaces.enp0s31f6 = {
+      ipv4.addresses = [{
+        address = "172.16.16.6";
+        prefixLength = 24;
+      }];
+    };
+    defaultGateway = {
+      address = "172.16.16.1";
+      interface = "enp0s31f6";
+    };
     nftables.enable = true;
     firewall = {
+      enable = true;
+      allowPing = true;
       allowedTCPPorts = [
         8443
         53
@@ -52,6 +63,8 @@
   local.incus = {
     enable = true;
   };
+
+  config.
 
   system.stateVersion = "24.05";
 }
