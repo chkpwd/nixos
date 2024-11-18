@@ -15,29 +15,33 @@ The following tools are used in this stack:
 
 ## How to Use
 
-### Deployment
+#### Update
 
-#### NixOS
+```console
+nix flake update
+```
+
+#### Deployment
 
 To apply the NixOS configuration to a node, use the following command:
 
-##### Using Deploy
+###### deploy-rs
 
 ```console
-deploy .#<name-of-host>
+deploy .#$(hostname)
 ```
 
-##### Using NixOS
-
+###### Linux
 ```console
-sudo nixos-rebuild switch --flake github:chkpwd/nixos/<branch>#<name-of-host>
+nixos-rebuild switch --flake github:chkpwd/nixos/<branch>#$(hostname -s)
 ```
 
-### TODO
+###### MacOS
+```console
+darwin-rebuild switch --flake .#$(hostname -s)
+```
 
-- [x] MacOS Setup
-- [x] Setup Overlays
-- [] add wireguard modules
-- [] add per network DNS settings
-- [x] remove all variables from specialArgs
-- [x] remove all with lib; for example = inherit (lib) mkIf mkMerge;
+###### nixos-anywhere
+```nix
+nix run github:nix-community/nixos-anywhere -- --flake .#$(hostname) --build-on-remote nixos@<ip-address>
+```
