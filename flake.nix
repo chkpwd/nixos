@@ -87,8 +87,7 @@
 
       nixosConfigurations = {
         nix-vm-01 = nixosConfig { modules = [ ./hosts/nix-vm-01.nix ]; };
-        nix-host-01 = nixosConfig { modules = [ ./hosts/nix-host-01.nix ]; };
-        nix-wsl-01 = nixosConfig { modules = [ ./hosts/nix-wsl-01.nix ]; };
+        nix-host-01 = nixosConfig { modules = [ ./hosts/nix-host-01/default.nix ]; };
       };
 
       devShells = forAllSystems (pkgs: {

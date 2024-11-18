@@ -3,7 +3,8 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
-    ../modules/nixos/disk-config.nix
+    ./disk-config.nix
+    ./incus.nix
   ];
 
   networking = {
@@ -13,12 +14,6 @@
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
-  };
-
-  disko.devices = {
-    disk.disk1 = {
-      device = "/dev/sda";
-    };
   };
 
   hardware.cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
@@ -59,10 +54,6 @@
   };
 
   mainUser.enable = true;
-
-  local.incus = {
-    enable = true;
-  };
 
   system.stateVersion = "24.05";
 }
