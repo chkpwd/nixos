@@ -41,6 +41,7 @@ _: {
       "slack"
       "rectangle"
       "hyperkey"
+      "hammerspoon"
       # "postman"
       # "loopback"
       # "farrago"
