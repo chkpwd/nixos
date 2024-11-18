@@ -31,7 +31,6 @@ _: {
       "usr-sse2-rdm"
       "vlc"
       "plex"
-      "ente-auth"
       "wireshark"
       "keycastr"
       "the-unarchiver"
