@@ -42,6 +42,7 @@ _: {
       "rectangle"
       "hyperkey"
       "hammerspoon"
+      "qbittorrent"
       # "postman"
       # "loopback"
       # "farrago"

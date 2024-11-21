@@ -51,28 +51,24 @@ in
       age
       chezmoi
       jq
-      jqp
-      unstable.neovim
+      neovim
       bws
-      bitwarden-cli
+      # bitwarden-cli
       just
       crane
       complete-alias
-      tldr
       gh
-      (python311.withPackages (ps: [
+      (python312.withPackages (ps: [
         ps.pip
         ps.ansible-core
       ]))
-      ansible-lint
+      # ansible-lint
       pre-commit
       poetry
       android-tools
       imagemagick
       yt-dlp
-      unstable.mods
-      glow
-      tig
+      mods
       awscli2
     ];
   };
