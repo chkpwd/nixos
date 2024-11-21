@@ -8,7 +8,7 @@ in
     pkgs.nixd
   ];
 
-  system.stateVersion = mkDefault "24.05";
+  system.stateVersion = mkDefault "24.11";
 
   # Allow Proprietary software
   nixpkgs.config.allowUnfree = true;

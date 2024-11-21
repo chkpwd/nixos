@@ -1,8 +1,8 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-24.05-darwin";
+    nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -12,10 +12,9 @@
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     disko = {
@@ -24,7 +23,6 @@
     };
     deploy-rs.url = "github:serokell/deploy-rs";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
-    nixcord.url = "github:kaylorben/nixcord";
     nh-darwin.url = "github:ToyVo/nh-darwin";
     krewfile = {
       url = "github:brumhard/krewfile";
@@ -92,12 +90,12 @@
 
       devShells = forAllSystems (pkgs: {
         default = pkgs.mkShell {
-          packages = with pkgs; [
+          packages = [
             inputs.nh-darwin.packages.${pkgs.system}.default
-            nix-inspect
-            deploy-rs
-            nvd
-            nix-output-monitor
+            pkgs.nix-inspect
+            pkgs.deploy-rs
+            pkgs.nvd
+            pkgs.nix-output-monitor
           ];
           shellHook = ''
             echo "Nix Development Environment"
