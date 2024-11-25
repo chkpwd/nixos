@@ -62,7 +62,7 @@ in
         ps.pip
         ps.ansible-core
       ]))
-      # ansible-lint
+      ansible-lint
       pre-commit
       poetry
       android-tools
