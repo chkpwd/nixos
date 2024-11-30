@@ -10,7 +10,7 @@ _: {
       brewfile = true;
       lockfiles = false;
     };
-    brews = [ "ffmpeg" ];
+    brews = [ "ffmpeg" "bitwarden-cli" ];
     casks = [
       "ollama"
       "itsycal"
@@ -22,7 +22,6 @@ _: {
       "gimp"
       "audacity"
       "firefox"
-      "zen-browser"
       "discord"
       "orbstack"
       "orcaslicer"
@@ -43,7 +42,7 @@ _: {
       "hyperkey"
       "hammerspoon"
       "qbittorrent"
-      # "postman"
+      "appcleaner"
       # "loopback"
       # "farrago"
       # "aldente"
