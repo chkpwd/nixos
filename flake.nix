@@ -7,6 +7,7 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nh.url = "github:ToyVo/nh_plus";
     nix-inspect.url = "github:bluskript/nix-inspect";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     sops-nix = {
@@ -23,7 +24,6 @@
     };
     deploy-rs.url = "github:serokell/deploy-rs";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
-    nh-darwin.url = "github:ToyVo/nh-darwin";
     krewfile = {
       url = "github:brumhard/krewfile";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -91,11 +91,11 @@
       devShells = forAllSystems (pkgs: {
         default = pkgs.mkShell {
           packages = [
-            inputs.nh-darwin.packages.${pkgs.system}.default
             pkgs.nix-inspect
             pkgs.deploy-rs
             pkgs.nvd
             pkgs.nix-output-monitor
+            pkgs.nh
           ];
           shellHook = ''
             echo "Nix Development Environment"
