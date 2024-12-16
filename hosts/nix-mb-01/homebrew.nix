@@ -43,6 +43,7 @@ _: {
       "hammerspoon"
       "qbittorrent"
       "appcleaner"
+      "aws-cdk"
       # "loopback"
       # "farrago"
       # "aldente"
