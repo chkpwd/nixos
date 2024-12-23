@@ -28,7 +28,7 @@ _: {
       "spotify"
       "raspberry-pi-imager"
       "usr-sse2-rdm"
-      "vlc"
+      "iina"
       "plex"
       "wireshark"
       "keycastr"
