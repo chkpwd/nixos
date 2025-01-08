@@ -26,7 +26,6 @@ _: {
       "orcaslicer"
       "spotify"
       "raspberry-pi-imager"
-      "usr-sse2-rdm"
       "iina"
       "plex"
       "wireshark"
