@@ -19,7 +19,6 @@ _: {
       "zoom"
       "transmit"
       "steam"
-      "gimp"
       "audacity"
       "firefox"
       "discord"
@@ -27,8 +26,12 @@ _: {
       "orcaslicer"
       "spotify"
       "raspberry-pi-imager"
+<<<<<<< HEAD
       "usr-sse2-rdm"
       "iina"
+=======
+      "vlc"
+>>>>>>> c253ecf1dc89 (removed pkgs (rectangle,aws-cdk,rdm,gimp))
       "plex"
       "wireshark"
       "keycastr"
@@ -38,15 +41,14 @@ _: {
       "betterdisplay"
       "visual-studio-code"
       "slack"
-      "rectangle"
       "hyperkey"
       "hammerspoon"
       "qbittorrent"
       "appcleaner"
-      "aws-cdk"
+      # "aldente"
+      # "aws-cdk"
       # "loopback"
       # "farrago"
-      # "aldente"
       # "dash"
       # "etrecheckpro"
     ];
