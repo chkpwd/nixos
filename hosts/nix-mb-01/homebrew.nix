@@ -26,12 +26,8 @@ _: {
       "orcaslicer"
       "spotify"
       "raspberry-pi-imager"
-<<<<<<< HEAD
       "usr-sse2-rdm"
       "iina"
-=======
-      "vlc"
->>>>>>> c253ecf1dc89 (removed pkgs (rectangle,aws-cdk,rdm,gimp))
       "plex"
       "wireshark"
       "keycastr"
