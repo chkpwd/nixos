@@ -10,9 +10,10 @@ _: {
       brewfile = true;
       lockfiles = false;
     };
-    brews = [ "ffmpeg" "bitwarden-cli" "talosctl" "talhelper" ];
+    brews = [ "ffmpeg" "bitwarden-cli" "talosctl" "talhelper" "awscli" ];
     taps = [ "siderolabs/tap" ];
     casks = [
+      "legcord"
       "ollama"
       "itsycal"
       "iterm2"
@@ -22,7 +23,6 @@ _: {
       "steam"
       "audacity"
       "firefox"
-      "discord"
       "orbstack"
       "orcaslicer"
       "spotify"
@@ -42,7 +42,6 @@ _: {
       "qbittorrent"
       "appcleaner"
       # "aldente"
-      # "aws-cdk"
       # "loopback"
       # "farrago"
       # "dash"
@@ -54,7 +53,6 @@ _: {
       "Bitwarden" = 1352778147;
       "Wireguard" = 1451685025;
       "Microsoft Remote Desktop" = 1295203466;
-      "Amphetamine" = 937984704;
       "WhatsApp" = 310633997;
       # https://github.com/mas-cli/mas/issues/321
       # "JW Library" = 672417831;
