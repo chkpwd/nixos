@@ -10,11 +10,11 @@ _: {
       brewfile = true;
       lockfiles = false;
     };
-    brews = [ "ffmpeg" "bitwarden-cli" "talosctl" "talhelper" "awscli" ];
-    taps = [ "siderolabs/tap" ];
+    brews = [ "ffmpeg" "bitwarden-cli" "talosctl" "talhelper" "awscli" "vault" ];
+    taps = [ "siderolabs/tap" "hashicorp/tap" ];
     casks = [
-      "legcord"
-      "ollama"
+      "discord"
+      "google-chrome"
       "itsycal"
       "iterm2"
       "autodesk-fusion"
