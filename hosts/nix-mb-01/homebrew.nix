@@ -45,7 +45,6 @@ _: {
       "betterdisplay"
       "visual-studio-code"
       "slack"
-      "hyperkey"
       "hammerspoon"
       "qbittorrent"
       "appcleaner"
