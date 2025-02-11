@@ -18,6 +18,7 @@ _: {
       "talhelper"
       "awscli"
       "vault"
+      "yt-dlp"
     ];
     casks = [
       "obs"
