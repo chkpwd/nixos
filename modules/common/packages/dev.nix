@@ -70,6 +70,8 @@ in
       yt-dlp
       mods
       awscli2
+      yamlfmt
+      yamllint
     ];
   };
 }

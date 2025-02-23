@@ -10,7 +10,7 @@ _: {
       brewfile = true;
       lockfiles = false;
     };
-    taps = [ "siderolabs/tap" "hashicorp/tap" ];
+    taps = [ "siderolabs/tap" "hashicorp/tap" "qmk/qmk" ];
     brews = [
       "ffmpeg"
       "bitwarden-cli"
@@ -19,6 +19,7 @@ _: {
       "awscli"
       "vault"
       "yt-dlp"
+      "qmk/qmk/qmk"
     ];
     casks = [
       "obs"
