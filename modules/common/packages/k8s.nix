@@ -25,6 +25,7 @@ in
       kustomize
       cmctl
       fluxcd
+      cilium-cli
     ];
   };
 }
