@@ -42,7 +42,7 @@ in
     ];
 
     users.users.${config.crossSystem.username}.packages = with pkgs; [
-      terraform
+      unstable.terraform
       packer
       pet
       go
@@ -70,7 +70,7 @@ in
       yt-dlp
       mods
       awscli2
-      yamlfmt
+      yamlfmttl
       yamllint
     ];
   };
