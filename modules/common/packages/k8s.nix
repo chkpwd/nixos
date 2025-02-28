@@ -26,6 +26,7 @@ in
       cmctl
       fluxcd
       cilium-cli
+      k9s
     ];
   };
 }
