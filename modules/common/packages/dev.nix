@@ -54,7 +54,6 @@ in
       neovim
       bws
       # bitwarden-cli
-      just
       crane
       complete-alias
       gh
@@ -73,6 +72,7 @@ in
       yamlfmt
       yamllint
       tflint
+      go-task
     ];
   };
 }
