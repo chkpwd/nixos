@@ -73,6 +73,7 @@ in
       yamllint
       tflint
       go-task
+      minio-client
     ];
   };
 }
