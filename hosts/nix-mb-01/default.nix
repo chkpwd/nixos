@@ -55,12 +55,11 @@ in
               krewPackage = pkgs.krew;
               krewRoot = "${homeDirectory}/.krew/bin";
               plugins = [
+                "browse-pvc"
+                "rook-ceph"
                 "explore"
-                "modify-secret"
-                "neat"
-                "oidc-login"
-                "pv-migrate"
                 "stern"
+                "neat"
                 "ctx"
                 "ns"
               ];
