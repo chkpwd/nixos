@@ -74,6 +74,7 @@ in
       tflint
       go-task
       minio-client
+      restic
     ];
   };
 }
