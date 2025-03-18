@@ -27,6 +27,7 @@ in
       fluxcd
       cilium-cli
       k9s
+      kind
     ];
   };
 }

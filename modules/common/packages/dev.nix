@@ -75,6 +75,7 @@ in
       go-task
       minio-client
       restic
+      asciinema
     ];
   };
 }
