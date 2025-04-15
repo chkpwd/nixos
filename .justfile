@@ -7,4 +7,4 @@ default:
 # NixOS Remote Rebuild Switch using nix-shell
 rebuild
 remote-rebuild:
-  nix-shell -p nixos-rebuild --run 'nixos-rebuild build --flake .#{{HOST}} --fast --use-remote-sudo --build-host "{{USER}}@{{HOST}}.local.chkpwd.com" --target-host "{{USER}}@{{HOST}}.local.chkpwd.com"'
+  nix-shell -p nixos-rebuild --run 'nixos-rebuild build --flake .#{{HOST}} --fast --use-remote-sudo --build-host "{{USER}}@{{HOST}}.chkpwd.com" --target-host "{{USER}}@{{HOST}}.chkpwd.com"'
