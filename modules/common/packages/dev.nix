@@ -57,6 +57,7 @@ in
       crane
       complete-alias
       gh
+      act
       (python312.withPackages (ps: [
         ps.pip
         ps.ansible-core
@@ -76,6 +77,7 @@ in
       minio-client
       restic
       asciinema
+      hwatch
     ];
   };
 }

@@ -24,7 +24,7 @@ in
       kubernetes-helm
       kustomize
       cmctl
-      fluxcd
+      unstable.fluxcd
       cilium-cli
       k9s
       kind
