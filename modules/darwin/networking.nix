@@ -5,6 +5,6 @@ in
 {
   networking = {
     hostName = mkDefault "nixos";
-    search = mkDefault [ "local.chkpwd.com" ];
+    search = mkDefault [ "chkpwd.com" ];
   };
 }
