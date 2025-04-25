@@ -78,6 +78,9 @@ in
       restic
       asciinema
       hwatch
+      minijinja
+      helmfile
+      iperf3
     ];
   };
 }
