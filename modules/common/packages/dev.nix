@@ -81,6 +81,7 @@ in
       minijinja
       helmfile
       iperf3
+      uv
     ];
   };
 }
