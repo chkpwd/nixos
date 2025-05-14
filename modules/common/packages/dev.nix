@@ -64,7 +64,7 @@ in
       ]))
       ansible-lint
       pre-commit
-      poetry
+      unstable.poetry
       android-tools
       imagemagick
       yt-dlp
@@ -82,6 +82,8 @@ in
       helmfile
       iperf3
       uv
+      dive
+      tig
     ];
   };
 }
