@@ -21,6 +21,7 @@ _: {
       "vault"
       "yt-dlp"
       "qmk/qmk/qmk"
+      "ente-cli"
     ];
     casks = [
       "obs"
