@@ -12,6 +12,7 @@ _: {
     };
     taps = [ "siderolabs/tap" "hashicorp/tap" "qmk/qmk" ];
     brews = [
+      "ollama"
       "ffmpeg"
       "bitwarden-cli"
       "talosctl"
