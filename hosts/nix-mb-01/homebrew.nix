@@ -10,7 +10,11 @@ _: {
       brewfile = true;
       lockfiles = false;
     };
-    taps = [ "siderolabs/tap" "hashicorp/tap" "qmk/qmk" ];
+    taps = [
+      "siderolabs/tap"
+      "hashicorp/tap"
+      "qmk/qmk"
+    ];
     brews = [
       "ollama"
       "ffmpeg"

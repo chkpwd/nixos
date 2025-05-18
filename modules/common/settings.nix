@@ -1,4 +1,9 @@
-{ lib, pkgs, inputs, ... }:
+{
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 let
   inherit (lib) mkDefault;
 in

@@ -22,10 +22,12 @@
     useDHCP = false;
     interfaces.wlp2s0.useDHCP = false;
     interfaces.enp0s31f6 = {
-      ipv4.addresses = [{
-        address = "172.16.16.6";
-        prefixLength = 24;
-      }];
+      ipv4.addresses = [
+        {
+          address = "172.16.16.6";
+          prefixLength = 24;
+        }
+      ];
     };
     defaultGateway = {
       address = "172.16.16.1";
