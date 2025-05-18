@@ -6,7 +6,10 @@
       url = "github:LnL7/nix-darwin/nix-darwin-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nh.url = "github:ToyVo/nh_plus";
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-inspect.url = "github:bluskript/nix-inspect";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     sops-nix = {
@@ -70,6 +73,7 @@
           modules = [
             ./modules/darwin
             ./modules/common
+            inputs.lix-module.nixosModules.default
             { nixpkgs.overlays = builtins.attrValues overlays; }
           ] ++ modules;
         };
