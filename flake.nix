@@ -98,7 +98,6 @@
             pkgs.deploy-rs
             pkgs.nvd
             pkgs.nix-output-monitor
-            pkgs.nh
           ];
           shellHook = ''
             echo "Nix Development Environment"
