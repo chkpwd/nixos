@@ -24,13 +24,13 @@ in
       automatic = true;
       options = "--delete-older-than 7d";
     };
-    optimise.automatic = false; # https://github.com/LnL7/nix-darwin/pull/915#issuecomment-2165177905
+    optimise.automatic = true;
     settings = {
       experimental-features = [
         "nix-command"
         "flakes"
       ];
-      auto-optimise-store = false; # https://github.com/NixOS/nix/issues/7273
+      auto-optimise-store = true; # thank you lix
       accept-flake-config = true;
       trusted-users = mkDefault [
         "root"
