@@ -14,6 +14,7 @@ _: {
       "siderolabs/tap"
       "hashicorp/tap"
       "qmk/qmk"
+      "egovelox/homebrew-mozeidon"
     ];
     brews = [
       "ollama"
@@ -26,6 +27,8 @@ _: {
       "yt-dlp"
       "qmk/qmk/qmk"
       "ente-cli"
+      "egovelox/mozeidon/mozeidon"
+      "egovelox/mozeidon/mozeidon-native-app"
     ];
     casks = [
       "obs"
