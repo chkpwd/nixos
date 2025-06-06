@@ -14,7 +14,7 @@ _: {
         # Set to 'Dark' to enable dark mode, or leave unset for normal mode
         AppleInterfaceStyle = "Dark";
         # Whether to automatically switch between light and dark mode. The default is false
-        AppleInterfaceStyleSwitchesAutomatically = true;
+        AppleInterfaceStyleSwitchesAutomatically = false;
         # Configures the keyboard control behavior.  Mode 3 enables full keyboard control
         AppleKeyboardUIMode = 3;
         # Whether to enable the press-and-hold feature.  The default is true
