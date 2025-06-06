@@ -17,7 +17,6 @@ _: {
       "egovelox/homebrew-mozeidon"
     ];
     brews = [
-      "ollama"
       "ffmpeg"
       "bitwarden-cli"
       "talosctl"
@@ -31,6 +30,7 @@ _: {
       "egovelox/mozeidon/mozeidon-native-app"
     ];
     casks = [
+      "ollama"
       "obs"
       "discord"
       "google-chrome"
