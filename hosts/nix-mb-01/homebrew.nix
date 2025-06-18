@@ -28,6 +28,7 @@ _: {
       "ente-cli"
       "egovelox/mozeidon/mozeidon"
       "egovelox/mozeidon/mozeidon-native-app"
+      "controlplaneio-fluxcd/tap/flux-operator"
     ];
     casks = [
       "ollama"
