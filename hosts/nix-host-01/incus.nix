@@ -12,7 +12,7 @@
           name = "incusbr0";
           type = "bridge";
           config = {
-            "ipv4.address" = "172.16.16.6/24";
+            "ipv4.address" = "10.0.10.6/24";
             "ipv4.nat" = true;
             "ipv6.address" = "auto";
           };

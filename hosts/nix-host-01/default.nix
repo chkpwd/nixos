@@ -24,13 +24,13 @@
     interfaces.enp0s31f6 = {
       ipv4.addresses = [
         {
-          address = "172.16.16.6";
+          address = "10.0.10.6";
           prefixLength = 24;
         }
       ];
     };
     defaultGateway = {
-      address = "172.16.16.1";
+      address = "10.0.10.1";
       interface = "enp0s31f6";
     };
     nftables.enable = true;
