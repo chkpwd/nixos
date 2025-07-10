@@ -365,11 +365,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1752027480,
-        "narHash": "sha256-IkDajRjsCgEpLrTUAlw29aYbRxO1qTqpV9ssMBpXa3g=",
+        "lastModified": 1752129258,
+        "narHash": "sha256-KyRnXI/bH5+/GFBWMoHqS0lOFCPQFgg1lc0qHevrSG0=",
         "owner": "nix-community",
         "repo": "NixOS-WSL",
-        "rev": "d5bf05234f5246294047dd10cb8c6e89cca0e884",
+        "rev": "df6f6d53133e35202cbd1302f68940dd8f15d56f",
         "type": "github"
       },
       "original": {
