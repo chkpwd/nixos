@@ -32,7 +32,6 @@ _: {
       "postgresql"
     ];
     casks = [
-      "blackhole-2ch"
       "ollama"
       "obs"
       "discord"
