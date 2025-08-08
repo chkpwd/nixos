@@ -29,8 +29,10 @@ _: {
       "egovelox/mozeidon/mozeidon"
       "egovelox/mozeidon/mozeidon-native-app"
       "controlplaneio-fluxcd/tap/flux-operator"
+      "postgresql"
     ];
     casks = [
+      "blackhole-2ch"
       "ollama"
       "obs"
       "discord"
