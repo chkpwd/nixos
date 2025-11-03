@@ -17,22 +17,27 @@ _: {
       "egovelox/homebrew-mozeidon"
     ];
     brews = [
+      "coreutils"
       "ffmpeg"
       "bitwarden-cli"
       "talosctl"
       "talhelper"
       "awscli"
-      "vault"
       "yt-dlp"
       "qmk/qmk/qmk"
       "ente-cli"
       "egovelox/mozeidon/mozeidon"
       "egovelox/mozeidon/mozeidon-native-app"
-      "controlplaneio-fluxcd/tap/flux-operator"
+      # "controlplaneio-fluxcd/tap/flux-operator"
       "postgresql"
+      "govc"
     ];
     casks = [
+<<<<<<< HEAD
       "ollama"
+=======
+      "ollama-app"
+>>>>>>> 4b75078891c2 (add/remove brew pkgs)
       "obs"
       "discord"
       "google-chrome"
@@ -50,7 +55,7 @@ _: {
       "raspberry-pi-imager"
       "iina"
       "plex"
-      "wireshark"
+      "wireshark-app"
       "keycastr"
       "the-unarchiver"
       "moonlight"
@@ -58,7 +63,7 @@ _: {
       "betterdisplay"
       "visual-studio-code"
       "slack"
-      "hammerspoon"
+      # "hammerspoon"
       "qbittorrent"
       "appcleaner"
       # "aldente"
