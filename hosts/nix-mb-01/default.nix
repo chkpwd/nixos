@@ -25,16 +25,16 @@ in
 
   system = {
     activationScripts.postActivation.text = ''
-      sudo chsh -s /run/current-system/sw/bin/zsh chkpwd
+      sudo chsh -s /run/current-system/sw/bin/fish chkpwd
     '';
   };
 
-  programs.zsh.enable = true;
+  programs.fish.enable = true;
 
   users.users.${config.crossSystem.username} = {
     name = "${config.crossSystem.username}";
     home = homeDirectory;
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
     openssh.authorizedKeys.keys = [ config.crossSystem.sshPubKey ];
   };
 
