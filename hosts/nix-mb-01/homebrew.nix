@@ -33,11 +33,7 @@ _: {
       "govc"
     ];
     casks = [
-<<<<<<< HEAD
-      "ollama"
-=======
       "ollama-app"
->>>>>>> 4b75078891c2 (add/remove brew pkgs)
       "obs"
       "discord"
       "google-chrome"
