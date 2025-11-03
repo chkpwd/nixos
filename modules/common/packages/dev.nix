@@ -56,7 +56,7 @@ in
       # bitwarden-cli
       crane
       complete-alias
-      gh
+      unstable.gh
       act
       (python312.withPackages (ps: [
         ps.pip
